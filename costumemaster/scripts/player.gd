@@ -9,6 +9,13 @@ enum CostumeType {
 	MAGIC = 3
 }
 
+enum PlayerHint {
+	NONE = 0,
+	INTERACT = 1,
+	EXIT = 2,
+	NEEDS_INPUT = 3
+}
+
 # The player's default mass.
 export var MASS = 1.0
 
@@ -30,11 +37,14 @@ const acceleration = 250
 var _velocity = Vector2.ZERO
 var _collision_velocity = Vector2.ZERO
 var _can_move = true
+var _hint = PlayerHint.NONE
 
 onready var _sprite = $Sprite as Sprite
 onready var _asm = $AnimationStateTree as AnimationTree
 onready var _camera = $Camera as Camera2D
 onready var _aState = _asm.get("parameters/playback") as AnimationNodeStateMachinePlayback
+onready var _hint_gui = $Hint as Sprite
+onready var _audio = $Voicebox as AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -42,6 +52,7 @@ func _ready() -> void:
 	if FIELD_OF_VIEW != null:
 		_camera.zoom = Vector2(FIELD_OF_VIEW, FIELD_OF_VIEW)
 		
+	# Change the costume immediately.
 	change_costume(CURRENT_COSTUME)
 
 	# var universe = find_parent("Universe") as Universe
@@ -49,6 +60,8 @@ func _ready() -> void:
 	# universe.connect("release_player_lock", self, "_unblock_movement")
 	
 # Change the player's current costume and reload the sprite's texutre to match.
+# Parameters:
+# 	costume_type: An integer representing the costume that the player should wear.
 func change_costume(costume_type: int) -> void:
 	CURRENT_COSTUME = costume_type
 	if _sprite != null:
@@ -61,6 +74,27 @@ func change_costume_editor(type) -> void:
 		var sprite_node = get_node("Sprite")
 		if sprite_node:
 			sprite_node.texture = load("res://assets/sprites/" + _costume_name() + ".png")
+			
+# Update the player UI hint.
+# Parameters:
+#	status: The integer representing the player hint to display.
+func update_player_hint(status: int) -> void:
+	_hint = status
+	match _hint:
+		PlayerHint.NONE:
+			_hint_gui.visible = false
+		PlayerHint.INTERACT:
+			_hint_gui.visible = true
+			_hint_gui.frame_coords = Vector2(8, 4)
+		PlayerHint.EXIT:
+			_hint_gui.visible = true
+			_hint_gui.frame_coords = Vector2(10, 4)
+		PlayerHint.NEEDS_INPUT:
+			_hint_gui.visible = true
+			_hint_gui.frame_coords = Vector2(7, 6)
+		_:
+			pass
+	
 
 func _physics_process(delta) -> void:
 	if Engine.editor_hint:
@@ -94,6 +128,15 @@ func _physics_process(delta) -> void:
 	# Move the player with the new velocity with respect to any collidable objects.
 	_collision_velocity = move_and_slide(_velocity * delta * speed)
 	
+func _unhandled_key_input(event: InputEventKey) -> void:
+	if event.get_action_strength("interact") and _hint == PlayerHint.NONE:
+		_play_cant_use_sound()
+
+func _play_cant_use_sound() -> void:
+	_audio.stream = load("res://assets/sfx/cantUse.ogg") as AudioStreamOGGVorbis
+	_audio.stream.loop = false
+	_audio.play()
+
 func _costume_name() -> String:
 	match CURRENT_COSTUME:
 		CostumeType.DEFAULT:

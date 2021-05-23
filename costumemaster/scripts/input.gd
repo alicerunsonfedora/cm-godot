@@ -24,6 +24,8 @@ var _permalock = false
 # The input's internal timer.
 onready var timer: Timer
 
+onready var _audio: AudioStreamPlayer
+
 # A signal that emits when the input is activated.
 signal input_active(name)
 
@@ -43,6 +45,7 @@ func get_name() -> String:
 
 func _ready() -> void:
 	_make_timer()
+	_make_audio_player()
 	var _ent_err = connect("body_entered", self, "_on_body_entered")
 	var _exi_err = connect("body_exited", self, "_on_body_exited")
 
@@ -53,7 +56,7 @@ func _ready() -> void:
 
 func _process(_delta) -> void:
 	if Input.get_action_strength("interact") and _listening_for_keypress:
-		if _active and not _permalock:
+		if _active and not _permalock and (timer.time_left == 0):
 			_deactivate()
 		else:
 			_activate()
@@ -67,19 +70,46 @@ func _make_timer() -> void:
 	var _tim_con = timer.connect("timeout", self, "_deactivate")
 	if _tim_con != OK:
 		print_debug(_tim_con)
+		
+func _make_audio_player() -> void:
+	_audio = AudioStreamPlayer.new()
+	if DURATION > 0:
+		_audio.stream = load("res://assets/sfx/alarmEnable.ogg") as AudioStreamOGGVorbis
+	else:
+		_audio.stream = load("res://assets/sfx/leverToggle.ogg") as AudioStreamOGGVorbis
+	_audio.stream.loop = false
+	add_child(_audio)
+
+func _make_audio_tick() -> void:
+	if _audio == null:
+		_make_audio_player()
+	_audio.stream = load("res://assets/sfx/alarmTick.ogg") as AudioStreamOGGVorbis
+	_audio.stream.loop = true
+	_audio.stream.loop_offset = 0
+	
+func _make_audio_turnoff() -> void:
+	if _audio == null:
+		_make_audio_player()
+	if DURATION == 0:
+		return
+	_audio.stream = load("res://assets/sfx/alarmDisable.ogg") as AudioStreamOGGVorbis
+	_audio.stream.loop = false
 
 # Activate the input device.
 # If the duration is a non-zero value, the internal timer will start.
 func _activate() -> void:
-	if _permalock:
+	if _permalock or _active:
 		return
 	_active = true
 	_on_activate()
 	emit_signal("input_active", get_name())
+	_audio.play()
 	if PERMANENT:
 		_permalock = true
 	if DURATION > 0:
 		timer.start()
+		_make_audio_tick()
+		_audio.play()
 
 # Deactivate the input device.
 # If the duration is a non-zero value, the internal timer will stop.
@@ -87,14 +117,18 @@ func _deactivate() -> void:
 	_active = false
 	_on_deactivate()
 	emit_signal("input_inactive", get_name())
+	_make_audio_turnoff()
+	_audio.play()
 	if DURATION > 0:
 		timer.stop()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.name != "PlayerNode" and body.name != "Player":
 		return
+	
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = true
+		(body as Player).update_player_hint(1)
 	elif not _active:
 		_activate()
 
@@ -103,6 +137,7 @@ func _on_body_exited(body: Node2D) -> void:
 		return
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = false
+		(body as Player).update_player_hint(0)
 	elif _active:
 		_deactivate()
 

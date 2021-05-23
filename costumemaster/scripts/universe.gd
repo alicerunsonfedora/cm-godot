@@ -1,15 +1,25 @@
+# A base class that handles all world events, from music to map configurations.
 class_name Universe
 extends Node2D
 
+# An enumeration of the different music tracks that can be played.
 enum Track {
 	NONE = 0,
 	MINUTE = 1,
 	PHASE = 2,
 	DISTURBANCE = 3,
-	WATCH_YOUR_STEP = 4
+	WATCH_YOUR_STEP = 4,
+	RANDOM = 5
 }
 
+# The track to play in this level.
 export(Track) var MUSIC = 0
+
+# Whether to allow costume switching.
+export(bool) var MULTIPLE_COSTUMES = true
+
+# A list of costume types to switch to in this level.
+export(Array, Player.CostumeType) var ALLOWED_COSTUMES = []
 
 signal request_player_lock()
 signal release_player_lock()
@@ -17,6 +27,7 @@ signal release_player_lock()
 var _lock: bool = false
 
 onready var _bgm: AudioStreamPlayer
+onready var _hud: HUD = $CanvasLayer/HUD as HUD
 
 func _ready() -> void:
 	_bgm = AudioStreamPlayer.new() as AudioStreamPlayer
@@ -24,9 +35,15 @@ func _ready() -> void:
 	if MUSIC > 0:
 		_bgm.stream = _get_music_track()
 		_bgm.play()
+		
+	_hud.connect("costume_request", self, "send_costume_request")
+	_hud.visible = true
 	
 
 func _get_music_track() -> AudioStream:
+	if MUSIC == Track.RANDOM:
+		print_debug("A random song will be picked.")
+		MUSIC = randi() % 4
 	match MUSIC:
 		Track.MINUTE:
 			return load("res://assets/bgm/minute.ogg") as AudioStreamOGGVorbis
@@ -46,3 +63,9 @@ func trigger_lock() -> void:
 	else:
 		emit_signal("request_player_lock")
 	_lock = not _lock
+
+func send_costume_request(costume_type: int) -> void:
+	var player_node = find_node("Player")
+	if player_node == null or not MULTIPLE_COSTUMES or ALLOWED_COSTUMES.find(costume_type) == -1:
+		return
+	(player_node as Player).change_costume(costume_type)

@@ -101,13 +101,13 @@ func _process(_delta) -> void:
 		_key_lock = active()
 		_check_active()
 		
-func _on_body_entered(body) -> void:
+func _on_body_entered(body: Node2D) -> void:
 	if body.name != "Player" and body.name != "PlayerNode":
 		return
 	if INTERACT_ON_KEYPRESS and active():
 		_can_unlock_key = true
 	
-func _on_body_exited(body) -> void:
+func _on_body_exited(body: Node2D) -> void:
 	if body.name != "Player" and body.name != "PlayerNode":
 		return
 	if INTERACT_ON_KEYPRESS:
