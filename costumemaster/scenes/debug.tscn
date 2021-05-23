@@ -1,0 +1,54 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://nodes/obj_player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://nodes/dec_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://scripts/universe.gd" type="Script" id=4]
+[ext_resource path="res://scripts/devices/exitdoor.gd" type="Script" id=5]
+[ext_resource path="res://scripts/input.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23.5316, 37.8062 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.4356, 38.9967 )
+
+[node name="Universe" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+FIELD_OF_VIEW = 0.5
+CURRENT_COSTUME = 1
+
+[node name="Layout" type="TileMap" parent="."]
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -131077, 0, 0, -131076, 5, 0, -131075, 5, 0, -131074, 5, 0, -131073, 5, 0, -196608, 5, 0, -196607, 5, 0, -196606, 4, 0, -65541, 1, 0, -65540, 6, 0, -65539, 6, 0, -65538, 6, 0, -65537, 6, 0, -131072, 6, 0, -131071, 6, 0, -131070, 36, 0, -131069, 5, 0, -131068, 5, 0, -131067, 5, 0, -131066, 4, 0, -5, 1, 0, -4, 7, 0, -3, 8, 0, -2, 8, 0, -1, 8, 0, -65536, 8, 0, -65535, 8, 0, -65534, 26, 0, -65533, 6, 0, -65532, 6, 0, -65531, 6, 0, -65530, 11, 0, 65531, 1, 0, 65532, 9, 0, 65533, 10, 0, 65534, 10, 0, 65535, 10, 0, 0, 10, 0, 1, 10, 0, 2, 8, 0, 3, 8, 0, 4, 8, 0, 5, 8, 0, 6, 11, 0, 131067, 1, 0, 131068, 9, 0, 131069, 10, 0, 131070, 10, 0, 131071, 10, 0, 65536, 10, 0, 65537, 10, 0, 65538, 10, 0, 65539, 10, 0, 65540, 10, 0, 65541, 10, 0, 65542, 11, 0, 196603, 1, 0, 196604, 9, 0, 196605, 10, 0, 196606, 10, 0, 196607, 10, 0, 131072, 10, 0, 131073, 10, 0, 131074, 10, 0, 131075, 10, 0, 131076, 10, 0, 131077, 10, 0, 131078, 11, 0, 262139, 1, 0, 262140, 9, 0, 262141, 10, 0, 262142, 10, 0, 262143, 10, 0, 196608, 10, 0, 196609, 10, 0, 196610, 10, 0, 196611, 10, 0, 196612, 10, 0, 196613, 10, 0, 196614, 11, 0, 327675, 2, 0, 327676, 12, 0, 327677, 12, 0, 327678, 12, 0, 327679, 12, 0, 262144, 12, 0, 262145, 12, 0, 262146, 12, 0, 262147, 12, 0, 262148, 12, 0, 262149, 12, 0, 262150, 3, 0 )
+
+[node name="Decor" type="TileMap" parent="Layout"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -131073, 5, 0, -65540, 4, 0, -65539, 12, 0, -131069, 6, 0, -131068, 24, 0, -3, 13, 0, -1, 29, 0, -65536, 33, 0, -65535, 31, 0, -65534, 7, 0, 65533, 14, 0, 5, 20, 0, 131071, 30, 0, 65536, 34, 0, 65537, 32, 0, 65540, 3, 0, 65541, 23, 0, 131077, 10, 0, 196611, 15, 0, 196612, 16, 0, 196613, 17, 0 )
+
+[node name="ExitDoor" type="Area2D" parent="."]
+script = ExtResource( 5 )
+INPUTS = [ NodePath("../Lever") ]
+INTERACT_ON_KEYPRESS = true
+NEXT_SCENE = "res://scenes/debug.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExitDoor"]
+position = Vector2( 167.868, -27.7795 )
+shape = SubResource( 1 )
+
+[node name="Lever" type="Area2D" parent="."]
+script = ExtResource( 6 )
+INTERACTION = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Lever"]
+position = Vector2( 120.246, -30.5575 )
+shape = SubResource( 2 )
