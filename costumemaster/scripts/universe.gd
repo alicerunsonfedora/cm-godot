@@ -21,7 +21,10 @@ export(bool) var MULTIPLE_COSTUMES = true
 # A list of costume types to switch to in this level.
 export(Array, Player.CostumeType) var ALLOWED_COSTUMES = []
 
+# A signal emitted when the player lock has been requested and granted.
 signal request_player_lock()
+
+# A signal emitted when the player lock has been released.
 signal release_player_lock()
 
 var _lock: bool = false
@@ -36,8 +39,11 @@ func _ready() -> void:
 		_bgm.stream = _get_music_track()
 		_bgm.play()
 		
-	_hud.connect("costume_request", self, "send_costume_request")
+	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
 	_hud.visible = true
+	
+	if _hud_err:
+		push_error(_hud_err)
 	
 
 func _get_music_track() -> AudioStream:
@@ -57,6 +63,8 @@ func _get_music_track() -> AudioStream:
 			push_warning("Received unexpected music type or none.")
 			return AudioStream.new()
 
+# Trigger the locking mechanism for the player.
+# This is used to handle any UI elements that require that the player be static, such as cutscenes.
 func trigger_lock() -> void:
 	if _lock:
 		emit_signal("release_player_lock")
@@ -64,6 +72,9 @@ func trigger_lock() -> void:
 		emit_signal("request_player_lock")
 	_lock = not _lock
 
+# Send a request to the player to change the costume if applicable or allowed by the universe.
+# Parameters:
+# 	costume_type: An integer representing the costume to request switching to.
 func send_costume_request(costume_type: int) -> void:
 	var player_node = find_node("Player")
 	if player_node == null or not MULTIPLE_COSTUMES or ALLOWED_COSTUMES.find(costume_type) == -1:
