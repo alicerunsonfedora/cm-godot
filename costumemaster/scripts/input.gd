@@ -70,7 +70,7 @@ func _make_timer() -> void:
 	var _tim_con = timer.connect("timeout", self, "_deactivate")
 	if _tim_con != OK:
 		print_debug(_tim_con)
-		
+
 func _make_audio_player() -> void:
 	_audio = AudioStreamPlayer.new()
 	if DURATION > 0:
@@ -86,7 +86,7 @@ func _make_audio_tick() -> void:
 	_audio.stream = load("res://assets/sfx/alarmTick.ogg") as AudioStreamOGGVorbis
 	_audio.stream.loop = true
 	_audio.stream.loop_offset = 0
-	
+
 func _make_audio_turnoff() -> void:
 	if _audio == null:
 		_make_audio_player()
@@ -125,7 +125,7 @@ func _deactivate() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if body.name != "PlayerNode" and body.name != "Player":
 		return
-	
+
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = true
 		(body as Player).update_player_hint(1)

@@ -63,7 +63,7 @@ func _active_and_unlocked() -> bool:
 func _ready() -> void:
 	var _ent_err = connect("body_entered", self, "_on_body_entered")
 	var _exi_err = connect("body_exited", self, "_on_body_exited")
-	
+
 	_cooldown = Timer.new()
 	_cooldown.autostart = false
 	_cooldown.one_shot = true
@@ -74,10 +74,10 @@ func _ready() -> void:
 		print_debug(_ent_err)
 	if _exi_err != OK:
 		print_debug(_exi_err)
-	
+
 	if len(INPUTS) == 0:
 		push_warning("Input list is empty.")
-	
+
 	for input_path in INPUTS:
 		var node = get_node(input_path)
 		if not node or not node is AbstractInput:
@@ -86,7 +86,7 @@ func _ready() -> void:
 		var input = node as AbstractInput
 		if input.get_name() in _input_map.keys():
 			continue
-		
+
 		_input_map[input.get_name()] = input.active()
 		var _inp_act_err = input.connect("input_active", self, "_on_input_active")
 		var _inp_dea_err = input.connect("input_inactive", self, "_on_input_deactive")
@@ -100,30 +100,30 @@ func _process(_delta) -> void:
 	if INTERACT_ON_KEYPRESS and Input.get_action_strength("interact") and _can_unlock_key:
 		_key_lock = active()
 		_check_active()
-		
+
 func _on_body_entered(body: Node2D) -> void:
 	if body.name != "Player" and body.name != "PlayerNode":
 		return
 	if INTERACT_ON_KEYPRESS and active():
 		_can_unlock_key = true
-	
+
 func _on_body_exited(body: Node2D) -> void:
 	if body.name != "Player" and body.name != "PlayerNode":
 		return
 	if INTERACT_ON_KEYPRESS:
 		_can_unlock_key = false
-	
+
 func _check_active():
 	if _active_and_unlocked():
 		_cooldown.start()
 		_on_activate()
 		emit_signal("output_active")
-		
+
 func _check_inactive():
 	if not _active_and_unlocked():
 		_on_deactivate()
 		emit_signal("output_inactive")
-		
+
 func _on_input_active(name) -> void:
 	_input_map[name] = true
 	_check_active()

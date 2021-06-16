@@ -21,6 +21,10 @@ export(bool) var MULTIPLE_COSTUMES = true
 # A list of costume types to switch to in this level.
 export(Array, Player.CostumeType) var ALLOWED_COSTUMES = []
 
+# Whether to display the debug menu in the HUD.
+# If enabled, the only costume available will be ALL.
+export(bool) var DEBUG_MODE = false
+
 # A signal emitted when the player lock has been requested and granted.
 signal request_player_lock()
 
@@ -38,13 +42,17 @@ func _ready() -> void:
 	if MUSIC > 0:
 		_bgm.stream = _get_music_track()
 		_bgm.play()
-		
-	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
+
 	_hud.visible = true
-	
+	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
 	if _hud_err:
 		push_error(_hud_err)
-	
+
+	if DEBUG_MODE:
+		_enable_debug_player()
+		_hud.hide_debug_menu()
+
+
 
 func _get_music_track() -> AudioStream:
 	if MUSIC == Track.RANDOM:
@@ -62,6 +70,15 @@ func _get_music_track() -> AudioStream:
 		_:
 			push_warning("Received unexpected music type or none.")
 			return AudioStream.new()
+
+func _enable_debug_player():
+	var player = find_node("Player") as Player
+	if player == null:
+		push_error("Player is missing from the scene.")
+
+	player.change_costume(4)
+	MULTIPLE_COSTUMES = false
+	ALLOWED_COSTUMES = [4]
 
 # Trigger the locking mechanism for the player.
 # This is used to handle any UI elements that require that the player be static, such as cutscenes.
