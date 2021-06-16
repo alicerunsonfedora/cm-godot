@@ -32,6 +32,8 @@ export var FIELD_OF_VIEW = 1.0
 # The player's current costume.
 export(CostumeType) var CURRENT_COSTUME = CostumeType.DEFAULT setget change_costume_editor
 
+signal wants_clone()
+
 const speed = 500
 const acceleration = 250
 
@@ -148,6 +150,8 @@ func _physics_process(delta) -> void:
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if event.get_action_strength("interact") and _hint == PlayerHint.NONE:
 		_play_cant_use_sound()
+	elif event.get_action_strength("clone"):
+		emit_signal("wants_clone")
 
 func _play_cant_use_sound() -> void:
 	_audio.stream = load("res://assets/sfx/cantUse.ogg") as AudioStreamOGGVorbis

@@ -35,24 +35,40 @@ var _lock: bool = false
 
 onready var _bgm: AudioStreamPlayer
 onready var _hud: HUD = $CanvasLayer/HUD as HUD
+onready var _clone_data = load("res://nodes/obj_clone.tscn")
+onready var _clone: Node2D
 
 func _ready() -> void:
-	_bgm = AudioStreamPlayer.new() as AudioStreamPlayer
-	add_child(_bgm)
-	if MUSIC > 0:
-		_bgm.stream = _get_music_track()
-		_bgm.play()
+	_instantiate_music()
+	_instantiate_hud()
 
-	_hud.visible = true
-	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
-	if _hud_err:
-		push_error(_hud_err)
+	var player = _get_player()
+	if player != null:
+		player.connect("wants_clone", self, "toggle_clone")
 
 	if DEBUG_MODE:
 		_enable_debug_player()
 		_hud.hide_debug_menu()
 
+# Returns whether a clone exists in the universe.
+func _clone_exists() -> bool:
+	return _clone != null
 
+func _destroy_clone() -> void:
+	if not _clone_exists():
+		return
+	remove_child(_clone)
+	_clone.queue_free()
+	_clone = null
+
+func _enable_debug_player():
+	var player = _get_player()
+	if player == null:
+		push_error("Player is missing from the scene.")
+
+	player.change_costume(4)
+	MULTIPLE_COSTUMES = false
+	ALLOWED_COSTUMES = [4]
 
 func _get_music_track() -> AudioStream:
 	if MUSIC == Track.RANDOM:
@@ -71,14 +87,28 @@ func _get_music_track() -> AudioStream:
 			push_warning("Received unexpected music type or none.")
 			return AudioStream.new()
 
-func _enable_debug_player():
-	var player = find_node("Player") as Player
-	if player == null:
-		push_error("Player is missing from the scene.")
+func _get_player() -> Player:
+	return find_node("Player") as Player
 
-	player.change_costume(4)
-	MULTIPLE_COSTUMES = false
-	ALLOWED_COSTUMES = [4]
+func _instantiate_clone() -> void:
+	if _clone_exists():
+		return
+	_clone = _clone_data.instance()
+	_clone.global_position = _get_player().global_position
+	add_child(_clone)
+
+func _instantiate_hud() -> void:
+	_hud.visible = true
+	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
+	if _hud_err:
+		push_error(_hud_err)
+
+func _instantiate_music() -> void:
+	_bgm = AudioStreamPlayer.new() as AudioStreamPlayer
+	add_child(_bgm)
+	if MUSIC > 0:
+		_bgm.stream = _get_music_track()
+		_bgm.play()
 
 # Trigger the locking mechanism for the player.
 # This is used to handle any UI elements that require that the player be static, such as cutscenes.
@@ -93,7 +123,17 @@ func trigger_lock() -> void:
 # Parameters:
 # 	costume_type: An integer representing the costume to request switching to.
 func send_costume_request(costume_type: int) -> void:
-	var player_node = find_node("Player")
+	var player_node = _get_player()
 	if player_node == null or not MULTIPLE_COSTUMES or ALLOWED_COSTUMES.find(costume_type) == -1:
 		return
 	(player_node as Player).change_costume(costume_type)
+
+# Toggle the player clone in the universe.
+func toggle_clone() -> void:
+	var player_node = _get_player()
+	if player_node == null or player_node.CURRENT_COSTUME != Player.CostumeType.FLASH_DRIVE:
+		return
+	if _clone_exists():
+		_destroy_clone()
+		return
+	_instantiate_clone()

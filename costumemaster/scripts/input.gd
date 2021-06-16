@@ -123,20 +123,24 @@ func _deactivate() -> void:
 		timer.stop()
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.name != "PlayerNode" and body.name != "Player":
+	if not body.name in ["Player", "PlayerNode", "Clone"]:
 		return
 
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = true
+		if body.name == "Clone":
+			return
 		(body as Player).update_player_hint(1)
 	elif not _active:
 		_activate()
 
 func _on_body_exited(body: Node2D) -> void:
-	if body.name != "PlayerNode" and body.name != "Player":
+	if not body.name in ["Player", "PlayerNode", "Clone"]:
 		return
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = false
+		if body.name == "Clone":
+			return
 		(body as Player).update_player_hint(0)
 	elif _active:
 		_deactivate()

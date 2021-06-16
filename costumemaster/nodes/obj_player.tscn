@@ -197,6 +197,7 @@ tracks/0/keys = {
 }
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="Hint" type="Sprite" parent="."]
@@ -210,7 +211,6 @@ vframes = 14
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 1 )
 hframes = 24
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.264862, 15.7667 )

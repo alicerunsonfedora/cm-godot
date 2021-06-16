@@ -1,3 +1,6 @@
 # Godot-specific files
 **/.import/
 **.import
+
+# macOS-specific files
+.DS_Store
