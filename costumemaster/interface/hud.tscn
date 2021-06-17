@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scripts/hud.gd" type="Script" id=1]
 [ext_resource path="res://assets/gui/theme.tres" type="Theme" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/gui/hud/usb.png" type="Texture" id=6]
 [ext_resource path="res://assets/gui/Cabin-Regular.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://assets/gui/hud/all.png" type="Texture" id=8]
+[ext_resource path="res://assets/gui/hud/restart.png" type="Texture" id=9]
 
 [sub_resource type="InputEventAction" id=2]
 action = "costume_change_flash"
@@ -39,7 +40,13 @@ action = "costume_change_none"
 [sub_resource type="ShortCut" id=9]
 shortcut = SubResource( 8 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="InputEventAction" id=13]
+action = "restart"
+
+[sub_resource type="ShortCut" id=14]
+shortcut = SubResource( 13 )
+
+[sub_resource type="DynamicFont" id=12]
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 7 )
@@ -47,9 +54,9 @@ font_data = ExtResource( 7 )
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 3.40161
+margin_left = 4.53113
 margin_top = -0.0490719
-margin_right = 3.40149
+margin_right = 4.53101
 margin_bottom = -0.0490723
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
@@ -59,7 +66,9 @@ __meta__ = {
 
 [node name="Toolbar" type="HBoxContainer" parent="."]
 anchor_right = 1.0
+margin_left = 16.0
 margin_top = 16.0
+margin_right = -16.0
 margin_bottom = 45.0
 alignment = 1
 __meta__ = {
@@ -67,8 +76,7 @@ __meta__ = {
 }
 
 [node name="FlashCostume" type="Button" parent="Toolbar"]
-margin_left = 365.0
-margin_right = 417.0
+margin_right = 52.0
 margin_bottom = 45.0
 hint_tooltip = "Flash Drive"
 shortcut = SubResource( 3 )
@@ -78,8 +86,8 @@ __meta__ = {
 }
 
 [node name="BirdCostume" type="Button" parent="Toolbar"]
-margin_left = 425.0
-margin_right = 477.0
+margin_left = 60.0
+margin_right = 112.0
 margin_bottom = 45.0
 hint_tooltip = "Swift Bird"
 shortcut = SubResource( 5 )
@@ -89,8 +97,8 @@ __meta__ = {
 }
 
 [node name="MagiCostume" type="Button" parent="Toolbar"]
-margin_left = 485.0
-margin_right = 537.0
+margin_left = 120.0
+margin_right = 172.0
 margin_bottom = 45.0
 hint_tooltip = "Magic Unicorn"
 shortcut = SubResource( 7 )
@@ -100,8 +108,8 @@ __meta__ = {
 }
 
 [node name="MegaCostume" type="Button" parent="Toolbar"]
-margin_left = 545.0
-margin_right = 597.0
+margin_left = 180.0
+margin_right = 232.0
 margin_bottom = 45.0
 hint_tooltip = "Megacostume (All)"
 shortcut = SubResource( 11 )
@@ -111,8 +119,8 @@ __meta__ = {
 }
 
 [node name="NoneCostume" type="Button" parent="Toolbar"]
-margin_left = 605.0
-margin_right = 657.0
+margin_left = 240.0
+margin_right = 292.0
 margin_bottom = 45.0
 hint_tooltip = "No Costume"
 shortcut = SubResource( 9 )
@@ -120,6 +128,20 @@ icon = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FlexibleSpacer2" type="Control" parent="Toolbar"]
+margin_left = 300.0
+margin_right = 300.0
+size_flags_horizontal = 2
+size_flags_vertical = 2
+
+[node name="Restart" type="Button" parent="Toolbar"]
+margin_left = 939.0
+margin_right = 991.0
+margin_bottom = 45.0
+hint_tooltip = "Restart the level."
+shortcut = SubResource( 14 )
+icon = ExtResource( 9 )
 
 [node name="PanelMove" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.54902 )
@@ -130,6 +152,7 @@ margin_top = -102.0
 margin_right = 185.0
 margin_bottom = 112.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -191,6 +214,7 @@ margin_top = -58.0
 margin_right = -15.9999
 margin_bottom = 57.0
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -225,13 +249,12 @@ fit_content_height = true
 
 [node name="PanelCostume" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.54902 )
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -167.5
-margin_top = 68.0
-margin_right = 167.5
-margin_bottom = 127.0
+margin_left = 16.0
+margin_top = 69.0732
+margin_right = 351.0
+margin_bottom = 128.073
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -245,8 +268,35 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelCostume/VBoxContainer"]
 margin_right = 335.0
 margin_bottom = 60.0
-custom_fonts/normal_font = SubResource( 1 )
+custom_fonts/normal_font = SubResource( 12 )
 text = "Click to switch costumes. Some costumes may unlock different abilities."
+fit_content_height = true
+
+[node name="PanelRestart" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.54902 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -265.0
+margin_top = 68.0
+margin_right = -15.9999
+margin_bottom = 127.0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelRestart"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelRestart/VBoxContainer"]
+margin_right = 249.0
+margin_bottom = 60.0
+custom_fonts/normal_font = SubResource( 12 )
+text = "Click to restart the level if you get stuck or need to reset."
 fit_content_height = true
 
 [node name="Timer" type="Timer" parent="."]

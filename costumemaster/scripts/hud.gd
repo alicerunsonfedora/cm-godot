@@ -2,16 +2,19 @@ class_name HUD
 extends Control
 
 signal costume_request(costume_type)
+signal restart_level_request()
 
 onready var switch_flash = $Toolbar/FlashCostume as Button
 onready var switch_bird = $Toolbar/BirdCostume as Button
 onready var switch_magic = $Toolbar/MagiCostume as Button
 onready var switch_mega = $Toolbar/MegaCostume as Button
 onready var switch_none = $Toolbar/NoneCostume as Button
+onready var btn_restart = $Toolbar/Restart as Button
 
 onready var tut_walk = $PanelMove as Panel
 onready var tut_cost = $PanelCostume as Panel
 onready var tut_inter = $PanelInteract as Panel
+onready var tut_restart = $PanelRestart as Panel
 onready var tut_timer = $Timer as Timer
 
 onready var tween = $Tween as Tween
@@ -36,6 +39,7 @@ func _button_connect() -> void:
 	_err = switch_magic.connect("button_up", self, "_send_magic")
 	_err = switch_mega.connect("button_up", self, "_send_all")
 	_err = switch_none.connect("button_up", self, "_send_none")
+	_err = btn_restart.connect("button_up", self, "_send_restart")
 	if _err != OK:
 		push_error(_err)
 		
@@ -49,19 +53,28 @@ func _cycle_costume(reverse: bool = false) -> void:
 
 func _disable_all_btn() -> void:
 	for child in $Toolbar.get_children():
+		if not child is Button or child.name == "Restart": continue
 		child.disabled = true
-	$Toolbar.visible = false
+		child.visible = false
 
 func disable_tutorials() -> void:
 	disable_tut_walk()
 	disable_tut_costume()
+	disable_restart()
+
+func disable_tut_costume() -> void:
+	tut_cost.visible = false
+
+func disable_tut_restart() -> void:
+	tut_restart.visible = false
 
 func disable_tut_walk() -> void:
 	tut_walk.visible = false
 	tut_inter.visible = false
 
-func disable_tut_costume() -> void:
-	tut_cost.visible = false
+func disable_restart() -> void:
+	btn_restart.disabled = true
+	btn_restart.visible = false
 
 func disable_unused(allowed: Array) -> void:
 	if len(allowed) < 2:
@@ -89,6 +102,8 @@ func _on_timer_timeout() -> void:
 		tut_walk, "modulate", original, Color.transparent, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.interpolate_property(
 		tut_inter, "modulate", original, Color.transparent, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property(
+		tut_restart, "modulate", original, Color.transparent, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.start()
 
 func _send_flash() -> void:
@@ -105,3 +120,6 @@ func _send_none() -> void:
 
 func _send_all() -> void:
 	emit_signal("costume_request", Player.CostumeType.ALL)
+
+func _send_restart() -> void:
+	emit_signal("restart_level_request")

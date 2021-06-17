@@ -25,11 +25,18 @@ export(Array, Player.CostumeType) var ALLOWED_COSTUMES = []
 # If enabled, the only costume available will be ALL.
 export(bool) var DEBUG_MODE = false
 
+# Whether to allow the player to restart.
+export(bool) var RESTARTABLE = true
+
 # Whether to show the tutorial for moving around the environment.
 export(bool) var WALK_TUTORIAL = false
 
 # Whether to show the tutorial for switching costumes.
 export(bool) var COSTUME_TUTORIAL = false
+
+# Whether to show the tutorial for restarting a level.
+export(bool) var RESTART_TUTORIAL = false
+
 
 # A signal emitted when the player lock has been requested and granted.
 signal request_player_lock()
@@ -107,12 +114,18 @@ func _instantiate_hud() -> void:
 	_hud.visible = true
 	_hud.disable_unused(ALLOWED_COSTUMES)
 
+	if not RESTARTABLE:
+		_hud.disable_restart()
+
 	if not WALK_TUTORIAL:
 		_hud.disable_tut_walk()
 	if not COSTUME_TUTORIAL:
 		_hud.disable_tut_costume()
+	if not RESTART_TUTORIAL:
+		_hud.disable_tut_restart()
 
 	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
+	_hud_err = _hud.connect("restart_level_request", self, "_restart_level")
 	if _hud_err:
 		push_error(_hud_err)
 
@@ -124,14 +137,10 @@ func _instantiate_music() -> void:
 		_bgm.volume_db = -0.6
 		_bgm.play()
 
-# Trigger the locking mechanism for the player.
-# This is used to handle any UI elements that require that the player be static, such as cutscenes.
-func trigger_lock() -> void:
-	if _lock:
-		emit_signal("release_player_lock")
-	else:
-		emit_signal("request_player_lock")
-	_lock = not _lock
+func _restart_level() -> void:
+	var _err = get_tree().reload_current_scene()
+	if _err != OK:
+		push_error(_err)
 
 # Send a request to the player to change the costume if applicable or allowed by the universe.
 # Parameters:
@@ -151,3 +160,12 @@ func toggle_clone() -> void:
 		_destroy_clone()
 		return
 	_instantiate_clone()
+
+# Trigger the locking mechanism for the player.
+# This is used to handle any UI elements that require that the player be static, such as cutscenes.
+func trigger_lock() -> void:
+	if _lock:
+		emit_signal("release_player_lock")
+	else:
+		emit_signal("request_player_lock")
+	_lock = not _lock

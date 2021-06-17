@@ -22,6 +22,7 @@ extents = Vector2( 25.955, 31.1851 )
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
 MULTIPLE_COSTUMES = false
+RESTARTABLE = false
 
 [node name="Player" parent="Universe" instance=ExtResource( 1 )]
 position = Vector2( -108.444, -114.793 )

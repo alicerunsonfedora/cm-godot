@@ -18,6 +18,7 @@ extents = Vector2( 10.4356, 38.9967 )
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
 MULTIPLE_COSTUMES = false
+RESTARTABLE = false
 WALK_TUTORIAL = true
 
 [node name="Player" parent="Universe" instance=ExtResource( 1 )]
