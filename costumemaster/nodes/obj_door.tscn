@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/devices/obj_door.gd" type="Script" id=1]
+[ext_resource path="res://nodes/dec_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10.94, 14.7127 )
+
+[node name="Door" type="Area2D"]
+input_pickable = false
+script = ExtResource( 1 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="DoorCollider" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2( 23.9906, -19.3236 )
+scale = Vector2( 4, 2 )
+shape = SubResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 48, 48 )
+collision_use_parent = true
+collision_layer = 0
+format = 1
+tile_data = PoolIntArray( -65536, 5, 0, 0, 6, 0 )
+
+[node name="Base" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -65536, 45, 0 )
+
+[node name="InactiveTexture" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -65536, 6, 0 )

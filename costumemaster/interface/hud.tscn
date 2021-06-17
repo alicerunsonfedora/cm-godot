@@ -1,63 +1,257 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scripts/hud.gd" type="Script" id=1]
 [ext_resource path="res://assets/gui/theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/gui/hud/bird.png" type="Texture" id=3]
+[ext_resource path="res://assets/gui/hud/magic.png" type="Texture" id=4]
+[ext_resource path="res://assets/gui/hud/none.png" type="Texture" id=5]
+[ext_resource path="res://assets/gui/hud/usb.png" type="Texture" id=6]
+[ext_resource path="res://assets/gui/Cabin-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/gui/hud/all.png" type="Texture" id=8]
+
+[sub_resource type="InputEventAction" id=2]
+action = "costume_change_flash"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
+
+[sub_resource type="InputEventAction" id=4]
+action = "costume_change_bird"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
+
+[sub_resource type="InputEventAction" id=6]
+action = "costume_change_magic"
+
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
+
+[sub_resource type="InputEventAction" id=10]
+action = "costume_change_all"
+
+[sub_resource type="ShortCut" id=11]
+shortcut = SubResource( 10 )
+
+[sub_resource type="InputEventAction" id=8]
+action = "costume_change_none"
+
+[sub_resource type="ShortCut" id=9]
+shortcut = SubResource( 8 )
+
+[sub_resource type="DynamicFont" id=1]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 7 )
 
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 3.40161
+margin_top = -0.0490719
+margin_right = 3.40149
+margin_bottom = -0.0490723
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FlashCostume" type="Button" parent="."]
-margin_left = 23.0
-margin_top = 15.0
-margin_right = 170.0
+[node name="Toolbar" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+margin_top = 16.0
+margin_bottom = 45.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FlashCostume" type="Button" parent="Toolbar"]
+margin_left = 365.0
+margin_right = 417.0
+margin_bottom = 45.0
+hint_tooltip = "Flash Drive"
+shortcut = SubResource( 3 )
+icon = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BirdCostume" type="Button" parent="Toolbar"]
+margin_left = 425.0
+margin_right = 477.0
+margin_bottom = 45.0
+hint_tooltip = "Swift Bird"
+shortcut = SubResource( 5 )
+icon = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MagiCostume" type="Button" parent="Toolbar"]
+margin_left = 485.0
+margin_right = 537.0
+margin_bottom = 45.0
+hint_tooltip = "Magic Unicorn"
+shortcut = SubResource( 7 )
+icon = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MegaCostume" type="Button" parent="Toolbar"]
+margin_left = 545.0
+margin_right = 597.0
+margin_bottom = 45.0
+hint_tooltip = "Megacostume (All)"
+shortcut = SubResource( 11 )
+icon = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NoneCostume" type="Button" parent="Toolbar"]
+margin_left = 605.0
+margin_right = 657.0
+margin_bottom = 45.0
+hint_tooltip = "No Costume"
+shortcut = SubResource( 9 )
+icon = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelMove" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.54902 )
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 16.0
+margin_top = -102.0
+margin_right = 185.0
+margin_bottom = 112.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelMove"]
+anchor_right = 1.0
+anchor_bottom = 1.048
+margin_left = 8.0
+margin_right = -8.0
+margin_bottom = -9.40802
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveUp" type="RichTextLabel" parent="PanelMove/VBoxContainer"]
+margin_top = 9.0
+margin_right = 153.0
+margin_bottom = 52.0
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]W[/color]	  Up"
+text = "W	  Up"
+fit_content_height = true
+
+[node name="MoveLeft" type="RichTextLabel" parent="PanelMove/VBoxContainer"]
+margin_top = 60.0
+margin_right = 153.0
+margin_bottom = 103.0
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]A[/color]		Left"
+text = "A		Left"
+fit_content_height = true
+
+[node name="MoveDown" type="RichTextLabel" parent="PanelMove/VBoxContainer"]
+margin_top = 111.0
+margin_right = 153.0
+margin_bottom = 154.0
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]S[/color]		Down"
+text = "S		Down"
+fit_content_height = true
+
+[node name="MoveRight" type="RichTextLabel" parent="PanelMove/VBoxContainer"]
+margin_top = 162.0
+margin_right = 153.0
+margin_bottom = 205.0
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]D[/color]		Right"
+text = "D		Right"
+fit_content_height = true
+
+[node name="PanelInteract" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.54902 )
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -211.0
+margin_top = -58.0
+margin_right = -15.9999
+margin_bottom = 57.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelInteract"]
+anchor_right = 1.0
+anchor_bottom = 1.048
+margin_left = 8.0
+margin_right = -8.0
+margin_bottom = -9.40802
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Interact" type="RichTextLabel" parent="PanelInteract/VBoxContainer"]
+margin_top = 8.0
+margin_right = 179.0
+margin_bottom = 51.0
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]E[/color]	  Pick Up/Press"
+text = "E	  Pick Up/Press"
+fit_content_height = true
+
+[node name="Clone" type="RichTextLabel" parent="PanelInteract/VBoxContainer"]
+margin_top = 59.0
+margin_right = 179.0
+margin_bottom = 102.0
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]C[/color]	  Clone USB"
+text = "C	  Clone USB"
+fit_content_height = true
+
+[node name="PanelCostume" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0.54902 )
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -167.5
+margin_top = 68.0
+margin_right = 167.5
+margin_bottom = 127.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelCostume"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PanelCostume/VBoxContainer"]
+margin_right = 335.0
 margin_bottom = 60.0
-text = "Flash Drive"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+custom_fonts/normal_font = SubResource( 1 )
+text = "Click to switch costumes. Some costumes may unlock different abilities."
+fit_content_height = true
 
-[node name="BirdCostume" type="Button" parent="."]
-margin_left = 23.0
-margin_top = 65.0
-margin_right = 170.0
-margin_bottom = 110.0
-text = "Bird"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
 
-[node name="MagiCostume" type="Button" parent="."]
-margin_left = 23.0
-margin_top = 115.0
-margin_right = 170.0
-margin_bottom = 160.0
-text = "Magic"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MegaCostume" type="Button" parent="."]
-margin_left = 23.0
-margin_top = 165.0
-margin_right = 170.0
-margin_bottom = 210.0
-text = "Mega"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="NoneCostume" type="Button" parent="."]
-margin_left = 23.0
-margin_top = 216.0
-margin_right = 170.0
-margin_bottom = 261.0
-text = "None"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Tween" type="Tween" parent="."]

@@ -25,6 +25,8 @@ var _permalock = false
 onready var timer: Timer
 
 onready var _audio: AudioStreamPlayer2D
+onready var _hud_data = load("res://interface/hud_timer.tscn") as Resource
+onready var _hud_timer: Node2D
 
 # A signal that emits when the input is activated.
 signal input_active(name)
@@ -45,6 +47,7 @@ func get_name() -> String:
 
 func _ready() -> void:
 	_make_timer()
+	_make_timer_ui()
 	_make_audio_player()
 	var _ent_err = connect("body_entered", self, "_on_body_entered")
 	var _exi_err = connect("body_exited", self, "_on_body_exited")
@@ -70,6 +73,13 @@ func _make_timer() -> void:
 	var _tim_con = timer.connect("timeout", self, "_deactivate")
 	if _tim_con != OK:
 		print_debug(_tim_con)
+
+func _make_timer_ui() -> void:
+	_hud_timer = _hud_data.instance()
+	_hud_timer.position = Vector2(0, -40)
+	_hud_timer.visible = false
+	_hud_timer.z_index = 5
+	add_child(_hud_timer)
 
 func _make_audio_player() -> void:
 	_audio = AudioStreamPlayer2D.new()
@@ -108,6 +118,7 @@ func _activate() -> void:
 		_permalock = true
 	if DURATION > 0:
 		timer.start()
+		_hud_timer.visible = true
 		_make_audio_tick()
 		_audio.play()
 
@@ -121,6 +132,7 @@ func _deactivate() -> void:
 	_audio.play()
 	if DURATION > 0:
 		timer.stop()
+		_hud_timer.visible = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body.name in ["Player", "PlayerNode", "Clone"]:

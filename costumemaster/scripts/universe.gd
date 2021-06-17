@@ -25,6 +25,12 @@ export(Array, Player.CostumeType) var ALLOWED_COSTUMES = []
 # If enabled, the only costume available will be ALL.
 export(bool) var DEBUG_MODE = false
 
+# Whether to show the tutorial for moving around the environment.
+export(bool) var WALK_TUTORIAL = false
+
+# Whether to show the tutorial for switching costumes.
+export(bool) var COSTUME_TUTORIAL = false
+
 # A signal emitted when the player lock has been requested and granted.
 signal request_player_lock()
 
@@ -99,6 +105,13 @@ func _instantiate_clone() -> void:
 
 func _instantiate_hud() -> void:
 	_hud.visible = true
+	_hud.disable_unused(ALLOWED_COSTUMES)
+
+	if not WALK_TUTORIAL:
+		_hud.disable_tut_walk()
+	if not COSTUME_TUTORIAL:
+		_hud.disable_tut_costume()
+
 	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
 	if _hud_err:
 		push_error(_hud_err)

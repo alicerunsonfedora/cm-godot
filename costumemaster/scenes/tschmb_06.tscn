@@ -1,0 +1,175 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://nodes/obj_player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://nodes/dec_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://nodes/universe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/devices/exitdoor.gd" type="Script" id=5]
+[ext_resource path="res://assets/fx/lightsource2.png" type="Texture" id=6]
+[ext_resource path="res://assets/fx/lightsource.png" type="Texture" id=7]
+[ext_resource path="res://scripts/input.gd" type="Script" id=8]
+[ext_resource path="res://nodes/obj_door.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.632, 21.7205 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 34.1355, 42.7825 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 19.3741, 22.4383 )
+
+[node name="World" type="Node2D"]
+
+[node name="Universe" parent="." instance=ExtResource( 4 )]
+MUSIC = 2
+ALLOWED_COSTUMES = [ 1, 2 ]
+
+[node name="Player" parent="Universe" instance=ExtResource( 1 )]
+position = Vector2( -108.444, -114.793 )
+MASS = 0.7
+FIELD_OF_VIEW = 0.35
+CURRENT_COSTUME = 1
+
+[node name="Layout" type="TileMap" parent="Universe"]
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -917515, 0, 0, -917514, 5, 0, -917513, 5, 0, -917512, 5, 0, -917511, 39, 0, -917510, 5, 0, -917509, 5, 0, -917508, 5, 0, -917507, 39, 0, -917506, 5, 0, -917505, 5, 0, -983040, 5, 0, -983039, 4, 0, -851979, 1, 0, -851978, 6, 0, -851977, 6, 0, -851976, 6, 0, -851975, 43, 0, -851974, 6, 0, -851973, 6, 0, -851972, 6, 0, -851971, 43, 0, -851970, 6, 0, -851969, 6, 0, -917504, 6, 0, -917503, 11, 0, -786443, 1, 0, -786442, 7, 0, -786441, 8, 0, -786440, 8, 0, -786439, 43, 0, -786438, 7, 0, -786437, 8, 0, -786436, 8, 0, -786435, 43, 0, -786434, 7, 0, -786433, 8, 0, -851968, 8, 0, -851967, 11, 0, -720907, 1, 0, -720906, 9, 0, -720905, 10, 0, -720904, 10, 0, -720903, 43, 0, -720902, 9, 0, -720901, 10, 0, -720900, 10, 0, -720899, 43, 0, -720898, 9, 0, -720897, 10, 0, -786432, 10, 0, -786431, 11, 0, -655371, 1, 0, -655370, 9, 0, -655369, 10, 0, -655368, 10, 0, -655367, 43, 0, -655366, 9, 0, -655365, 10, 0, -655364, 10, 0, -655363, 43, 0, -655362, 9, 0, -655361, 10, 0, -720896, 10, 0, -720895, 11, 0, -589835, 1, 0, -589834, 46, 0, -589833, 10, 0, -589832, 5, 0, -589831, 25, 0, -589830, 10, 0, -589829, 10, 0, -589828, 10, 0, -589827, 23, 0, -589826, 5, 0, -589825, 10, 0, -655360, 5, 0, -655359, 11, 0, -524299, 1, 0, -524298, 6, 0, -524297, 10, 0, -524296, 6, 0, -524295, 28, 0, -524294, 10, 0, -524293, 10, 0, -524292, 10, 0, -524291, 26, 0, -524290, 6, 0, -524289, 10, 0, -589824, 6, 0, -589823, 11, 0, -458763, 1, 0, -458762, 10, 0, -458761, 10, 0, -458760, 10, 0, -458759, 10, 0, -458758, 10, 0, -458757, 10, 0, -458756, 10, 0, -458755, 10, 0, -458754, 10, 0, -458753, 10, 0, -524288, 10, 0, -524287, 11, 0, -393227, 1, 0, -393226, 9, 0, -393225, 10, 0, -393224, 10, 0, -393223, 10, 0, -393222, 10, 0, -393221, 10, 0, -393220, 10, 0, -393219, 10, 0, -393218, 10, 0, -393217, 10, 0, -458752, 10, 0, -458751, 11, 0, -327691, 1, 0, -327690, 9, 0, -327689, 10, 0, -327688, 10, 0, -327687, 10, 0, -327686, 10, 0, -327685, 10, 0, -327684, 10, 0, -327683, 10, 0, -327682, 10, 0, -327681, 10, 0, -393216, 10, 0, -393215, 11, 0, -262155, 1, 0, -262154, 9, 0, -262153, 10, 0, -262152, 10, 0, -262151, 10, 0, -262150, 10, 0, -262149, 10, 0, -262148, 10, 0, -262147, 10, 0, -262146, 10, 0, -262145, 10, 0, -327680, 10, 0, -327679, 11, 0, -196619, 2, 0, -196618, 12, 0, -196617, 12, 0, -196616, 12, 0, -196615, 15, 0, -196614, 10, 0, -196613, 10, 0, -196612, 10, 0, -196611, 36, 0, -196610, 5, 0, -196609, 5, 0, -262144, 5, 0, -262143, 5, 0, -262142, 4, 0, -131079, 1, 0, -131078, 10, 0, -131077, 10, 0, -131076, 10, 0, -131075, 37, 0, -131074, 6, 0, -131073, 6, 0, -196608, 6, 0, -196607, 6, 0, -196606, 11, 0, -65543, 1, 0, -65542, 7, 0, -65541, 8, 0, -65540, 8, 0, -65539, 8, 0, -65538, 8, 0, -65537, 8, 0, -131072, 8, 0, -131071, 8, 0, -131070, 11, 0, -7, 1, 0, -6, 9, 0, -5, 10, 0, -4, 10, 0, -3, 10, 0, -2, 10, 0, -1, 10, 0, -65536, 10, 0, -65535, 10, 0, -65534, 11, 0, 65529, 1, 0, 65530, 9, 0, 65531, 10, 0, 65532, 10, 0, 65533, 10, 0, 65534, 10, 0, 65535, 10, 0, 0, 10, 0, 1, 10, 0, 2, 11, 0, 131065, 1, 0, 131066, 9, 0, 131067, 10, 0, 131068, 10, 0, 131069, 10, 0, 131070, 10, 0, 131071, 10, 0, 65536, 10, 0, 65537, 10, 0, 65538, 11, 0, 196601, 2, 0, 196602, 12, 0, 196603, 12, 0, 196604, 12, 0, 196605, 12, 0, 196606, 12, 0, 196607, 12, 0, 131072, 12, 0, 131073, 12, 0, 131074, 3, 0 )
+
+[node name="Decor" type="TileMap" parent="Universe/Layout"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -917514, 44, 0, -917513, 42, 0, -917510, 2, 0, -917509, 6, 0, -917508, 28, 0, -917506, 46, 0, -983040, 44, 0, -851977, 4, 0, -851969, 8, 0, -786436, 43, 0, -589834, 35, 0, -589832, 1, 0, -589831, 44, 0, -589827, 44, 0, -589826, 2, 0, -655360, 35, 0, -458757, 42, 0, -393221, 4, 0, -393218, 3, 0, -327690, 36, 0, -327681, 11, 0, -393216, 23, 0, -262146, 16, 0, -327680, 17, 0, -262144, 42, 0, -262143, 6, 0, -131074, 12, 0, -196608, 4, 0, -65542, 29, 0, -65541, 33, 0, -65540, 33, 0, -65539, 31, 0, -65538, 13, 0, -131071, 43, 0, -2, 14, 0, 65530, 30, 0, 65531, 34, 0, 65532, 34, 0, 65533, 32, 0 )
+
+[node name="ExitDoor" type="Area2D" parent="Universe"]
+position = Vector2( -216.296, -661.289 )
+collision_mask = 7
+script = ExtResource( 5 )
+INPUTS = [ NodePath("../Lever"), NodePath("../AlarmMain") ]
+INTERACT_ON_KEYPRESS = true
+NEXT_SCENE = "res://scenes/main.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/ExitDoor"]
+shape = SubResource( 1 )
+
+[node name="DoorRight" parent="Universe" instance=ExtResource( 9 )]
+position = Vector2( -48, -432 )
+collision_mask = 7
+INPUTS = [ NodePath("../AlarmDoor") ]
+REQUIRE_ALL_INPUTS = true
+
+[node name="DoorLeft" parent="Universe" instance=ExtResource( 9 )]
+position = Vector2( -432, -432 )
+collision_mask = 7
+INPUTS = [ NodePath("../AlarmMain") ]
+REQUIRE_ALL_INPUTS = true
+
+[node name="AlarmMain" type="Area2D" parent="Universe"]
+position = Vector2( -217.351, -332.231 )
+collision_mask = 7
+script = ExtResource( 8 )
+DURATION = 10.0
+PERMANENT = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/AlarmMain"]
+position = Vector2( -0.645172, 10.611 )
+shape = SubResource( 2 )
+
+[node name="AlarmDoor" type="Area2D" parent="Universe"]
+position = Vector2( -410.117, -666.477 )
+collision_mask = 7
+script = ExtResource( 8 )
+DURATION = 20.0
+PERMANENT = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/AlarmDoor"]
+position = Vector2( 2.00763, 7.07397 )
+shape = SubResource( 2 )
+
+[node name="Lever" type="Area2D" parent="Universe"]
+position = Vector2( -22.8871, -660.033 )
+collision_mask = 7
+script = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]
+shape = SubResource( 3 )
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( -432, -192 )
+scale = Vector2( 1.47325, 2.66518 )
+texture = ExtResource( 7 )
+color = Color( 0.698039, 0.858824, 0.933333, 1 )
+energy = 0.5
+shadow_enabled = true
+shadow_gradient_length = 0.3
+shadow_filter = 1
+shadow_filter_smooth = 0.5
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 71, -76 )
+texture = ExtResource( 7 )
+texture_scale = 3.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="Light2D3" type="Light2D" parent="."]
+position = Vector2( -167.84, -607.191 )
+texture = ExtResource( 7 )
+texture_scale = 3.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="LampLight" type="Light2D" parent="."]
+position = Vector2( 21.3391, -646.022 )
+texture = ExtResource( 6 )
+texture_scale = 2.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="LampLight2" type="Light2D" parent="."]
+position = Vector2( -458.12, -627.559 )
+texture = ExtResource( 6 )
+texture_scale = 2.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="LampLight3" type="Light2D" parent="."]
+position = Vector2( -313.934, -383.716 )
+texture = ExtResource( 6 )
+texture_scale = 2.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="LampLight4" type="Light2D" parent="."]
+position = Vector2( -120.98, -385.836 )
+texture = ExtResource( 6 )
+texture_scale = 2.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3

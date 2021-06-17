@@ -17,8 +17,8 @@ extents = Vector2( 10.4356, 38.9967 )
 [node name="World" type="Node2D"]
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
-MUSIC = 1
 MULTIPLE_COSTUMES = false
+WALK_TUTORIAL = true
 
 [node name="Player" parent="Universe" instance=ExtResource( 1 )]
 position = Vector2( -108.444, -114.793 )

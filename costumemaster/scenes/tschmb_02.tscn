@@ -21,7 +21,6 @@ extents = Vector2( 25.955, 31.1851 )
 [node name="World" type="Node2D"]
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
-MUSIC = 2
 MULTIPLE_COSTUMES = false
 
 [node name="Player" parent="Universe" instance=ExtResource( 1 )]
@@ -101,7 +100,7 @@ shadow_filter = 1
 shadow_filter_smooth = 0.3
 
 [node name="LightLamp2" type="Light2D" parent="."]
-position = Vector2( 311.226, 111.42 )
+position = Vector2( 311.747, 111.42 )
 texture = ExtResource( 7 )
 texture_scale = 3.0
 color = Color( 0.992157, 0.905882, 0.756863, 1 )
