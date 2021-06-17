@@ -24,7 +24,7 @@ var _permalock = false
 # The input's internal timer.
 onready var timer: Timer
 
-onready var _audio: AudioStreamPlayer
+onready var _audio: AudioStreamPlayer2D
 
 # A signal that emits when the input is activated.
 signal input_active(name)
@@ -72,7 +72,7 @@ func _make_timer() -> void:
 		print_debug(_tim_con)
 
 func _make_audio_player() -> void:
-	_audio = AudioStreamPlayer.new()
+	_audio = AudioStreamPlayer2D.new()
 	if DURATION > 0:
 		_audio.stream = load("res://assets/sfx/alarmEnable.ogg") as AudioStreamOGGVorbis
 	else:

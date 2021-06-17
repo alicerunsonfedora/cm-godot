@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=22 format=2]
+[gd_resource type="TileSet" load_steps=23 format=2]
 
 [ext_resource path="res://assets/tileset/dec_general.png" type="Texture" id=1]
 [ext_resource path="res://assets/tileset/dec_bedroon.png" type="Texture" id=2]
 [ext_resource path="res://assets/tileset/dec_living.png" type="Texture" id=3]
+[ext_resource path="res://assets/tileset/dec_bathroom.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
@@ -121,7 +122,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 12 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-3/z_index = 0
+3/z_index = -1
 4/name = "Dresser"
 4/texture = ExtResource( 1 )
 4/tex_offset = Vector2( 0, 0 )
@@ -156,7 +157,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 5/shape_one_way = false
 5/shape_one_way_margin = 0.0
 5/shapes = [  ]
-5/z_index = 0
+5/z_index = -1
 6/name = "Door (no-op)"
 6/texture = ExtResource( 1 )
 6/tex_offset = Vector2( 0, 0 )
@@ -170,7 +171,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 6/shape_one_way = false
 6/shape_one_way_margin = 0.0
 6/shapes = [  ]
-6/z_index = 0
+6/z_index = -1
 7/name = "Device 1"
 7/texture = ExtResource( 1 )
 7/tex_offset = Vector2( 0, 0 )
@@ -219,7 +220,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 18 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-9/z_index = 0
+9/z_index = -1
 10/name = "Computer Right"
 10/texture = ExtResource( 1 )
 10/tex_offset = Vector2( 0, 0 )
@@ -240,7 +241,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-10/z_index = 0
+10/z_index = -1
 11/name = "Computer Back"
 11/texture = ExtResource( 1 )
 11/tex_offset = Vector2( 0, 0 )
@@ -401,7 +402,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 8 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-18/z_index = 0
+18/z_index = -1
 19/name = "Desk Top Connector"
 19/texture = ExtResource( 1 )
 19/tex_offset = Vector2( 0, 0 )
@@ -415,7 +416,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 19/shape_one_way = false
 19/shape_one_way_margin = 0.0
 19/shapes = [  ]
-19/z_index = 0
+19/z_index = -1
 20/name = "Desk Top Right"
 20/texture = ExtResource( 1 )
 20/tex_offset = Vector2( 0, 0 )
@@ -436,7 +437,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 9 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-20/z_index = 0
+20/z_index = -1
 21/name = "Desk Connector Left"
 21/texture = ExtResource( 1 )
 21/tex_offset = Vector2( 0, 0 )
@@ -457,7 +458,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 10 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-21/z_index = 0
+21/z_index = -1
 22/name = "dec_general.png 22"
 22/texture = ExtResource( 1 )
 22/tex_offset = Vector2( 0, 0 )
@@ -492,7 +493,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 11 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-23/z_index = 0
+23/z_index = -1
 24/name = "Painting 1"
 24/texture = ExtResource( 1 )
 24/tex_offset = Vector2( 0, 0 )
@@ -562,7 +563,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 28/shape_one_way = false
 28/shape_one_way_margin = 0.0
 28/shapes = [  ]
-28/z_index = 0
+28/z_index = -1
 29/name = "Carpet Edge 1"
 29/texture = ExtResource( 1 )
 29/tex_offset = Vector2( 0, 0 )
@@ -576,7 +577,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 29/shape_one_way = false
 29/shape_one_way_margin = 0.0
 29/shapes = [  ]
-29/z_index = 0
+29/z_index = -1
 30/name = "Carpet Edge 2"
 30/texture = ExtResource( 1 )
 30/tex_offset = Vector2( 0, 0 )
@@ -590,7 +591,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 30/shape_one_way = false
 30/shape_one_way_margin = 0.0
 30/shapes = [  ]
-30/z_index = 0
+30/z_index = -1
 31/name = "Carpet Edge 3"
 31/texture = ExtResource( 1 )
 31/tex_offset = Vector2( 0, 0 )
@@ -604,7 +605,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 31/shape_one_way = false
 31/shape_one_way_margin = 0.0
 31/shapes = [  ]
-31/z_index = 0
+31/z_index = -1
 32/name = "Carpet Edge 4"
 32/texture = ExtResource( 1 )
 32/tex_offset = Vector2( 0, 0 )
@@ -618,7 +619,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 32/shape_one_way = false
 32/shape_one_way_margin = 0.0
 32/shapes = [  ]
-32/z_index = 0
+32/z_index = -1
 33/name = "Carpet Inner 1"
 33/texture = ExtResource( 1 )
 33/tex_offset = Vector2( 0, 0 )
@@ -667,7 +668,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 13 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-35/z_index = 1
+35/z_index = 0
 36/name = "Small Bench"
 36/texture = ExtResource( 1 )
 36/tex_offset = Vector2( 0, 0 )
@@ -695,7 +696,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 37/shape_one_way = false
 37/shape_one_way_margin = 0.0
 37/shapes = [  ]
-37/z_index = 1
+37/z_index = 0
 38/name = "Large Dresser"
 38/texture = ExtResource( 3 )
 38/tex_offset = Vector2( 0, 0 )
@@ -716,7 +717,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 14 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-38/z_index = 1
+38/z_index = 0
 39/name = "World Map"
 39/texture = ExtResource( 3 )
 39/tex_offset = Vector2( 0, 0 )
@@ -730,7 +731,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 39/shape_one_way = false
 39/shape_one_way_margin = 0.0
 39/shapes = [  ]
-39/z_index = 0
+39/z_index = -1
 40/name = "Bookshelf 1"
 40/texture = ExtResource( 3 )
 40/tex_offset = Vector2( 0, 0 )
@@ -751,7 +752,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 16 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-40/z_index = 1
+40/z_index = 0
 41/name = "Bookshelf 2"
 41/texture = ExtResource( 3 )
 41/tex_offset = Vector2( 0, 0 )
@@ -772,7 +773,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 17 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-41/z_index = 1
+41/z_index = 0
 42/name = "Apple Clock"
 42/texture = ExtResource( 2 )
 42/tex_offset = Vector2( 0, 0 )
@@ -800,4 +801,60 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 43/shape_one_way = false
 43/shape_one_way_margin = 0.0
 43/shapes = [  ]
-43/z_index = 0
+43/z_index = -1
+44/name = "Wall Lamp"
+44/texture = ExtResource( 2 )
+44/tex_offset = Vector2( 0, 0 )
+44/modulate = Color( 1, 1, 1, 1 )
+44/region = Rect2( 720, 4128, 48, 96 )
+44/tile_mode = 0
+44/occluder_offset = Vector2( 0, 0 )
+44/navigation_offset = Vector2( 0, 0 )
+44/shape_offset = Vector2( 0, 0 )
+44/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+44/shape_one_way = false
+44/shape_one_way_margin = 0.0
+44/shapes = [  ]
+44/z_index = 0
+45/name = "Door Open (no-op)"
+45/texture = ExtResource( 1 )
+45/tex_offset = Vector2( 0, 0 )
+45/modulate = Color( 1, 1, 1, 1 )
+45/region = Rect2( 192, 144, 48, 96 )
+45/tile_mode = 0
+45/occluder_offset = Vector2( 0, 0 )
+45/navigation_offset = Vector2( 0, 0 )
+45/shape_offset = Vector2( 0, 0 )
+45/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+45/shape_one_way = false
+45/shape_one_way_margin = 0.0
+45/shapes = [  ]
+45/z_index = -1
+46/name = "T o i l e t"
+46/texture = ExtResource( 4 )
+46/tex_offset = Vector2( 0, 0 )
+46/modulate = Color( 1, 1, 1, 1 )
+46/region = Rect2( 480, 0, 48, 144 )
+46/tile_mode = 0
+46/occluder_offset = Vector2( 0, 0 )
+46/navigation_offset = Vector2( 0, 0 )
+46/shape_offset = Vector2( 0, 0 )
+46/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+46/shape_one_way = false
+46/shape_one_way_margin = 0.0
+46/shapes = [  ]
+46/z_index = 0
+47/name = "Curtain Open"
+47/texture = ExtResource( 1 )
+47/tex_offset = Vector2( 0, 0 )
+47/modulate = Color( 1, 1, 1, 1 )
+47/region = Rect2( 528, 2304, 144, 96 )
+47/tile_mode = 0
+47/occluder_offset = Vector2( 0, 0 )
+47/navigation_offset = Vector2( 0, 0 )
+47/shape_offset = Vector2( 0, 0 )
+47/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+47/shape_one_way = false
+47/shape_one_way_margin = 0.0
+47/shapes = [  ]
+47/z_index = 0

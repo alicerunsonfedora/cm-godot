@@ -108,6 +108,7 @@ func _instantiate_music() -> void:
 	add_child(_bgm)
 	if MUSIC > 0:
 		_bgm.stream = _get_music_track()
+		_bgm.volume_db = -0.6
 		_bgm.play()
 
 # Trigger the locking mechanism for the player.

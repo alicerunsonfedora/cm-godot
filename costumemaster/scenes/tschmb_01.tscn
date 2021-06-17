@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://nodes/obj_player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://nodes/dec_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://nodes/universe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/devices/exitdoor.gd" type="Script" id=5]
+[ext_resource path="res://scripts/input.gd" type="Script" id=6]
+[ext_resource path="res://assets/fx/lightsource.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 17.632, 21.7205 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10.4356, 38.9967 )
+
+[node name="World" type="Node2D"]
+
+[node name="Universe" parent="." instance=ExtResource( 4 )]
+MUSIC = 1
+MULTIPLE_COSTUMES = false
+
+[node name="Player" parent="Universe" instance=ExtResource( 1 )]
+position = Vector2( -108.444, -114.793 )
+MASS = 0.7
+FIELD_OF_VIEW = 0.35
+CURRENT_COSTUME = 1
+
+[node name="Layout" type="TileMap" parent="Universe"]
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -196615, 0, 0, -196614, 5, 0, -196613, 5, 0, -196612, 5, 0, -196611, 5, 0, -196610, 5, 0, -196609, 5, 0, -262144, 5, 0, -262143, 5, 0, -262142, 4, 0, -131079, 1, 0, -131078, 6, 0, -131077, 6, 0, -131076, 6, 0, -131075, 6, 0, -131074, 6, 0, -131073, 6, 0, -196608, 6, 0, -196607, 6, 0, -196606, 11, 0, -65543, 1, 0, -65542, 7, 0, -65541, 8, 0, -65540, 8, 0, -65539, 8, 0, -65538, 8, 0, -65537, 8, 0, -131072, 8, 0, -131071, 8, 0, -131070, 36, 0, -131069, 46, 0, -131068, 5, 0, -131067, 5, 0, -131066, 4, 0, -7, 1, 0, -6, 9, 0, -5, 10, 0, -4, 10, 0, -3, 10, 0, -2, 10, 0, -1, 10, 0, -65536, 10, 0, -65535, 10, 0, -65534, 26, 0, -65533, 6, 0, -65532, 6, 0, -65531, 6, 0, -65530, 11, 0, 65529, 1, 0, 65530, 9, 0, 65531, 10, 0, 65532, 10, 0, 65533, 10, 0, 65534, 10, 0, 65535, 10, 0, 0, 10, 0, 1, 10, 0, 2, 8, 0, 3, 8, 0, 4, 8, 0, 5, 8, 0, 6, 11, 0, 131065, 1, 0, 131066, 9, 0, 131067, 10, 0, 131068, 10, 0, 131069, 10, 0, 131070, 10, 0, 131071, 10, 0, 65536, 10, 0, 65537, 10, 0, 65538, 10, 0, 65539, 10, 0, 65540, 10, 0, 65541, 10, 0, 65542, 11, 0, 196601, 1, 0, 196602, 9, 0, 196603, 10, 0, 196604, 10, 0, 196605, 10, 0, 196606, 16, 0, 196607, 12, 0, 131072, 12, 0, 131073, 15, 0, 131074, 10, 0, 131075, 10, 0, 131076, 10, 0, 131077, 10, 0, 131078, 11, 0, 262137, 1, 0, 262138, 9, 0, 262139, 10, 0, 262140, 10, 0, 262141, 10, 0, 262142, 11, 0, 196609, 1, 0, 196610, 10, 0, 196611, 10, 0, 196612, 10, 0, 196613, 10, 0, 196614, 11, 0, 327673, 2, 0, 327674, 12, 0, 327675, 12, 0, 327676, 12, 0, 327677, 12, 0, 327678, 3, 0, 262145, 2, 0, 262146, 12, 0, 262147, 12, 0, 262148, 12, 0, 262149, 12, 0, 262150, 3, 0 )
+
+[node name="Decor" type="TileMap" parent="Universe/Layout"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -196614, 35, 0, -196613, 5, 0, -262144, 42, 0, -262143, 28, 0, -131074, 12, 0, -196608, 4, 0, -65542, 29, 0, -65541, 33, 0, -65540, 33, 0, -65539, 31, 0, -65538, 13, 0, -131071, 43, 0, -131069, 6, 0, -131068, 24, 0, -2, 14, 0, -65534, 7, 0, -65531, 3, 0, 65530, 30, 0, 65531, 34, 0, 65532, 34, 0, 65533, 32, 0, 131066, 18, 0, 131069, 20, 0, 65541, 35, 0, 196602, 21, 0, 196603, 11, 0, 131074, 36, 0, 262138, 15, 0, 262140, 16, 0, 262141, 17, 0 )
+
+[node name="ExitDoor" type="Area2D" parent="Universe"]
+script = ExtResource( 5 )
+INPUTS = [ NodePath("../Lever") ]
+INTERACT_ON_KEYPRESS = true
+NEXT_SCENE = "res://scenes/tschmb_02.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/ExitDoor"]
+position = Vector2( 168, -36 )
+shape = SubResource( 1 )
+
+[node name="Lever" type="Area2D" parent="Universe"]
+script = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]
+position = Vector2( 120.246, -30.5575 )
+shape = SubResource( 2 )
+
+[node name="Light2D" type="Light2D" parent="Universe"]
+position = Vector2( -170.719, -114.653 )
+scale = Vector2( 1, 2.506 )
+texture = ExtResource( 7 )
+color = Color( 0.698039, 0.858824, 0.933333, 1 )
+energy = 0.3
+shadow_enabled = true
+shadow_gradient_length = 0.3
+shadow_filter = 1
+shadow_filter_smooth = 0.5
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 71, -76 )
+texture = ExtResource( 7 )
+texture_scale = 3.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3

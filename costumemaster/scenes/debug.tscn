@@ -17,6 +17,7 @@ extents = Vector2( 10.4356, 38.9967 )
 [node name="World" type="Node2D"]
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
+MUSIC = 1
 MULTIPLE_COSTUMES = false
 
 [node name="Player" parent="Universe" instance=ExtResource( 1 )]
@@ -42,17 +43,19 @@ tile_data = PoolIntArray( -196614, 35, 0, -196613, 5, 0, -262144, 42, 0, -262143
 script = ExtResource( 5 )
 INPUTS = [ NodePath("../Lever") ]
 INTERACT_ON_KEYPRESS = true
-NEXT_SCENE = "res://scenes/debug.tscn"
+NEXT_SCENE = "res://scenes/tschmb_02.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/ExitDoor"]
 position = Vector2( 168, -36 )
 shape = SubResource( 1 )
 
 [node name="Lever" type="Area2D" parent="Universe"]
+position = Vector2( 120.246, -30.558 )
 script = ExtResource( 6 )
+DURATION = 5.0
+PERMANENT = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]
-position = Vector2( 120.246, -30.5575 )
 shape = SubResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="Universe"]

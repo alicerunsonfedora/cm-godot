@@ -86,6 +86,7 @@ func change_costume(costume_type: int) -> void:
 	if _sprite != null:
 		_sprite.texture = load("res://assets/sprites/" + _costume_name() + ".png")
 	_update_player_mass()
+	_update_player_bit_mask()
 
 # Change the player's costume in the editor window.
 func change_costume_editor(type) -> void:
@@ -133,8 +134,11 @@ func _physics_process(delta) -> void:
 	if move_vector != Vector2.ZERO and _can_move:
 		_asm.set("parameters/idle/blend_position", move_vector)
 		_asm.set("parameters/walk/blend_position", move_vector)
-
 		_aState.travel("walk")
+
+		_start_footsteps()
+		if _audio.playing:
+			_audio.pitch_scale = clamp(randf(), 0.5, 1.0)
 
 		_velocity += move_vector * acceleration * _actual_mass * delta
 		_velocity = _velocity.clamped(MAX_SPEED * _actual_mass * delta)
@@ -142,6 +146,7 @@ func _physics_process(delta) -> void:
 	# Otherwise, update our velocity to move towards zero with respect to delta time and friction.
 	else:
 		_aState.travel("idle")
+		_stop_footsteps()
 		_velocity = _velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 
 	# Move the player with the new velocity with respect to any collidable objects.
@@ -154,9 +159,34 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 		emit_signal("wants_clone")
 
 func _play_cant_use_sound() -> void:
-	_audio.stream = load("res://assets/sfx/cantUse.ogg") as AudioStreamOGGVorbis
-	_audio.stream.loop = false
+	var streamer = AudioStreamPlayer2D.new()
+	streamer.connect("finished", streamer, "queue_free")
+	add_child(streamer)
+	streamer.pitch_scale = 1
+	streamer.stream = load("res://assets/sfx/cantUse.ogg") as AudioStreamOGGVorbis
+	streamer.stream.loop = false
+	streamer.play()
+
+func _start_footsteps() -> void:
+	if _audio.playing:
+		return
+	_audio.stream = load("res://assets/sfx/565479-aelstraz-footstep-wood-co.ogg") as AudioStreamOGGVorbis
+	_audio.stream.loop = true
 	_audio.play()
+
+func _stop_footsteps() -> void:
+	if not _audio.playing:
+		return
+	_audio.stop()
+	_audio.stream = null
+
+func _update_player_bit_mask() -> void:
+	if CURRENT_COSTUME == CostumeType.SWIFT_BIRD:
+		set_collision_mask_bit(3, true)
+		set_collision_mask_bit(0, false)
+		return
+	set_collision_mask_bit(0, true)
+	set_collision_mask_bit(3, false)
 
 func _update_player_mass() -> void:
 	match CURRENT_COSTUME:
