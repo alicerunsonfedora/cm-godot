@@ -23,7 +23,7 @@ extents = Vector2( 19.3741, 22.4383 )
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
 MUSIC = 2
-ALLOWED_COSTUMES = [ 1, 2 ]
+MULTIPLE_COSTUMES = false
 
 [node name="Player" parent="Universe" instance=ExtResource( 1 )]
 position = Vector2( -108.444, -114.793 )
@@ -50,7 +50,7 @@ collision_mask = 7
 script = ExtResource( 5 )
 INPUTS = [ NodePath("../Lever"), NodePath("../AlarmMain") ]
 INTERACT_ON_KEYPRESS = true
-NEXT_SCENE = "res://scenes/main.tscn"
+NEXT_SCENE = "res://scenes/tschmb_07.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/ExitDoor"]
 shape = SubResource( 1 )
@@ -91,7 +91,6 @@ shape = SubResource( 2 )
 
 [node name="Lever" type="Area2D" parent="Universe"]
 position = Vector2( -22.8871, -660.033 )
-collision_mask = 7
 script = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]

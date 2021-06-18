@@ -21,6 +21,9 @@ var _listening_for_keypress = false
 # Whether the device has been permanently activated.
 var _permalock = false
 
+# Bodies and areas that have entered the radius of the input device.
+var _entered = []
+
 # The input's internal timer.
 onready var timer: Timer
 
@@ -49,13 +52,13 @@ func _ready() -> void:
 	_make_timer()
 	_make_timer_ui()
 	_make_audio_player()
-	var _ent_err = connect("body_entered", self, "_on_body_entered")
-	var _exi_err = connect("body_exited", self, "_on_body_exited")
+	var _err = connect("body_entered", self, "_on_body_entered")
+	_err = connect("body_exited", self, "_on_body_exited")
+	_err = connect("area_entered", self, "_on_area_entered")
+	_err = connect("area_exited", self, "_on_area_exited")
 
-	if _ent_err != OK:
-		print_debug(_ent_err)
-	if _exi_err != OK:
-		print_debug(_exi_err)
+	if _err != OK:
+		push_error(_err)
 
 func _process(_delta) -> void:
 	if Input.get_action_strength("interact") and _listening_for_keypress:
@@ -134,27 +137,46 @@ func _deactivate() -> void:
 		timer.stop()
 		_hud_timer.visible = false
 
+func _on_area_entered(area: Area2D) -> void:
+	if not area is MovableObject:
+		return
+	_entered.append(area.name)
+	if INTERACTION % 2 == 0:
+		_listening_for_keypress = true
+	elif not _active and len(_entered) > 0:
+		_activate()
+
+func _on_area_exited(area: Area2D) -> void:
+	if not area is MovableObject:
+		return
+	_entered.remove(area.name)
+	if INTERACTION % 2 == 0:
+		_listening_for_keypress = false
+	elif _active and len(_entered) < 1:
+		_deactivate()
+
 func _on_body_entered(body: Node2D) -> void:
 	if not body.name in ["Player", "PlayerNode", "Clone"]:
 		return
-
+	_entered.append(body.name)
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = true
-		if body.name == "Clone":
+		if body.name == "Clone" or body is MovableObject:
 			return
 		(body as Player).update_player_hint(1)
-	elif not _active:
+	elif not _active and len(_entered) > 0:
 		_activate()
 
 func _on_body_exited(body: Node2D) -> void:
 	if not body.name in ["Player", "PlayerNode", "Clone"]:
 		return
+	_entered.remove(body.name)
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = false
-		if body.name == "Clone":
+		if body.name == "Clone" or body is MovableObject:
 			return
 		(body as Player).update_player_hint(0)
-	elif _active:
+	elif _active and len(_entered) < 0:
 		_deactivate()
 
 # Run post-activation methods and calls. This may be overridden in other classes.

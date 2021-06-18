@@ -263,7 +263,7 @@ scale = Vector2( 8.1, 8.1 )
 texture = ExtResource( 2 )
 offset = Vector2( 81.0644, 63.4941 )
 hframes = 38
-frame = 32
+frame = 28
 
 [node name="AnimationTree" type="AnimationTree" parent="Sprite"]
 tree_root = SubResource( 11 )
