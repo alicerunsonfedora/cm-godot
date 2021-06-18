@@ -7,3 +7,6 @@
 
 # IDE-specific files
 .vscode/
+
+# Exported files
+dist/
