@@ -56,8 +56,8 @@ _global_script_class_icons={
 
 [application]
 
-config/name="The Costumemaster"
-config/description="A puzzle video game about costume-switching"
+config/name="The Costumemaster: Reloaded"
+config/description="Switch costumes. Solve puzzles. Wake up."
 run/main_scene="res://scenes/main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="costumemaster"
