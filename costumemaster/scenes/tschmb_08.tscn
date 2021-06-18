@@ -50,7 +50,7 @@ tile_data = PoolIntArray( -196615, 0, 0, -196614, 5, 0, -196613, 5, 0, -196612, 
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 48, 48 )
 format = 1
-tile_data = PoolIntArray( -196614, 35, 0, -196613, 47, 0, -262144, 42, 0, -131074, 12, 0, -65542, 29, 0, -65541, 33, 0, -65540, 33, 0, -65539, 31, 0, -65538, 13, 0, -131070, 44, 0, -131069, 6, 0, -131068, 24, 0, -131065, 28, 0, -131064, 39, 0, -131062, 44, 0, -2, 14, 0, -65527, 3, 0, -65526, 4, 0, 65530, 30, 0, 65531, 34, 0, 65532, 34, 0, 65533, 32, 0, 8, 11, 0, 65539, 49, 0, 65545, 16, 0, 65546, 16, 0, 131077, 43, 0 )
+tile_data = PoolIntArray( -196614, 35, 0, -196613, 47, 0, -262144, 42, 0, -131074, 12, 0, -65542, 29, 0, -65541, 33, 0, -65540, 33, 0, -65539, 31, 0, -65538, 13, 0, -131070, 44, 0, -131069, 6, 0, -131068, 24, 0, -131065, 28, 0, -131064, 39, 0, -131062, 44, 0, -2, 14, 0, -65527, 3, 0, -65526, 4, 0, 65530, 30, 0, 65531, 34, 0, 65532, 34, 0, 65533, 32, 0, 8, 11, 0, 65539, 49, 0, 65545, 16, 0, 65546, 16, 0, 131077, 43, 0, 131080, 36, 0, 131082, 27, 0 )
 
 [node name="ExitDoor" type="Area2D" parent="Universe"]
 collision_mask = 15
@@ -58,7 +58,7 @@ script = ExtResource( 5 )
 INPUTS = [ NodePath("../Plate"), NodePath("../Computer") ]
 REQUIRE_ALL_INPUTS = true
 INTERACT_ON_KEYPRESS = true
-NEXT_SCENE = "res://scenes/main.tscn"
+NEXT_SCENE = "res://scenes/tschmb_09.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/ExitDoor"]
 position = Vector2( 168, -36 )
@@ -119,6 +119,17 @@ position = Vector2( 260.64, 112.014 )
 texture = ExtResource( 7 )
 texture_scale = 3.0
 color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="LightLamp6" type="Light2D" parent="."]
+position = Vector2( 502.896, 105.222 )
+texture = ExtResource( 7 )
+texture_scale = 2.0
+color = Color( 0.796078, 0.890196, 0.945098, 1 )
 mode = 2
 shadow_enabled = true
 shadow_gradient_length = 0.2
