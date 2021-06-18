@@ -34,7 +34,8 @@ func _on_body_entered(body: Node2D) -> void:
     if not body.name in ["Player", "PlayerNode", "Clone"] or _player._has_item:
         return
     _listening_for_keypress = true
-    _player.update_player_hint(Player.PlayerHint.INTERACT)
+    if _player.CURRENT_COSTUME == Player.CostumeType.MAGIC:
+        _player.update_player_hint(Player.PlayerHint.INTERACT)
 
 func _on_body_exited(body: Node2D) -> void:
     if not body.name in ["Player", "PlayerNode", "Clone"] or _player._has_item:
@@ -50,6 +51,6 @@ func _pickup() -> void:
     _player.add_child(self)
     scale = Vector2(0.3, 0.3)
     modulate = Color.cornflower
-    position = Vector2(0, 40)
+    position = Vector2(0, 20)
     _player.update_player_hint(Player.PlayerHint.HOLDING_ITEM)
     _player._has_item = true
