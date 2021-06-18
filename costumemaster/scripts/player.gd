@@ -14,7 +14,8 @@ enum PlayerHint {
 	NONE = 0,
 	INTERACT = 1,
 	EXIT = 2,
-	NEEDS_INPUT = 3
+	NEEDS_INPUT = 3,
+	HOLDING_ITEM = 4
 }
 
 # The player's default mass.
@@ -33,6 +34,8 @@ export var FIELD_OF_VIEW = 1.0
 export(CostumeType) var CURRENT_COSTUME = CostumeType.DEFAULT setget change_costume_editor
 
 signal wants_clone()
+signal wants_pickup()
+signal wants_drop()
 
 const speed = 500
 const acceleration = 250
@@ -42,6 +45,8 @@ var _collision_velocity = Vector2.ZERO
 var _can_move = true
 var _hint = PlayerHint.NONE
 var _actual_mass = MASS
+
+var _has_item = false
 
 onready var _sprite = $Sprite as Sprite
 onready var _asm = $AnimationStateTree as AnimationTree
@@ -111,6 +116,9 @@ func update_player_hint(status: int) -> void:
 		PlayerHint.NEEDS_INPUT:
 			_hint_gui.visible = true
 			_hint_gui.frame_coords = Vector2(7, 6)
+		PlayerHint.HOLDING_ITEM:
+			_hint_gui.visible = true
+			_hint_gui.frame_coords = Vector2(6, 6)
 		PlayerHint.NONE, _:
 			_hint_gui.visible = false
 
@@ -155,6 +163,10 @@ func _physics_process(delta) -> void:
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if event.get_action_strength("interact") and _hint == PlayerHint.NONE:
 		_play_cant_use_sound()
+	elif event.get_action_strength("interact") and not _has_item:
+		emit_signal("wants_pickup")
+	elif event.get_action_strength("interact") and _has_item:
+		emit_signal("wants_drop")
 	elif event.get_action_strength("clone"):
 		emit_signal("wants_clone")
 

@@ -7,7 +7,7 @@
 [ext_resource path="res://scripts/devices/exitdoor.gd" type="Script" id=5]
 [ext_resource path="res://assets/fx/lightsource2.png" type="Texture" id=6]
 [ext_resource path="res://assets/fx/lightsource.png" type="Texture" id=7]
-[ext_resource path="res://scripts/input.gd" type="Script" id=8]
+[ext_resource path="res://scripts/abstract/input.gd" type="Script" id=8]
 [ext_resource path="res://nodes/obj_door.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -28,7 +28,7 @@ ALLOWED_COSTUMES = [ 1, 2 ]
 [node name="Player" parent="Universe" instance=ExtResource( 1 )]
 position = Vector2( -108.444, -114.793 )
 MASS = 0.7
-FIELD_OF_VIEW = 0.35
+FIELD_OF_VIEW = 0.4
 CURRENT_COSTUME = 1
 
 [node name="Layout" type="TileMap" parent="Universe"]

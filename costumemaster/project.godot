@@ -12,12 +12,12 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "AbstractInput",
 "language": "GDScript",
-"path": "res://scripts/input.gd"
+"path": "res://scripts/abstract/input.gd"
 }, {
-"base": "Area2D",
+"base": "Reference",
 "class": "AbstractOutput",
 "language": "GDScript",
-"path": "res://scripts/output.gd"
+"path": "res://scripts/abstract/output.gd"
 }, {
 "base": "AbstractOutput",
 "class": "ExitDoor",
@@ -28,6 +28,11 @@ _global_script_classes=[ {
 "class": "HUD",
 "language": "GDScript",
 "path": "res://scripts/hud.gd"
+}, {
+"base": "Area2D",
+"class": "MovableObject",
+"language": "GDScript",
+"path": "res://scripts/abstract/movable.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -44,6 +49,7 @@ _global_script_class_icons={
 "AbstractOutput": "",
 "ExitDoor": "",
 "HUD": "",
+"MovableObject": "",
 "Player": "",
 "Universe": ""
 }

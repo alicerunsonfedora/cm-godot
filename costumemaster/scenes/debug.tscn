@@ -1,18 +1,27 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://nodes/obj_player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://nodes/dec_tileset.tres" type="TileSet" id=3]
 [ext_resource path="res://nodes/universe.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/devices/exitdoor.gd" type="Script" id=5]
-[ext_resource path="res://scripts/input.gd" type="Script" id=6]
+[ext_resource path="res://scripts/abstract/input.gd" type="Script" id=6]
 [ext_resource path="res://assets/fx/lightsource.png" type="Texture" id=7]
+[ext_resource path="res://assets/tileset/dec_bedroon.png" type="Texture" id=8]
+[ext_resource path="res://scripts/abstract/movable.gd" type="Script" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 17.632, 21.7205 )
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 10.4356, 38.9967 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 8 )
+region = Rect2( 335.577, 491.879, 48.3487, 72.1367 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 30.0579, 37.9578 )
 
 [node name="World" type="Node2D"]
 
@@ -56,6 +65,15 @@ PERMANENT = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]
 shape = SubResource( 2 )
+
+[node name="MovableObject" type="Area2D" parent="Universe"]
+script = ExtResource( 9 )
+
+[node name="Sprite" type="Sprite" parent="Universe/MovableObject"]
+texture = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/MovableObject"]
+shape = SubResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="Universe"]
 position = Vector2( -170.719, -114.653 )

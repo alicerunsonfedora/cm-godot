@@ -59,6 +59,8 @@ func _ready() -> void:
 	if player != null:
 		player.connect("wants_clone", self, "toggle_clone")
 
+	_instantiate_objects()
+
 	if DEBUG_MODE:
 		_enable_debug_player()
 		_hud.hide_debug_menu()
@@ -136,6 +138,13 @@ func _instantiate_music() -> void:
 		_bgm.stream = _get_music_track()
 		_bgm.volume_db = -0.6
 		_bgm.play()
+
+func _instantiate_objects() -> void:
+	if _get_player() == null:
+		return
+	for child in get_children():
+		if not child is MovableObject: continue
+		(child as MovableObject)._connect_to_player(_get_player())
 
 func _restart_level() -> void:
 	var _err = get_tree().reload_current_scene()
