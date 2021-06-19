@@ -28,7 +28,7 @@ export var MAX_SPEED = 1000
 export var FRICTION = 100
 
 # The player's default field of view.
-export var FIELD_OF_VIEW = 1.0
+export var FIELD_OF_VIEW = 1.0 setget _update_player_camera
 
 # The player's current costume.
 export(CostumeType) var CURRENT_COSTUME = CostumeType.DEFAULT setget change_costume_editor
@@ -191,6 +191,11 @@ func _stop_footsteps() -> void:
 		return
 	_audio.stop()
 	_audio.stream = null
+
+func _update_player_camera(value: float):
+	FIELD_OF_VIEW = value
+	if _camera != null:
+		_camera.zoom = Vector2(value, value)
 
 func _update_player_bit_mask() -> void:
 	if CURRENT_COSTUME == CostumeType.SWIFT_BIRD:

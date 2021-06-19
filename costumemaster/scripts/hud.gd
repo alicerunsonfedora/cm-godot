@@ -3,18 +3,23 @@ extends Control
 
 signal costume_request(costume_type)
 signal restart_level_request()
+signal update_field_of_view_request(fov)
 
 onready var switch_flash = $Toolbar/FlashCostume as Button
 onready var switch_bird = $Toolbar/BirdCostume as Button
 onready var switch_magic = $Toolbar/MagiCostume as Button
 onready var switch_mega = $Toolbar/MegaCostume as Button
 onready var switch_none = $Toolbar/NoneCostume as Button
+
 onready var btn_restart = $Toolbar/Restart as Button
+
+onready var slider_fov = $AuxToolbar/FOVSlider as Slider
 
 onready var tut_walk = $PanelMove as Panel
 onready var tut_cost = $PanelCostume as Panel
 onready var tut_inter = $PanelInteract as Panel
 onready var tut_restart = $PanelRestart as Panel
+onready var tut_camera = $PanelCamera as Panel
 onready var tut_timer = $Timer as Timer
 
 onready var tween = $Tween as Tween
@@ -32,6 +37,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		_cycle_costume(false)
 	elif event.get_action_strength("costume_change_backward"):
 		_cycle_costume(true)
+	elif event.get_action_strength("zoom_in"):
+		slider_fov.value -= 0.1
+	elif event.get_action_strength("zoom_out"):
+		slider_fov.value += 0.1
 
 func _button_connect() -> void:
 	var _err = switch_flash.connect("button_up", self, "_send_flash")
@@ -40,6 +49,7 @@ func _button_connect() -> void:
 	_err = switch_mega.connect("button_up", self, "_send_all")
 	_err = switch_none.connect("button_up", self, "_send_none")
 	_err = btn_restart.connect("button_up", self, "_send_restart")
+	_err = slider_fov.connect("value_changed", self, "_send_fov")
 	if _err != OK:
 		push_error(_err)
 		
@@ -71,6 +81,7 @@ func disable_tut_restart() -> void:
 func disable_tut_walk() -> void:
 	tut_walk.visible = false
 	tut_inter.visible = false
+	tut_camera.visible = false
 
 func disable_restart() -> void:
 	btn_restart.disabled = true
@@ -97,9 +108,11 @@ func disable_unused(allowed: Array) -> void:
 func _on_timer_timeout() -> void:
 	var original = tut_cost.modulate
 	tween.interpolate_property(
-		tut_cost, "modulate", original, Color.transparent, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-	tween.interpolate_property(
 		tut_walk, "modulate", original, Color.transparent, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property(
+		tut_camera, "modulate", original, Color.transparent, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	tween.interpolate_property(
+		tut_cost, "modulate", original, Color.transparent, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.interpolate_property(
 		tut_inter, "modulate", original, Color.transparent, 1.5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	tween.interpolate_property(
@@ -123,3 +136,11 @@ func _send_all() -> void:
 
 func _send_restart() -> void:
 	emit_signal("restart_level_request")
+
+func _send_fov(value: float) -> void:
+	emit_signal("update_field_of_view_request", value)
+
+func set_fov_bounds(min_value: float) -> void:
+	slider_fov.min_value = min_value
+	slider_fov.max_value = min_value + 1
+	slider_fov.value = min_value

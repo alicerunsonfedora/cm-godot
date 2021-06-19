@@ -126,8 +126,13 @@ func _instantiate_hud() -> void:
 	if not RESTART_TUTORIAL:
 		_hud.disable_tut_restart()
 
+	var _player = _get_player()
+	if _player != null:
+		_hud.set_fov_bounds(_player.FIELD_OF_VIEW)
+
 	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
 	_hud_err = _hud.connect("restart_level_request", self, "_restart_level")
+	_hud_err = _hud.connect("update_field_of_view_request", self, "send_fov_request")
 	if _hud_err:
 		push_error(_hud_err)
 
@@ -159,6 +164,12 @@ func send_costume_request(costume_type: int) -> void:
 	if player_node == null or not MULTIPLE_COSTUMES or ALLOWED_COSTUMES.find(costume_type) == -1:
 		return
 	(player_node as Player).change_costume(costume_type)
+
+func send_fov_request(fov: float) -> void:
+	var player_node = _get_player()
+	if player_node == null:
+		return
+	player_node.FIELD_OF_VIEW = fov
 
 # Toggle the player clone in the universe.
 func toggle_clone() -> void:
