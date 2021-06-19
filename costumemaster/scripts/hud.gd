@@ -38,9 +38,9 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.get_action_strength("costume_change_backward"):
 		_cycle_costume(true)
 	elif event.get_action_strength("zoom_in"):
-		slider_fov.value -= 0.1
-	elif event.get_action_strength("zoom_out"):
 		slider_fov.value += 0.1
+	elif event.get_action_strength("zoom_out"):
+		slider_fov.value -= 0.1
 
 func _button_connect() -> void:
 	var _err = switch_flash.connect("button_up", self, "_send_flash")
@@ -138,9 +138,9 @@ func _send_restart() -> void:
 	emit_signal("restart_level_request")
 
 func _send_fov(value: float) -> void:
-	emit_signal("update_field_of_view_request", value)
+	emit_signal("update_field_of_view_request", abs(value))
 
 func set_fov_bounds(min_value: float) -> void:
-	slider_fov.min_value = min_value
-	slider_fov.max_value = min_value + 1
+	slider_fov.min_value = -1 - min_value
+	slider_fov.max_value = -1 * min_value
 	slider_fov.value = min_value

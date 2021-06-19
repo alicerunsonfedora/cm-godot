@@ -47,15 +47,15 @@ action = "restart"
 [sub_resource type="ShortCut" id=12]
 shortcut = SubResource( 11 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=13]
 atlas = ExtResource( 10 )
 region = Rect2( 102.05, 191.902, 36.347, 48 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=14]
 atlas = ExtResource( 10 )
 region = Rect2( 482.728, 194.409, 41.885, 48 )
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=15]
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 7 )
@@ -159,6 +159,7 @@ margin_left = 875.0
 margin_right = 927.0
 margin_bottom = 45.0
 hint_tooltip = "Restart the level. (R)"
+shortcut_in_tooltip = false
 shortcut = SubResource( 12 )
 icon = ExtResource( 9 )
 
@@ -273,7 +274,7 @@ margin_left = -68.0
 margin_top = 12.1447
 margin_right = -40.0
 margin_bottom = 46.1447
-texture = SubResource( 14 )
+texture = SubResource( 13 )
 expand = true
 stretch_mode = 5
 __meta__ = {
@@ -287,7 +288,7 @@ margin_left = -40.0
 margin_top = 12.0
 margin_right = -12.0
 margin_bottom = 46.0
-texture = SubResource( 15 )
+texture = SubResource( 14 )
 expand = true
 stretch_mode = 5
 __meta__ = {
@@ -315,7 +316,7 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelCostume/VBoxContainer"]
 margin_right = 335.0
 margin_bottom = 60.0
-custom_fonts/normal_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 15 )
 text = "Click to switch costumes. Some costumes may unlock different abilities."
 fit_content_height = true
 
@@ -342,7 +343,7 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelRestart/VBoxContainer"]
 margin_right = 249.0
 margin_bottom = 60.0
-custom_fonts/normal_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 15 )
 text = "Click to restart the level if you get stuck or need to reset."
 fit_content_height = true
 
@@ -371,7 +372,7 @@ __meta__ = {
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelCamera/VBoxContainer"]
 margin_right = 249.0
 margin_bottom = 60.0
-custom_fonts/normal_font = SubResource( 13 )
+custom_fonts/normal_font = SubResource( 15 )
 text = "Slide to adjust the field of view to show more or less at once."
 fit_content_height = true
 
@@ -408,7 +409,8 @@ __meta__ = {
 margin_left = 618.0
 margin_right = 924.0
 margin_bottom = 32.0
-hint_tooltip = "Adjust the field of view for the player. (+/-)"
+hint_tooltip = "Adjust the field of view for the player.
+(+/-)"
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 min_value = 0.3
