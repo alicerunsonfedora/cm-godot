@@ -45,20 +45,23 @@ signal request_player_lock()
 signal release_player_lock()
 
 var _lock: bool = false
+var _min_fov_bound = 0.0
 
 onready var _bgm: AudioStreamPlayer
 onready var _hud: HUD = $CanvasLayer/HUD as HUD
 onready var _clone_data = load("res://nodes/obj_clone.tscn")
 onready var _clone: Node2D
+onready var _settings: UserDefaults
 
 func _ready() -> void:
-	_instantiate_music()
-	_instantiate_hud()
-
+	_settings = UserDefaults.new()
 	var player = _get_player()
 	if player != null:
+		_min_fov_bound = player.FIELD_OF_VIEW
 		player.connect("wants_clone", self, "toggle_clone")
-
+	
+	_instantiate_music()
+	_instantiate_hud()
 	_instantiate_objects()
 
 	if DEBUG_MODE:
@@ -126,9 +129,13 @@ func _instantiate_hud() -> void:
 	if not RESTART_TUTORIAL:
 		_hud.disable_tut_restart()
 
-	var _player = _get_player()
-	if _player != null:
-		_hud.set_fov_bounds(_player.FIELD_OF_VIEW)
+	_hud.set_fov_bounds(_min_fov_bound)
+	if _settings.persist_field_of_view:
+		_hud.slider_fov.value = clamp(
+			-_settings.field_of_view, -1 - _min_fov_bound, -_min_fov_bound)
+		var _player = _get_player()
+		if _player != null:
+			_player.FIELD_OF_VIEW = clamp(_settings.field_of_view, _min_fov_bound, _min_fov_bound + 1)
 
 	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
 	_hud_err = _hud.connect("restart_level_request", self, "_restart_level")
@@ -170,6 +177,7 @@ func send_fov_request(fov: float) -> void:
 	if player_node == null:
 		return
 	player_node.FIELD_OF_VIEW = fov
+	_settings.field_of_view = fov
 
 # Toggle the player clone in the universe.
 func toggle_clone() -> void:
