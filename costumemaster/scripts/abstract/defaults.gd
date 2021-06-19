@@ -1,7 +1,18 @@
+# defaults.gd
+# (C) 2021 Marquis Kurt.
+# 
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
 class_name UserDefaults
 
-var persist_field_of_view = false setget _update_persist_field_of_view
+# The persistent field of view.
+# Defaults to zero when no persistent field of view is present.
 var field_of_view = 0.0 setget _update_field_of_view
+
+# Whether to keep the field of view persistent across levels.
+# Defaults to False.
+var persist_field_of_view = false setget _update_persist_field_of_view
 
 onready var _config: ConfigFile
 

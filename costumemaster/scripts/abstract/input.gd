@@ -1,3 +1,10 @@
+# input.gd
+# (C) 2021 Marquis Kurt.
+# 
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
 # A class that handles input from the player to send a signal to an output device.
 # Examples of inputs that use this class are the lever, computer, and padlock.
 class_name AbstractInput
@@ -12,24 +19,15 @@ export var DURATION: float = 0.0
 # Whether the input remains activated after being activated once.
 export var PERMANENT: bool = true
 
-# Whether the input is currently active.
 var _active: bool = false
-
-# Whether the input is listening for a key press to activate.
-var _listening_for_keypress = false
-
-# Whether the device has been permanently activated.
-var _permalock = false
-
-# Bodies and areas that have entered the radius of the input device.
 var _entered = []
-
-# The input's internal timer.
-onready var timer: Timer
+var _listening_for_keypress = false
+var _permalock = false
 
 onready var _audio: AudioStreamPlayer2D
 onready var _hud_data = load("res://interface/hud_timer.tscn") as Resource
 onready var _hud_timer: Node2D
+onready var _timer: Timer
 
 # A signal that emits when the input is activated.
 signal input_active(name)
@@ -60,20 +58,42 @@ func _ready() -> void:
 	if _err != OK:
 		push_error(_err)
 
-func _process(_delta) -> void:
-	if Input.get_action_strength("interact") and _listening_for_keypress:
-		if _active and not _permalock and (timer.time_left == 0):
-			_deactivate()
-		else:
-			_activate()
+# Activate the input device.
+# If the duration is a non-zero value, the internal timer will start.
+func _activate() -> void:
+	if _permalock or _active:
+		return
+	_active = true
+	_on_activate()
+	emit_signal("input_active", get_name())
+	_audio.play()
+	if PERMANENT:
+		_permalock = true
+	if DURATION > 0:
+		_timer.start()
+		_hud_timer.visible = true
+		_make_audio_tick()
+		_audio.play()
+
+# Deactivate the input device.
+# If the duration is a non-zero value, the internal timer will stop.
+func _deactivate() -> void:
+	_active = false
+	_on_deactivate()
+	emit_signal("input_inactive", get_name())
+	_make_audio_turnoff()
+	_audio.play()
+	if DURATION > 0:
+		_timer.stop()
+		_hud_timer.visible = false
 
 func _make_timer() -> void:
-	timer = Timer.new()
-	timer.autostart = false
-	timer.one_shot = true
-	timer.wait_time = DURATION if DURATION > 0 else 1.0
-	add_child(timer)
-	var _tim_con = timer.connect("timeout", self, "_deactivate")
+	_timer = Timer.new()
+	_timer.autostart = false
+	_timer.one_shot = true
+	_timer.wait_time = DURATION if DURATION > 0 else 1.0
+	add_child(_timer)
+	var _tim_con = _timer.connect("timeout", self, "_deactivate")
 	if _tim_con != OK:
 		print_debug(_tim_con)
 
@@ -107,35 +127,6 @@ func _make_audio_turnoff() -> void:
 		return
 	_audio.stream = load("res://assets/sfx/alarmDisable.ogg") as AudioStreamOGGVorbis
 	_audio.stream.loop = false
-
-# Activate the input device.
-# If the duration is a non-zero value, the internal timer will start.
-func _activate() -> void:
-	if _permalock or _active:
-		return
-	_active = true
-	_on_activate()
-	emit_signal("input_active", get_name())
-	_audio.play()
-	if PERMANENT:
-		_permalock = true
-	if DURATION > 0:
-		timer.start()
-		_hud_timer.visible = true
-		_make_audio_tick()
-		_audio.play()
-
-# Deactivate the input device.
-# If the duration is a non-zero value, the internal timer will stop.
-func _deactivate() -> void:
-	_active = false
-	_on_deactivate()
-	emit_signal("input_inactive", get_name())
-	_make_audio_turnoff()
-	_audio.play()
-	if DURATION > 0:
-		timer.stop()
-		_hud_timer.visible = false
 
 func _on_area_entered(area: Area2D) -> void:
 	if not area is MovableObject:
@@ -186,3 +177,10 @@ func _on_activate() -> void:
 # Run post-deactivation methods and calls. This may be overridden in other classes.
 func _on_deactivate() -> void:
 	pass
+
+func _process(_delta) -> void:
+	if Input.get_action_strength("interact") and _listening_for_keypress:
+		if _active and not _permalock and (_timer.time_left == 0):
+			_deactivate()
+		else:
+			_activate()

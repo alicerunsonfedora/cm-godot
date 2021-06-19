@@ -20,6 +20,11 @@ _global_script_classes=[ {
 "path": "res://scripts/abstract/output.gd"
 }, {
 "base": "AbstractOutput",
+"class": "Door",
+"language": "GDScript",
+"path": "res://scripts/devices/obj_door.gd"
+}, {
+"base": "AbstractOutput",
 "class": "ExitDoor",
 "language": "GDScript",
 "path": "res://scripts/devices/exitdoor.gd"
@@ -52,6 +57,7 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AbstractInput": "",
 "AbstractOutput": "",
+"Door": "",
 "ExitDoor": "",
 "HUD": "",
 "MovableObject": "",

@@ -1,6 +1,15 @@
+# exitdoor.gd
+# (C) 2021 Marquis Kurt.
+# 
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+# An exit door that transitions to another scene.
 class_name ExitDoor
 extends AbstractOutput
 
+# The scene to transition to when activated.
 export(String, FILE, "*.tscn") var NEXT_SCENE = null
 
 func _on_activate() -> void:
