@@ -18,7 +18,7 @@ extents = Vector2( 10.4356, 38.9967 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 25.955, 31.1851 )
 
-[node name="World" type="Node2D"]
+[node name="World" type="YSort"]
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
 MULTIPLE_COSTUMES = false

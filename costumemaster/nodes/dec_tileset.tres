@@ -144,7 +144,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 15 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-4/z_index = 0
+4/z_index = -1
 5/name = "Curtains"
 5/texture = ExtResource( 1 )
 5/tex_offset = Vector2( 0, 0 )
@@ -263,7 +263,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 "shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
-11/z_index = 1
+11/z_index = 0
 12/name = "Bed Top"
 12/texture = ExtResource( 2 )
 12/tex_offset = Vector2( 0, 0 )
@@ -788,7 +788,7 @@ points = PoolVector2Array( 0, 0, 48, 0, 48, 48, 0, 48 )
 42/shape_one_way = false
 42/shape_one_way_margin = 0.0
 42/shapes = [  ]
-42/z_index = 1
+42/z_index = 0
 43/name = "Tall Lamp"
 43/texture = ExtResource( 3 )
 43/tex_offset = Vector2( 0, 0 )
