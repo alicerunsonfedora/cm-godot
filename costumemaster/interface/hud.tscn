@@ -63,9 +63,9 @@ font_data = ExtResource( 7 )
 [node name="HUD" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 4.61206
+margin_left = 5.41284
 margin_top = -0.0490719
-margin_right = 4.61194
+margin_right = 5.41272
 margin_bottom = -0.0490723
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
@@ -87,7 +87,7 @@ __meta__ = {
 [node name="FlashCostume" type="Button" parent="Toolbar"]
 margin_right = 52.0
 margin_bottom = 45.0
-hint_tooltip = "Flash Drive (1)"
+hint_tooltip = "HUD_COST_FLASH"
 shortcut_in_tooltip = false
 shortcut = SubResource( 2 )
 icon = ExtResource( 6 )
@@ -99,7 +99,7 @@ __meta__ = {
 margin_left = 60.0
 margin_right = 112.0
 margin_bottom = 45.0
-hint_tooltip = "Swift Bird (2)"
+hint_tooltip = "HUD_COST_BIRD"
 shortcut_in_tooltip = false
 shortcut = SubResource( 4 )
 icon = ExtResource( 3 )
@@ -111,7 +111,7 @@ __meta__ = {
 margin_left = 120.0
 margin_right = 172.0
 margin_bottom = 45.0
-hint_tooltip = "Magic Unicorn (3)"
+hint_tooltip = "HUD_COST_MAGIC"
 shortcut_in_tooltip = false
 shortcut = SubResource( 6 )
 icon = ExtResource( 4 )
@@ -123,7 +123,7 @@ __meta__ = {
 margin_left = 180.0
 margin_right = 232.0
 margin_bottom = 45.0
-hint_tooltip = "Megacostume (4)"
+hint_tooltip = "HUD_COST_MEGA"
 shortcut_in_tooltip = false
 shortcut = SubResource( 8 )
 icon = ExtResource( 8 )
@@ -135,7 +135,7 @@ __meta__ = {
 margin_left = 240.0
 margin_right = 292.0
 margin_bottom = 45.0
-hint_tooltip = "No Costume (5)"
+hint_tooltip = "HUD_COST_NONE"
 shortcut_in_tooltip = false
 shortcut = SubResource( 10 )
 icon = ExtResource( 5 )
@@ -158,7 +158,7 @@ __meta__ = {
 margin_left = 875.0
 margin_right = 927.0
 margin_bottom = 45.0
-hint_tooltip = "Restart the level. (R)"
+hint_tooltip = "HUD_RESTART"
 shortcut_in_tooltip = false
 shortcut = SubResource( 12 )
 icon = ExtResource( 9 )
@@ -169,7 +169,7 @@ anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 16.0
 margin_top = -102.0
-margin_right = 185.0
+margin_right = 227.0
 margin_bottom = 112.0
 __meta__ = {
 "_edit_group_": true,
@@ -187,41 +187,102 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MoveUp" type="RichTextLabel" parent="PanelMove/VBoxContainer"]
-margin_top = 9.0
-margin_right = 153.0
-margin_bottom = 52.0
-bbcode_enabled = true
-bbcode_text = "[color=#f0c188]W[/color]	  Up"
-text = "W	  Up"
-fit_content_height = true
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
+margin_top = 13.0
+margin_right = 240.0
+margin_bottom = 54.0
+alignment = 2
 
-[node name="MoveLeft" type="RichTextLabel" parent="PanelMove/VBoxContainer"]
-margin_top = 60.0
-margin_right = 153.0
+[node name="Key_MoveUp" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer"]
+margin_right = 41.0
+margin_bottom = 41.0
+grow_horizontal = 2
+rect_min_size = Vector2( 41, 41 )
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]W[/color]"
+visible_characters = 1
+text = "W"
+scroll_active = false
+
+[node name="MoveUp" type="Label" parent="PanelMove/VBoxContainer/HBoxContainer"]
+margin_left = 49.0
+margin_right = 240.0
+margin_bottom = 41.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "TUT_MOVE_UP"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
+margin_top = 62.0
+margin_right = 240.0
 margin_bottom = 103.0
-bbcode_enabled = true
-bbcode_text = "[color=#f0c188]A[/color]		Left"
-text = "A		Left"
-fit_content_height = true
 
-[node name="MoveDown" type="RichTextLabel" parent="PanelMove/VBoxContainer"]
+[node name="Key_MoveLeft" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer2"]
+margin_right = 41.0
+margin_bottom = 41.0
+grow_horizontal = 2
+rect_min_size = Vector2( 41, 41 )
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]A[/color]"
+visible_characters = 1
+text = "A"
+scroll_active = false
+
+[node name="MoveLeft" type="Label" parent="PanelMove/VBoxContainer/HBoxContainer2"]
+margin_left = 49.0
+margin_right = 240.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+text = "TUT_MOVE_LEFT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
 margin_top = 111.0
-margin_right = 153.0
-margin_bottom = 154.0
-bbcode_enabled = true
-bbcode_text = "[color=#f0c188]S[/color]		Down"
-text = "S		Down"
-fit_content_height = true
+margin_right = 240.0
+margin_bottom = 152.0
 
-[node name="MoveRight" type="RichTextLabel" parent="PanelMove/VBoxContainer"]
-margin_top = 162.0
-margin_right = 153.0
-margin_bottom = 205.0
+[node name="Key_MoveDown" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer3"]
+margin_right = 41.0
+margin_bottom = 41.0
+grow_horizontal = 2
+rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
-bbcode_text = "[color=#f0c188]D[/color]		Right"
-text = "D		Right"
-fit_content_height = true
+bbcode_text = "[color=#f0c188]S[/color]"
+visible_characters = 1
+text = "S"
+scroll_active = false
+
+[node name="MoveDown" type="Label" parent="PanelMove/VBoxContainer/HBoxContainer3"]
+margin_left = 49.0
+margin_right = 240.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+text = "TUT_MOVE_DOWN"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
+margin_top = 160.0
+margin_right = 240.0
+margin_bottom = 201.0
+
+[node name="Key_MoveRight" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer4"]
+margin_right = 41.0
+margin_bottom = 41.0
+grow_horizontal = 2
+rect_min_size = Vector2( 41, 41 )
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]D[/color]"
+visible_characters = 1
+text = "D"
+scroll_active = false
+
+[node name="MoveRight" type="Label" parent="PanelMove/VBoxContainer/HBoxContainer4"]
+margin_left = 49.0
+margin_right = 240.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+text = "TUT_MOVE_RIGHT"
 
 [node name="PanelInteract" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.54902 )
@@ -229,10 +290,10 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -270.914
-margin_top = -58.3157
-margin_right = -15.9139
-margin_bottom = 56.6843
+margin_left = -306.217
+margin_top = -58.0
+margin_right = -15.2166
+margin_bottom = 57.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -249,31 +310,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Interact" type="RichTextLabel" parent="PanelInteract/VBoxContainer"]
-margin_top = 8.0
-margin_right = 239.0
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelInteract/VBoxContainer"]
+margin_top = 10.0
+margin_right = 279.0
 margin_bottom = 51.0
-bbcode_enabled = true
-bbcode_text = "[color=#f0c188]E[/color]	  Pick Up/Press"
-text = "E	  Pick Up/Press"
-fit_content_height = true
+alignment = 2
 
-[node name="Clone" type="RichTextLabel" parent="PanelInteract/VBoxContainer"]
-margin_top = 59.0
-margin_right = 239.0
-margin_bottom = 102.0
+[node name="Key_Interact" type="RichTextLabel" parent="PanelInteract/VBoxContainer/HBoxContainer"]
+margin_right = 41.0
+margin_bottom = 41.0
+grow_horizontal = 0
+rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
-bbcode_text = "[color=#f0c188]C[/color]	  Clone USB"
-text = "C	  Clone USB"
-fit_content_height = true
+bbcode_text = "[color=#f0c188]E[/color]"
+text = "E"
+scroll_active = false
 
-[node name="TextureRect" type="TextureRect" parent="PanelInteract"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -68.0
-margin_top = 12.1447
-margin_right = -40.0
-margin_bottom = 46.1447
+[node name="Interact" type="Label" parent="PanelInteract/VBoxContainer/HBoxContainer"]
+margin_left = 49.0
+margin_right = 200.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+text = "TUT_INTERACT"
+
+[node name="TextureRect" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer"]
+margin_left = 208.0
+margin_right = 240.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 32, 41 )
 texture = SubResource( 13 )
 expand = true
 stretch_mode = 5
@@ -281,13 +345,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect2" type="TextureRect" parent="PanelInteract"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -40.0
-margin_top = 12.0
-margin_right = -12.0
-margin_bottom = 46.0
+[node name="TextureRect2" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer"]
+margin_left = 248.0
+margin_right = 279.0
+margin_bottom = 41.0
+rect_min_size = Vector2( 31, 41 )
 texture = SubResource( 14 )
 expand = true
 stretch_mode = 5
@@ -295,12 +357,39 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="PanelInteract/VBoxContainer"]
+margin_top = 59.0
+margin_right = 279.0
+margin_bottom = 100.0
+alignment = 2
+
+[node name="Key_Clone" type="RichTextLabel" parent="PanelInteract/VBoxContainer/HBoxContainer2"]
+margin_right = 41.0
+margin_bottom = 41.0
+grow_horizontal = 0
+rect_min_size = Vector2( 41, 41 )
+bbcode_enabled = true
+bbcode_text = "[color=#f0c188]C[/color]"
+text = "C"
+scroll_active = false
+
+[node name="Clone" type="Label" parent="PanelInteract/VBoxContainer/HBoxContainer2"]
+margin_left = 49.0
+margin_right = 279.0
+margin_bottom = 41.0
+grow_horizontal = 0
+size_flags_horizontal = 3
+text = "TUT_CLONE"
+
 [node name="PanelCostume" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.54902 )
 margin_left = 16.0
-margin_top = 69.0732
-margin_right = 351.0
-margin_bottom = 128.073
+margin_top = 70.0
+margin_right = 480.0
+margin_bottom = 134.0
+rect_min_size = Vector2( 464, 64 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -309,25 +398,28 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelCostume"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelCostume/VBoxContainer"]
-margin_right = 335.0
-margin_bottom = 60.0
-custom_fonts/normal_font = SubResource( 15 )
-text = "Click to switch costumes. Some costumes may unlock different abilities."
-fit_content_height = true
+[node name="RichTextLabel" type="Label" parent="PanelCostume/VBoxContainer"]
+margin_right = 464.0
+margin_bottom = 50.0
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 15 )
+text = "TUT_COSTUME"
+autowrap = true
 
 [node name="PanelRestart" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.54902 )
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -265.0
-margin_top = 68.0
+margin_left = -480.0
+margin_top = 70.0
 margin_right = -15.9999
-margin_bottom = 127.0
+margin_bottom = 134.0
+rect_min_size = Vector2( 464, 64 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -340,12 +432,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelRestart/VBoxContainer"]
-margin_right = 249.0
-margin_bottom = 60.0
-custom_fonts/normal_font = SubResource( 15 )
-text = "Click to restart the level if you get stuck or need to reset."
-fit_content_height = true
+[node name="RichTextLabel" type="Label" parent="PanelRestart/VBoxContainer"]
+margin_right = 464.0
+margin_bottom = 50.0
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 15 )
+text = "TUT_RESTART"
+align = 2
+autowrap = true
 
 [node name="PanelCamera" type="Panel" parent="."]
 modulate = Color( 1, 1, 1, 0.54902 )
@@ -353,10 +447,11 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -269.0
+margin_left = -328.0
 margin_top = -119.0
-margin_right = -20.0
+margin_right = -19.9999
 margin_bottom = -60.0
+hint_tooltip = "HUD_FOV_SLIDER"
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -369,12 +464,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="PanelCamera/VBoxContainer"]
-margin_right = 249.0
-margin_bottom = 60.0
-custom_fonts/normal_font = SubResource( 15 )
-text = "Slide to adjust the field of view to show more or less at once."
-fit_content_height = true
+[node name="RichTextLabel" type="Label" parent="PanelCamera/VBoxContainer"]
+anchor_bottom = 1.0
+margin_right = 308.0
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 15 )
+text = "TUT_FOV_SLIDER"
+align = 2
+autowrap = true
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
@@ -409,8 +506,7 @@ __meta__ = {
 margin_left = 618.0
 margin_right = 924.0
 margin_bottom = 32.0
-hint_tooltip = "Adjust the field of view for the player.
-(+/-)"
+hint_tooltip = "HUD_FOV_SLIDER"
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
 min_value = 0.3
