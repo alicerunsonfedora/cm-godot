@@ -164,6 +164,9 @@ func _instantiate_hud() -> void:
 	_hud.visible = true
 	_hud.disable_unused(ALLOWED_COSTUMES)
 
+	if not _settings.show_mobile_controls:
+		_hud.disable_mobile_ui()
+
 	if not RESTARTABLE:
 		_hud.disable_restart()
 

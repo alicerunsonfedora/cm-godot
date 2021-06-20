@@ -40,3 +40,11 @@ margin_bottom = 112.0
 hint_tooltip = "PERF_MUSIC_HINT"
 shortcut_in_tooltip = false
 text = "PERF_MUSIC"
+
+[node name="chk_mobile_controls" type="CheckButton" parent="VBoxContainer"]
+margin_top = 120.0
+margin_right = 548.0
+margin_bottom = 172.0
+hint_tooltip = "PERF_MOBILE_HINT"
+shortcut_in_tooltip = false
+text = "PERF_MOBILE"

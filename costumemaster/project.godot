@@ -211,6 +211,10 @@ zoom_out={
  ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [locale]
 
 translations=PoolStringArray( "res://translations/translations.en.translation" )

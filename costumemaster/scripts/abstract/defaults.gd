@@ -20,6 +20,10 @@ var field_of_view: float = 0.0 setget _update_field_of_view
 # Defaults to False.
 var persist_field_of_view: bool = false setget _update_persist_field_of_view
 
+# Whether to show the mobile UI controls.
+# Defaults to the result of OS.has_touchscreen_ui_hint.
+var show_mobile_controls: bool = OS.has_touchscreen_ui_hint() setget _update_show_mobile_controls
+
 onready var _config: ConfigFile
 
 func _init() -> void:
@@ -32,6 +36,7 @@ func _init() -> void:
 	persist_field_of_view = _config.get_value("defaults", "persist_field_of_view", false)
 	field_of_view = _config.get_value("defaults", "field_of_view", 0.0)
 	allow_music = _config.get_value("defaults", "allow_music", true)
+	show_mobile_controls = _config.get_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
 
 func _save_defaults() -> void:
 	var _err = _config.save("user://userdefaults.cfg")
@@ -53,8 +58,14 @@ func _update_persist_field_of_view(new_value: bool) -> void:
 	_config.set_value("defaults", "persist_field_of_view", new_value)
 	_save_defaults()
 
+func _update_show_mobile_controls(new_value: bool) -> void:
+	show_mobile_controls = new_value
+	_config.set_value("defaults", "show_mobile_controls", new_value)
+	_save_defaults()
+
 func _write_new_defaults() -> void:
 	_config.set_value("defaults", "persist_field_of_view", false)
 	_config.set_value("defaults", "field_of_view", 0.0)
 	_config.set_value("defaults", "allow_music", true)
+	_config.set_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
 	_save_defaults()

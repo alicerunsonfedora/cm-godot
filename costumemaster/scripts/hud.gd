@@ -12,6 +12,7 @@ signal restart_level_request()
 signal update_field_of_view_request(fov)
 
 onready var btn_restart = $Toolbar/Restart as Button
+onready var mobile_ui = $MobileUI as Control
 onready var slider_fov = $AuxToolbar/FOVSlider as Slider
 onready var switch_flash = $Toolbar/FlashCostume as Button
 onready var switch_bird = $Toolbar/BirdCostume as Button
@@ -33,6 +34,10 @@ func _ready() -> void:
 	var _err = tut_timer.connect("timeout", self, "_on_timer_timeout")
 	if _err != OK:
 		push_error(_err)
+
+# Disable the mobile UI.
+func disable_mobile_ui() -> void:
+	mobile_ui.visible = false
 
 # Disable all tutorials on the HUD.
 func disable_tutorials() -> void:
