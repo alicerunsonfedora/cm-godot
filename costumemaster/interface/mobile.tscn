@@ -47,28 +47,24 @@ position = Vector2( 0, -79 )
 normal = ExtResource( 1 )
 shape = SubResource( 1 )
 action = "move_up"
-visibility_mode = 1
 
 [node name="Left" type="TouchScreenButton" parent="DPad"]
 position = Vector2( -50, -30 )
 normal = ExtResource( 3 )
 shape = SubResource( 3 )
 action = "move_left"
-visibility_mode = 1
 
 [node name="Down" type="TouchScreenButton" parent="DPad"]
 position = Vector2( 0, 4 )
 normal = ExtResource( 2 )
 shape = SubResource( 4 )
 action = "move_down"
-visibility_mode = 1
 
 [node name="Right" type="TouchScreenButton" parent="DPad"]
 position = Vector2( 35, -30 )
 normal = ExtResource( 4 )
 shape = SubResource( 2 )
 action = "move_right"
-visibility_mode = 1
 
 [node name="Others" type="Control" parent="."]
 anchor_left = 1.0
