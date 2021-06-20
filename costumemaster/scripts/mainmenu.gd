@@ -20,6 +20,10 @@ func _ready() -> void:
 	_err = btn_options.connect("button_up", self, "_btn_options_press")
 	if _err != OK:
 		push_error(_err)
+	
+	if OS.get_name() in ["HTML5", "iOS", "Android"]:
+		btn_quit.disabled = true
+		btn_quit.visible = false
 
 func _btn_options_press() -> void:
 	win_settings.show()
