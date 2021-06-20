@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/gui/theme.tres" type="Theme" id=1]
+[ext_resource path="res://scripts/settings.gd" type="Script" id=2]
+
+[node name="SettingsView" type="WindowDialog"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -273.314
+margin_top = -121.686
+margin_right = 274.686
+margin_bottom = 120.314
+theme = ExtResource( 1 )
+window_title = "Settings"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chk_field_of_view" type="CheckButton" parent="VBoxContainer"]
+margin_right = 548.0
+margin_bottom = 52.0
+hint_tooltip = "Ensure the field of view is kept the same across levels."
+shortcut_in_tooltip = false
+text = "Keep field of view across levels"
+
+[node name="chk_allow_music" type="CheckButton" parent="VBoxContainer"]
+margin_top = 60.0
+margin_right = 548.0
+margin_bottom = 112.0
+hint_tooltip = "Play the music soundtrack over sound effects, when present and available."
+shortcut_in_tooltip = false
+text = "Enable music"

@@ -44,6 +44,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/player.gd"
 }, {
+"base": "WindowDialog",
+"class": "SettingsView",
+"language": "GDScript",
+"path": "res://scripts/settings.gd"
+}, {
 "base": "Node2D",
 "class": "Universe",
 "language": "GDScript",
@@ -62,6 +67,7 @@ _global_script_class_icons={
 "HUD": "",
 "MovableObject": "",
 "Player": "",
+"SettingsView": "",
 "Universe": "",
 "UserDefaults": ""
 }
