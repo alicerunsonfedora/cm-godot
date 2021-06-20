@@ -211,18 +211,41 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FOVPersist" type="CheckButton" parent="CanvasLayer/Control"]
+[node name="Sliders" type="VBoxContainer" parent="CanvasLayer/Control"]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -268.0
-margin_top = -100.0
-margin_bottom = -48.0
+margin_top = -169.0
+margin_bottom = -57.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="CheckButton" parent="CanvasLayer/Control/Sliders"]
+margin_right = 268.0
+margin_bottom = 52.0
+hint_tooltip = "Save your preferred field of view across levels, if it fits within the range."
+shortcut_in_tooltip = false
+text = "Music"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FOVPersist" type="CheckButton" parent="CanvasLayer/Control/Sliders"]
+margin_top = 60.0
+margin_right = 268.0
+margin_bottom = 112.0
 hint_tooltip = "Save your preferred field of view across levels, if it fits within the range."
 shortcut_in_tooltip = false
 text = "Save Field of View"
 align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color( 0.117647, 0.113725, 0.156863, 1 )
@@ -259,7 +282,7 @@ shadow_filter = 1
 shadow_filter_smooth = 0.5
 
 [node name="Lamp" type="Light2D" parent="World"]
-position = Vector2( 258.315, 7.8306 )
+position = Vector2( 258.315, 8.18894 )
 scale = Vector2( 0.322581, 0.322581 )
 texture = ExtResource( 11 )
 texture_scale = 6.0

@@ -189,10 +189,11 @@ func _instantiate_hud() -> void:
 func _instantiate_music() -> void:
 	_bgm = AudioStreamPlayer.new() as AudioStreamPlayer
 	add_child(_bgm)
-	if MUSIC > 0:
-		_bgm.stream = _get_music_track()
-		_bgm.volume_db = -0.6
-		_bgm.play()
+	if not _settings.allow_music or MUSIC == 0: return
+	
+	_bgm.stream = _get_music_track()
+	_bgm.volume_db = -0.6
+	_bgm.play()
 
 func _instantiate_objects() -> void:
 	if _player == null:

@@ -90,22 +90,21 @@ func change_costume_editor(type) -> void:
 # Parameters:
 #	status: The integer representing the player hint to display.
 func update_player_hint(status: int) -> void:
+	var _light = $Hint/Light2D
+	_hint_gui.visible = status != PlayerHint.NONE
+	_light.visible = status != PlayerHint.NONE
 	_hint = status
 	match _hint:
 		PlayerHint.INTERACT:
-			_hint_gui.visible = true
 			_hint_gui.frame_coords = Vector2(4, 4)
 		PlayerHint.EXIT:
-			_hint_gui.visible = true
 			_hint_gui.frame_coords = Vector2(10, 4)
 		PlayerHint.NEEDS_INPUT:
-			_hint_gui.visible = true
 			_hint_gui.frame_coords = Vector2(7, 6)
 		PlayerHint.HOLDING_ITEM:
-			_hint_gui.visible = true
 			_hint_gui.frame_coords = Vector2(6, 6)
 		PlayerHint.NONE, _:
-			_hint_gui.visible = false
+			_hint_gui.frame_coords = Vector2(0, 0)
 
 func _block_movement():
 	_can_move = false

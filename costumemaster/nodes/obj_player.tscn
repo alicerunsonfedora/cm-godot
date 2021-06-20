@@ -212,10 +212,18 @@ texture = ExtResource( 3 )
 hframes = 16
 vframes = 14
 
+[node name="Light2D" type="Light2D" parent="Hint"]
+visible = false
+scale = Vector2( 1.42857, 1.42857 )
+texture = ExtResource( 4 )
+texture_scale = 0.6
+energy = 0.75
+
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 1 )
 hframes = 24
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.264862, 15.7667 )
