@@ -7,8 +7,8 @@
 
 extends Node2D
 
-onready var btn_start = $CanvasLayer/Control/btn_start as Button
-onready var btn_quit = $CanvasLayer/Control/btn_quit as Button
+onready var btn_start = $CanvasLayer/Control/MenuButtons/btn_start as Button
+onready var btn_quit = $CanvasLayer/Control/MenuButtons/btn_quit as Button
 onready var chk_fov = $CanvasLayer/Control/Sliders/FOVPersist as CheckButton
 onready var chk_music = $CanvasLayer/Control/Sliders/Music as CheckButton
 
