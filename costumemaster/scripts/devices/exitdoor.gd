@@ -7,10 +7,14 @@
 
 # An exit door that transitions to another scene.
 class_name ExitDoor
-extends AbstractOutput
+extends Door
 
 # The scene to transition to when activated.
 export(String, FILE, "*.tscn") var NEXT_SCENE = null
+
+func _check_active() -> void:
+	._check_active()
+	._update_textures_and_colliders()
 
 func _on_activate() -> void:
 	var _change_err = get_tree().change_scene(NEXT_SCENE)

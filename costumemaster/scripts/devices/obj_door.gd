@@ -21,4 +21,10 @@ func _on_deactivate() -> void:
 	._on_deactivate()
 	_door_texture.visible = true
 	_collider.set_deferred("disabled", false)
+
+func _update_textures() -> void:
+	_door_texture.visible = not active()
 	
+func _update_textures_and_colliders() -> void:
+	_door_texture.visible = not active()
+	_collider.set_deferred("disabled", active())

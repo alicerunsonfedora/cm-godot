@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/devices/obj_door.gd"
 }, {
-"base": "AbstractOutput",
+"base": "Door",
 "class": "ExitDoor",
 "language": "GDScript",
 "path": "res://scripts/devices/exitdoor.gd"
