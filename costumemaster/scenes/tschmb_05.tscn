@@ -56,6 +56,9 @@ collision_mask = 7
 script = ExtResource( 8 )
 DURATION = 12.0
 PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.917647, 0.807843, 0.537255, 1 )
+ACTIVE_LIGHT_ENERGY = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Alarm1"]
 position = Vector2( 0, 9 )
@@ -67,6 +70,9 @@ collision_mask = 7
 script = ExtResource( 8 )
 DURATION = 12.0
 PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.917647, 0.807843, 0.537255, 1 )
+ACTIVE_LIGHT_ENERGY = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Alarm2"]
 position = Vector2( 0, 7 )

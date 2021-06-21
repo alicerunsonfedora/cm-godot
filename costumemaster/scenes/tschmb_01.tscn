@@ -8,11 +8,11 @@
 [ext_resource path="res://scripts/abstract/input.gd" type="Script" id=6]
 [ext_resource path="res://assets/fx/lightsource.png" type="Texture" id=7]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 17.632, 21.7205 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 10.4356, 38.9967 )
+extents = Vector2( 11.8832, 38.9967 )
 
 [node name="World" type="Node2D"]
 
@@ -48,13 +48,17 @@ NEXT_SCENE = "res://scenes/tschmb_02.tscn"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/ExitDoor"]
 position = Vector2( 168, -36 )
-shape = SubResource( 1 )
+shape = SubResource( 3 )
 
 [node name="Lever" type="Area2D" parent="Universe"]
+position = Vector2( 119.246, -34.558 )
 script = ExtResource( 6 )
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.670588, 0.913725, 0.564706, 1 )
+ACTIVE_LIGHT_SCALE = 0.75
+ACTIVE_LIGHT_ENERGY = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]
-position = Vector2( 120.246, -30.5575 )
 shape = SubResource( 2 )
 
 [node name="Light2D" type="Light2D" parent="Universe"]

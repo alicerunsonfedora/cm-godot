@@ -91,7 +91,7 @@ shadow_filter_smooth = 0.3
 
 [node name="Door" parent="Universe" instance=ExtResource( 9 )]
 position = Vector2( 192, -144 )
-INPUTS = [ NodePath("../Lever"), NodePath("../Computer") ]
+INPUTS = [ NodePath("../Alarm"), NodePath("../Computer") ]
 REQUIRE_ALL_INPUTS = true
 
 [node name="ExitDoor" type="Area2D" parent="Universe"]
@@ -105,18 +105,24 @@ NEXT_SCENE = "res://scenes/tschmb_04.tscn"
 position = Vector2( 0.461639, -48.0087 )
 shape = SubResource( 1 )
 
-[node name="Lever" type="Area2D" parent="Universe"]
+[node name="Alarm" type="Area2D" parent="Universe"]
 position = Vector2( 23.788, -132.833 )
 script = ExtResource( 8 )
 DURATION = 5.0
 PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.917647, 0.807843, 0.537255, 1 )
+ACTIVE_LIGHT_ENERGY = 0.8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Alarm"]
 shape = SubResource( 2 )
 
 [node name="Computer" type="Area2D" parent="Universe"]
 position = Vector2( -218.684, 129.635 )
 script = ExtResource( 8 )
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_SCALE = 0.7
+ACTIVE_LIGHT_ENERGY = 0.5
 
 [node name="LightComputer" type="Light2D" parent="Universe/Computer"]
 scale = Vector2( 0.986943, 1.60502 )

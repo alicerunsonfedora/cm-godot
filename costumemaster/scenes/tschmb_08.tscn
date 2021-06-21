@@ -70,6 +70,10 @@ collision_mask = 7
 script = ExtResource( 6 )
 INTERACTION = 1
 PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
+ACTIVE_LIGHT_SCALE = 1.2
+ACTIVE_LIGHT_ENERGY = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate"]
 shape = SubResource( 2 )
@@ -78,6 +82,8 @@ shape = SubResource( 2 )
 position = Vector2( 407.57, 32.361 )
 collision_mask = 15
 script = ExtResource( 6 )
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_ENERGY = 0.5
 
 [node name="LightComputer" type="Light2D" parent="Universe/Computer"]
 scale = Vector2( 0.986943, 1.60502 )

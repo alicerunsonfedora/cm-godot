@@ -19,6 +19,18 @@ export var DURATION: float = 0.0
 # Whether the input remains activated after being activated once.
 export var PERMANENT: bool = true
 
+# Whether to light up when activated.
+export var LIGHT_WHEN_ACTIVE: bool = false
+
+# The color of the light, when activated.
+export var ACTIVE_LIGHT_COLOR: Color = Color.white
+
+# The texture scale of the light when activated.
+export var ACTIVE_LIGHT_SCALE: float = 1
+
+# The brightness of the light when activated.
+export var ACTIVE_LIGHT_ENERGY: float = 1
+
 var _active: bool = false
 var _entered = []
 var _listening_for_keypress = false
@@ -27,6 +39,7 @@ var _permalock = false
 onready var _audio: AudioStreamPlayer2D
 onready var _hud_data = load("res://interface/hud_timer.tscn") as Resource
 onready var _hud_timer: Node2D
+onready var _light: Light2D
 onready var _timer: Timer
 
 # A signal that emits when the input is activated.
@@ -47,16 +60,11 @@ func get_name() -> String:
 	return name
 
 func _ready() -> void:
+	_make_light()
 	_make_timer()
 	_make_timer_ui()
 	_make_audio_player()
-	var _err = connect("body_entered", self, "_on_body_entered")
-	_err = connect("body_exited", self, "_on_body_exited")
-	_err = connect("area_entered", self, "_on_area_entered")
-	_err = connect("area_exited", self, "_on_area_exited")
-
-	if _err != OK:
-		push_error(_err)
+	_setup_connections()
 
 # Activate the input device.
 # If the duration is a non-zero value, the internal timer will start.
@@ -66,6 +74,8 @@ func _activate() -> void:
 	_active = true
 	_on_activate()
 	emit_signal("input_active", get_name())
+	if LIGHT_WHEN_ACTIVE:
+		_light.visible = true
 	_audio.play()
 	if PERMANENT:
 		_permalock = true
@@ -82,10 +92,31 @@ func _deactivate() -> void:
 	_on_deactivate()
 	emit_signal("input_inactive", get_name())
 	_make_audio_turnoff()
+	if LIGHT_WHEN_ACTIVE:
+		_light.visible = false
 	_audio.play()
 	if DURATION > 0:
 		_timer.stop()
 		_hud_timer.visible = false
+
+func _make_light() -> void:
+	_light = Light2D.new()
+	_light.texture = load("res://assets/fx/lightsource.png")
+	_make_light_adjustments()
+	_make_light_shadows()
+	add_child(_light)
+
+func _make_light_adjustments() -> void:
+	_light.z_index += 2
+	_light.scale = Vector2(ACTIVE_LIGHT_SCALE, ACTIVE_LIGHT_SCALE)
+	_light.color = ACTIVE_LIGHT_COLOR
+	_light.mode = Light2D.MODE_ADD
+	_light.energy = ACTIVE_LIGHT_ENERGY
+
+func _make_light_shadows() -> void:
+	_light.shadow_enabled = true
+	_light.shadow_gradient_length = 0.3
+	_light.visible = false
 
 func _make_timer() -> void:
 	_timer = Timer.new()
@@ -184,3 +215,11 @@ func _process(_delta) -> void:
 			_deactivate()
 		else:
 			_activate()
+
+func _setup_connections() -> void:
+	var _err = connect("body_entered", self, "_on_body_entered")
+	_err = connect("body_exited", self, "_on_body_exited")
+	_err = connect("area_entered", self, "_on_area_entered")
+	_err = connect("area_exited", self, "_on_area_exited")
+	if _err != OK:
+		push_error(_err)
