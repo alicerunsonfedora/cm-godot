@@ -66,6 +66,7 @@ shape = SubResource( 1 )
 
 [node name="ExitDoor" parent="Universe" instance=ExtResource( 5 )]
 position = Vector2( 144, -48 )
+collision_mask = 7
 INPUTS = [ NodePath("../Alarm1"), NodePath("../Alarm2") ]
 REQUIRE_ALL_INPUTS = true
 NEXT_SCENE = "res://scenes/tschmb_06.tscn"

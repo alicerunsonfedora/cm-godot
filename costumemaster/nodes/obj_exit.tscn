@@ -10,6 +10,7 @@ extents = Vector2( 8.49348, 18.3841 )
 
 [node name="ExitDoor" type="Area2D"]
 input_pickable = false
+collision_mask = 7
 script = ExtResource( 1 )
 INTERACT_ON_KEYPRESS = true
 

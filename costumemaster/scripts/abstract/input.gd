@@ -162,7 +162,8 @@ func _make_audio_turnoff() -> void:
 func _on_area_entered(area: Area2D) -> void:
 	if not area is MovableObject:
 		return
-	_entered.append(area.name)
+	if not area.name in _entered:
+		_entered.append(area.name)
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = true
 	elif not _active and len(_entered) > 0:
@@ -171,7 +172,7 @@ func _on_area_entered(area: Area2D) -> void:
 func _on_area_exited(area: Area2D) -> void:
 	if not area is MovableObject:
 		return
-	_entered.remove(area.name)
+	_entered.erase(area.name)
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = false
 	elif _active and len(_entered) < 1:

@@ -10,11 +10,11 @@
 [ext_resource path="res://nodes/obj_door.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scripts/abstract/input.gd" type="Script" id=9]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 25.955, 31.1851 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 18.8961, 21.95 )
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32.9603, 37.3063 )
 
 [node name="World" type="Node2D"]
 
@@ -38,7 +38,7 @@ tile_data = PoolIntArray( -458763, 0, 0, -458762, 5, 0, -458761, 5, 0, -458760, 
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 48, 48 )
 format = 1
-tile_data = PoolIntArray( -458762, 44, 0, -458760, 40, 0, -458758, 47, 0, -393225, 8, 0, -327690, 3, 0, -196614, 2, 0, -196612, 44, 0, -262144, 42, 0, -262143, 28, 0, -131074, 12, 0, -196608, 4, 0, -65542, 29, 0, -65541, 33, 0, -65540, 33, 0, -65539, 31, 0, -65538, 13, 0, -131070, 44, 0, -131068, 24, 0, -2, 14, 0, 65530, 30, 0, 65531, 34, 0, 65532, 34, 0, 65533, 32, 0, 65534, 43, 0, 131066, 18, 0, 131069, 20, 0, 65541, 35, 0, 196602, 21, 0, 196603, 11, 0, 131074, 36, 0, 262138, 15, 0, 262140, 16, 0, 262141, 17, 0 )
+tile_data = PoolIntArray( -458762, 44, 0, -458761, 42, 0, -458760, 40, 0, -458758, 47, 0, -393225, 4, 0, -327690, 3, 0, -196614, 2, 0, -196612, 44, 0, -262144, 42, 0, -262143, 28, 0, -131074, 12, 0, -196608, 4, 0, -65542, 29, 0, -65541, 33, 0, -65540, 33, 0, -65539, 31, 0, -65538, 13, 0, -131070, 44, 0, -131068, 24, 0, -2, 14, 0, 65530, 30, 0, 65531, 34, 0, 65532, 34, 0, 65533, 32, 0, 65534, 43, 0, 131066, 18, 0, 131069, 20, 0, 65541, 35, 0, 196602, 21, 0, 196603, 11, 0, 131074, 36, 0, 262138, 15, 0, 262140, 16, 0, 262141, 17, 0 )
 
 [node name="Door" parent="Universe" instance=ExtResource( 8 )]
 position = Vector2( -240, -144 )
@@ -65,9 +65,9 @@ shadow_filter = 1
 shadow_filter_smooth = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Computer"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
-[node name="Lever" type="Area2D" parent="Universe"]
+[node name="Alarm" type="Area2D" parent="Universe"]
 position = Vector2( -406.712, -323.597 )
 collision_layer = 7
 collision_mask = 7
@@ -75,12 +75,13 @@ script = ExtResource( 9 )
 DURATION = 8.0
 PERMANENT = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Alarm"]
+shape = SubResource( 2 )
 
 [node name="ExitDoor" parent="Universe" instance=ExtResource( 5 )]
 position = Vector2( 144, -48 )
-INPUTS = [ NodePath("../Lever") ]
+collision_mask = 7
+INPUTS = [ NodePath("../Alarm") ]
 NEXT_SCENE = "res://scenes/tschmb_08.tscn"
 
 [node name="Light2D2" type="Light2D" parent="."]
