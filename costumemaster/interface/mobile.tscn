@@ -33,10 +33,10 @@ __meta__ = {
 [node name="DPad" type="Control" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 117.479
-margin_top = -143.24
-margin_right = 157.479
-margin_bottom = -103.24
+margin_left = 150.0
+margin_top = -168.0
+margin_right = 190.0
+margin_bottom = -128.0
 rect_scale = Vector2( 1.2, 1.2 )
 __meta__ = {
 "_edit_group_": true,
@@ -73,7 +73,8 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -40.0
-margin_top = -40.0
+margin_top = -64.0
+margin_bottom = -24.0
 rect_scale = Vector2( 1.2, 1.2 )
 __meta__ = {
 "_edit_use_anchors_": false

@@ -74,6 +74,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MobileUI" parent="." instance=ExtResource( 11 )]
+
 [node name="Toolbar" type="HBoxContainer" parent="."]
 anchor_right = 1.0
 margin_left = 16.0
@@ -523,8 +525,6 @@ custom_fonts/font = SubResource( 15 )
 text = "TUT_FOV_SLIDER"
 align = 2
 autowrap = true
-
-[node name="MobileUI" parent="." instance=ExtResource( 11 )]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
