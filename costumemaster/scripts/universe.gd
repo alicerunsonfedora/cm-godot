@@ -74,10 +74,7 @@ func _ready() -> void:
 	_instantiate_music()
 	_instantiate_hud()
 	_instantiate_objects()
-
-	if DEBUG_MODE:
-		_enable_debug_player()
-		_hud.hide_debug_menu()
+	_instantiate_debug()
 
 # Send a request to the player to change the costume if applicable or allowed by the universe.
 # Parameters:
@@ -117,6 +114,11 @@ func trigger_lock() -> void:
 # Returns whether a clone exists in the universe.
 func _clone_exists() -> bool:
 	return _clone != null
+
+func _dbg_skip() -> void:
+	var _exit = find_node("Exit*")
+	if _exit == null: return
+	_exit._on_activate()
 
 func _destroy_clone() -> void:
 	if not _clone_exists():
@@ -160,6 +162,10 @@ func _instantiate_clone() -> void:
 	_clone.name = "Clone"
 	_clone.global_position = _get_player().global_position
 	add_child(_clone)
+
+func _instantiate_debug() -> void:
+	if _settings.debug_mode and DEBUG_MODE:
+		_enable_debug_player()
 
 func _instantiate_hud() -> void:
 	_hud.visible = true
@@ -210,3 +216,7 @@ func _restart_level() -> void:
 	var _err = get_tree().reload_current_scene()
 	if _err != OK:
 		push_error(_err)
+
+func _unhandled_key_input(event: InputEventKey) -> void:
+	if event.get_action_strength("dbg_skip_level") and _settings.debug_mode:
+		_dbg_skip()

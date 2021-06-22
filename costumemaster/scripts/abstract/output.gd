@@ -84,8 +84,8 @@ func active() -> bool:
 	return _status
 
 # Returns the universe accessible to the output, or null if it cannot be found.
-func find_universe() -> Universe:
-	return get_node("/root/Universe") as Universe
+# func find_universe() -> Universe:
+# 	return get_node("/root/Universe") as Universe
 
 # Returns whether the device is active, the key unlocking mechanism is on, and the cooldown is not
 # in effect.

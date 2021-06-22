@@ -4,6 +4,7 @@
 [ext_resource path="res://scripts/settings.gd" type="Script" id=2]
 
 [node name="SettingsView" type="WindowDialog"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -48,3 +49,11 @@ margin_bottom = 172.0
 hint_tooltip = "PERF_MOBILE_HINT"
 shortcut_in_tooltip = false
 text = "PERF_MOBILE"
+
+[node name="chk_dbg_mode" type="CheckButton" parent="VBoxContainer"]
+margin_top = 180.0
+margin_right = 548.0
+margin_bottom = 232.0
+hint_tooltip = "PERF_DEBUG_HINT"
+shortcut_in_tooltip = false
+text = "PERF_DEBUG"

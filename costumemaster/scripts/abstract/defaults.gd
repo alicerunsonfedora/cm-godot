@@ -12,6 +12,10 @@ class_name UserDefaults
 # Defaults to True.
 var allow_music: bool = true setget _update_allow_music
 
+# Whether to enable debug mode.
+# Defaults to False.
+var debug_mode: bool = false setget _update_debug_mode
+
 # The persistent field of view.
 # Defaults to zero when no persistent field of view is present.
 var field_of_view: float = 0.0 setget _update_field_of_view
@@ -37,6 +41,7 @@ func _init() -> void:
 	field_of_view = _config.get_value("defaults", "field_of_view", 0.0)
 	allow_music = _config.get_value("defaults", "allow_music", true)
 	show_mobile_controls = _config.get_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
+	debug_mode = _config.get_value("defaults", "debug_mode", false)
 
 func _save_defaults() -> void:
 	var _err = _config.save("user://userdefaults.cfg")
@@ -46,6 +51,11 @@ func _save_defaults() -> void:
 func _update_allow_music(new_value: bool) -> void:
 	allow_music = new_value
 	_config.set_value("defaults", "allow_music", new_value)
+	_save_defaults()
+
+func _update_debug_mode(new_value: bool) -> void:
+	debug_mode = new_value
+	_config.set_value("defaults", "debug_mode", new_value)
 	_save_defaults()
 
 func _update_field_of_view(new_value: float) -> void:
@@ -68,4 +78,5 @@ func _write_new_defaults() -> void:
 	_config.set_value("defaults", "field_of_view", 0.0)
 	_config.set_value("defaults", "allow_music", true)
 	_config.set_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
+	_config.set_value("defaults", "debug_mode", false)
 	_save_defaults()
