@@ -24,6 +24,17 @@ _The Costumemaster: Reloaded_ is a modern reimagining of the original game relea
 
 Clone the repository code from GitHub via `git clone`, then open the project in Godot. To export the projects, edit the signing configurations under **Project &rsaquo; Export...** for each platform you want to distribute to, then click "Export Project" for each project.
 
+## Debugging options
+
+In addition to the debug options present in Godot under the Debug menu (note: requires running from source), there are a couple of keybindings to assist in debugging levels:
+
+| Shortcut | Debugging action                                              |
+| :------- | :------------------------------------------------------------ |
+| Shift+Q  | Skip the current level, as if the player opened the exit door |
+| Shift+F  | Toggle fullbright mode                                        |
+
+Debugging mode must be enabled in Settings to access these debugging features. Note that, for the browser version, you may need to hold Ctrl along with the desired keyboard shortcut.
+
 ## Licensing
 
 The source code is licensed under the Mozilla Public License, v2.0.
