@@ -31,4 +31,4 @@ The source code is licensed under the Mozilla Public License, v2.0.
 The visual and audio assets are licensed as follows:
 - Rain ambiance and footsteps: CC Universal 1.0
 - Tileset: Proprietary (contact LimeZu for permissions)
-- Character sprites, soundtrack, sound effects: Creative Commons ShareAlike
+- Character sprites, soundtrack, sound effects: Creative Commons Attribution-ShareAlike 4.0 International
