@@ -10,14 +10,14 @@
 [ext_resource path="res://assets/tileset/dec_bedroon.png" type="Texture" id=8]
 [ext_resource path="res://scripts/abstract/movable.gd" type="Script" id=9]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10.4356, 38.9967 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 8 )
 region = Rect2( 335.577, 491.879, 48.3487, 72.1367 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30.0579, 37.9578 )
 
 [node name="World" type="Node2D"]
@@ -60,7 +60,7 @@ DURATION = 5.0
 PERMANENT = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Light2D" type="Light2D" parent="Universe"]
 position = Vector2( -170.719, -114.653 )
@@ -77,10 +77,10 @@ shadow_filter_smooth = 0.5
 script = ExtResource( 9 )
 
 [node name="Sprite" type="Sprite" parent="Universe/MovableObject"]
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/MovableObject"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )
 
 [node name="ExitDoor" parent="Universe" instance=ExtResource( 5 )]
 position = Vector2( 144, -48 )

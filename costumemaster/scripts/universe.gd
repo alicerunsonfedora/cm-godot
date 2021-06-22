@@ -115,6 +115,10 @@ func trigger_lock() -> void:
 func _clone_exists() -> bool:
 	return _clone != null
 
+func _dbg_fullbright() -> void:
+	$LightsOff.visible = not $LightsOff.visible
+	print_debug("Toggled fullbright %s" % "ON" if not $LightsOff.visible else "OFF")
+
 func _dbg_skip() -> void:
 	var _exit = find_node("Exit*")
 	if _exit == null: return
@@ -220,3 +224,5 @@ func _restart_level() -> void:
 func _unhandled_key_input(event: InputEventKey) -> void:
 	if event.get_action_strength("dbg_skip_level") and _settings.debug_mode:
 		_dbg_skip()
+	if event.get_action_strength("dbg_toggle_fullbright") and _settings.debug_mode:
+		_dbg_fullbright()
