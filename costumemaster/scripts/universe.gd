@@ -59,6 +59,7 @@ onready var _clone_data = load("res://nodes/obj_clone.tscn")
 onready var _clone: Node2D
 onready var _hud: HUD = $CanvasLayer/HUD as HUD
 onready var _player: Player
+onready var _pause = $CanvasLayer/PauseMenu
 onready var _settings: UserDefaults
 
 func _ready() -> void:
@@ -139,6 +140,11 @@ func _enable_debug_player():
 	MULTIPLE_COSTUMES = false
 	ALLOWED_COSTUMES = [4]
 
+func _exit_to_main() -> void:
+	var _err = get_tree().change_scene("res://scenes/main.tscn")
+	if _err != OK:
+		push_error(_err)
+
 func _get_music_track() -> AudioStream:
 	if MUSIC == Track.RANDOM:
 		print_debug("A random song will be picked.")
@@ -216,13 +222,19 @@ func _instantiate_objects() -> void:
 		if not child is MovableObject: continue
 		(child as MovableObject)._connect_to_player(_player)
 
+func _pause_game() -> void:
+	get_tree().paused = true
+	_pause.visible = true
+
 func _restart_level() -> void:
 	var _err = get_tree().reload_current_scene()
 	if _err != OK:
 		push_error(_err)
 
-func _unhandled_key_input(event: InputEventKey) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.get_action_strength("dbg_skip_level") and _settings.debug_mode:
 		_dbg_skip()
-	if event.get_action_strength("dbg_toggle_fullbright") and _settings.debug_mode:
+	elif event.get_action_strength("dbg_toggle_fullbright") and _settings.debug_mode:
 		_dbg_fullbright()
+	elif event.get_action_strength("ui_pause"):
+		_pause_game()

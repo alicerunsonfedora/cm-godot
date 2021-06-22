@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://interface/hud.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/universe.gd" type="Script" id=2]
 [ext_resource path="res://assets/sfx/518863__idomusics__rain.ogg" type="AudioStream" id=3]
+[ext_resource path="res://interface/pause.tscn" type="PackedScene" id=4]
 
 [node name="Universe" type="Node2D"]
 script = ExtResource( 2 )
@@ -18,4 +19,8 @@ color = Color( 0.1403, 0.15525, 0.23, 1 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" instance=ExtResource( 1 )]
+visible = false
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 4 )]
+pause_mode = 2
 visible = false
