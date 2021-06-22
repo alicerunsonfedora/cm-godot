@@ -117,7 +117,7 @@ func _clone_exists() -> bool:
 
 func _dbg_fullbright() -> void:
 	$LightsOff.visible = not $LightsOff.visible
-	print_debug("Toggled fullbright %s" % "ON" if not $LightsOff.visible else "OFF")
+	print_debug("Toggled fullbright %s" % ("ON" if not $LightsOff.visible else "OFF"))
 
 func _dbg_skip() -> void:
 	var _exit = find_node("Exit*")
