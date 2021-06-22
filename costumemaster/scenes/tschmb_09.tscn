@@ -74,7 +74,6 @@ PERMANENT = false
 LIGHT_WHEN_ACTIVE = true
 ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
 ACTIVE_LIGHT_SCALE = 1.2
-ACTIVE_LIGHT_ENERGY = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate"]
 shape = SubResource( 3 )
@@ -88,7 +87,6 @@ PERMANENT = false
 LIGHT_WHEN_ACTIVE = true
 ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
 ACTIVE_LIGHT_SCALE = 1.2
-ACTIVE_LIGHT_ENERGY = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate2"]
 shape = SubResource( 3 )

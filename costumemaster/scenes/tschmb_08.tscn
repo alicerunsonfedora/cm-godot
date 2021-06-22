@@ -60,6 +60,7 @@ tile_data = PoolIntArray( -262152, 50, 0, -262151, 50, 0, -262150, 50, 0, -26214
 
 [node name="Plate" type="Area2D" parent="Universe"]
 position = Vector2( 191.773, 96.2143 )
+collision_layer = 7
 collision_mask = 7
 script = ExtResource( 6 )
 INTERACTION = 1
@@ -67,7 +68,6 @@ PERMANENT = false
 LIGHT_WHEN_ACTIVE = true
 ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
 ACTIVE_LIGHT_SCALE = 1.2
-ACTIVE_LIGHT_ENERGY = 0.3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate"]
 shape = SubResource( 1 )

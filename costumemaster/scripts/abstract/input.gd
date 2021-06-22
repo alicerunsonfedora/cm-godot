@@ -160,7 +160,7 @@ func _make_audio_turnoff() -> void:
 	_audio.stream.loop = false
 
 func _on_area_entered(area: Area2D) -> void:
-	if not area is MovableObject:
+	if not "Clone" in area.name and not area is MovableObject:
 		return
 	if not area.name in _entered:
 		_entered.append(area.name)
@@ -170,7 +170,7 @@ func _on_area_entered(area: Area2D) -> void:
 		_activate()
 
 func _on_area_exited(area: Area2D) -> void:
-	if not area is MovableObject:
+	if not "Clone" in area.name and not area is MovableObject:
 		return
 	_entered.erase(area.name)
 	if INTERACTION % 2 == 0:
@@ -179,27 +179,24 @@ func _on_area_exited(area: Area2D) -> void:
 		_deactivate()
 
 func _on_body_entered(body: Node2D) -> void:
-	if not body.name in ["Player", "PlayerNode", "Clone"]:
+	if not body.name in ["Player", "PlayerNode"]:
 		return
-	_entered.append(body.name)
+	if not body.name in _entered:
+		_entered.append(body.name)
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = true
-		if body.name == "Clone" or body is MovableObject:
-			return
 		(body as Player).update_player_hint(1)
 	elif not _active and len(_entered) > 0:
 		_activate()
 
 func _on_body_exited(body: Node2D) -> void:
-	if not body.name in ["Player", "PlayerNode", "Clone"]:
+	if not body.name in ["Player", "PlayerNode"]:
 		return
-	_entered.remove(body.name)
+	_entered.erase(body.name)
 	if INTERACTION % 2 == 0:
 		_listening_for_keypress = false
-		if body.name == "Clone" or body is MovableObject:
-			return
 		(body as Player).update_player_hint(0)
-	elif _active and len(_entered) < 0:
+	elif _active and len(_entered) < 1:
 		_deactivate()
 
 # Run post-activation methods and calls. This may be overridden in other classes.

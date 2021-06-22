@@ -157,6 +157,7 @@ func _instantiate_clone() -> void:
 	if _clone_exists():
 		return
 	_clone = _clone_data.instance()
+	_clone.name = "Clone"
 	_clone.global_position = _get_player().global_position
 	add_child(_clone)
 
