@@ -53,6 +53,7 @@ var _can_move = true
 var _collision_velocity = Vector2.ZERO
 var _has_item = false
 var _hint = PlayerHint.NONE
+var _near_item = false
 var _velocity = Vector2.ZERO
 
 onready var _asm = $AnimationStateTree as AnimationTree
@@ -85,6 +86,11 @@ func change_costume_editor(type) -> void:
 		var sprite_node = get_node("Sprite")
 		if sprite_node:
 			sprite_node.texture = load("res://assets/sprites/" + _costume_name() + ".png")
+
+# Toggle the player's item detection.
+# This should be called by methods that want to inform the player that they can be picked up.
+func toggle_item_detection(value: bool) -> void:
+	_near_item = value
 
 # Update the player UI hint.
 # Parameters:
@@ -174,12 +180,12 @@ func _unblock_movement():
 	_can_move = true
 
 func _unhandled_key_input(event: InputEventKey) -> void:
-	if event.get_action_strength("interact") and _hint == PlayerHint.NONE:
-		_play_cant_use_sound()
-	elif event.get_action_strength("interact") and not _has_item:
+	if event.get_action_strength("interact") and not _has_item and _near_item:
 		emit_signal("wants_pickup")
 	elif event.get_action_strength("interact") and _has_item:
 		emit_signal("wants_drop")
+	elif event.get_action_strength("interact") and _hint == PlayerHint.NONE:
+		_play_cant_use_sound()
 	elif event.get_action_strength("clone"):
 		emit_signal("wants_clone")
 

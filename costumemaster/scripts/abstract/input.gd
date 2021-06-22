@@ -10,6 +10,9 @@
 class_name AbstractInput
 extends Area2D
 
+# An enumeration for the different interact modes. See INERACTION for details.
+enum InteractionType { INTERACT_KEY = 0, COLLISION = 1, BOTH = 2 }
+
 # The type of input interaction required to activate or deactivate the input.
 export(int, "Interact Key", "Collision", "Both") var INTERACTION = 0
 
@@ -164,40 +167,26 @@ func _on_area_entered(area: Area2D) -> void:
 		return
 	if not area.name in _entered:
 		_entered.append(area.name)
-	if INTERACTION % 2 == 0:
-		_listening_for_keypress = true
-	elif not _active and len(_entered) > 0:
-		_activate()
+	_update_active_checks(false)
 
 func _on_area_exited(area: Area2D) -> void:
 	if not "Clone" in area.name and not area is MovableObject:
 		return
 	_entered.erase(area.name)
-	if INTERACTION % 2 == 0:
-		_listening_for_keypress = false
-	elif _active and len(_entered) < 1:
-		_deactivate()
+	_update_active_checks(true)
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body.name in ["Player", "PlayerNode"]:
 		return
 	if not body.name in _entered:
 		_entered.append(body.name)
-	if INTERACTION % 2 == 0:
-		_listening_for_keypress = true
-		(body as Player).update_player_hint(1)
-	elif not _active and len(_entered) > 0:
-		_activate()
+	_update_active_checks(false, body as Player)
 
 func _on_body_exited(body: Node2D) -> void:
 	if not body.name in ["Player", "PlayerNode"]:
 		return
 	_entered.erase(body.name)
-	if INTERACTION % 2 == 0:
-		_listening_for_keypress = false
-		(body as Player).update_player_hint(0)
-	elif _active and len(_entered) < 1:
-		_deactivate()
+	_update_active_checks(true, body as Player)
 
 # Run post-activation methods and calls. This may be overridden in other classes.
 func _on_activate() -> void:
@@ -221,3 +210,16 @@ func _setup_connections() -> void:
 	_err = connect("area_exited", self, "_on_area_exited")
 	if _err != OK:
 		push_error(_err)
+
+func _update_active_checks(area_or_body_leaving: bool = false, player: Player = null) -> void:
+	match INTERACTION:
+		InteractionType.BOTH, InteractionType.INTERACT_KEY:
+			if player == null:
+				return
+			_listening_for_keypress = not area_or_body_leaving
+			player.update_player_hint(0 if area_or_body_leaving else 1)
+		InteractionType.COLLISION:
+			if _active and len(_entered) < 1:
+				_deactivate()
+			elif not _active and len(_entered) > 0:
+				_activate()

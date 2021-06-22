@@ -9,12 +9,15 @@
 class_name MovableObject
 extends Area2D
 
+onready var _light: Light2D
 onready var _player: Player
 
 var _listening_for_keypress = false
 var _old_z_index = 0
 
 func _ready() -> void:
+	_make_light()
+	add_child(_light)
 	var _err = connect("body_entered", self, "_on_body_entered")
 	_err = connect("body_exited", self, "_on_body_exited")
 	if _err != OK:
@@ -34,21 +37,32 @@ func _drop() -> void:
 	_player._has_item = false
 	_player.remove_child(self)
 	_player.get_parent().add_child(self)
-	_player.update_player_hint(Player.PlayerHint.NONE)
 	_set_dropped()
 
+func _make_light() -> void:
+	_light = Light2D.new()
+	_light.texture = load("res://assets/fx/lightsource.png")
+	_light.color = Color.cornflower
+	_light.texture_scale = 1.5
+	_light.energy = 0.5
+	_light.visible = false
+
 func _on_body_entered(body: Node2D) -> void:
-	if not body.name in ["Player", "PlayerNode", "Clone"] or _player._has_item:
+	if not body.name in ["Player", "PlayerNode"] or _player._has_item:
 		return
 	_listening_for_keypress = true
+	_player.toggle_item_detection(true)
 	if _player.CURRENT_COSTUME == Player.CostumeType.MAGIC:
-		_player.update_player_hint(Player.PlayerHint.INTERACT)
+		modulate = Color.cornflower
+		_light.visible = true
 
 func _on_body_exited(body: Node2D) -> void:
-	if not body.name in ["Player", "PlayerNode", "Clone"] or _player._has_item:
+	if not body.name in ["Player", "PlayerNode"] or _player._has_item:
 		return
 	_listening_for_keypress = false
-	_player.update_player_hint(Player.PlayerHint.NONE)
+	_player.toggle_item_detection(false)
+	modulate = Color.white
+	_light.visible = false
 
 func _pickup() -> void:
 	if not _listening_for_keypress or _player.CURRENT_COSTUME != Player.CostumeType.MAGIC:
@@ -56,7 +70,6 @@ func _pickup() -> void:
 		return
 	get_parent().remove_child(self)
 	_player.add_child(self)
-	_player.update_player_hint(Player.PlayerHint.HOLDING_ITEM)
 	_player._has_item = true
 	_set_pickup()
 	
