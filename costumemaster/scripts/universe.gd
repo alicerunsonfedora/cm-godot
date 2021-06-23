@@ -69,6 +69,7 @@ func _ready() -> void:
 	_instantiate_hud()
 	_instantiate_objects()
 	_instantiate_debug()
+	_play_alarm()
 
 # Send a request to the player to change the costume if applicable or allowed by the universe.
 # Parameters:
@@ -227,6 +228,15 @@ func _instantiate_player() -> void:
 func _pause_game() -> void:
 	get_tree().paused = true
 	_pause.visible = true
+
+func _play_alarm() -> void:
+	var _alarm = AudioStreamPlayer2D.new()
+	_alarm.global_position = _player.global_position + Vector2(128, 0)
+	_alarm.stream = load("res://assets/sfx/alarmDisable.ogg")
+	_alarm.autoplay = true
+	(_alarm.stream as AudioStreamOGGVorbis).loop = false
+	_alarm.connect("finished", _alarm, "queue_free")
+	add_child(_alarm)
 
 func _restart_level() -> void:
 	var _err = get_tree().reload_current_scene()
