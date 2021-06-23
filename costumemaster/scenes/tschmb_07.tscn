@@ -59,6 +59,8 @@ tile_data = PoolIntArray( -393226, 7, 0, -262143, 9, 0, -131076, 9, 0, -65534, 7
 
 [node name="Door" parent="Universe" instance=ExtResource( 8 )]
 position = Vector2( -240, -144 )
+collision_layer = 16
+collision_mask = 16
 INPUTS = [ NodePath("../Server") ]
 REQUIRE_ALL_INPUTS = true
 
