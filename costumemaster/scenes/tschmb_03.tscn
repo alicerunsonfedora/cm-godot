@@ -56,7 +56,7 @@ tile_set = ExtResource( 10 )
 cell_size = Vector2( 48, 48 )
 cell_tile_origin = 1
 format = 1
-tile_data = PoolIntArray( -458747, 6, 0, -196607, 9, 0, -196603, 9, 0, 262139, 6, 0, 196623, 4, 0 )
+tile_data = PoolIntArray( -458747, 6, 0, -196607, 9, 0, -196603, 9, 0, 262139, 6, 0 )
 
 [node name="ExitDoor" parent="Universe" instance=ExtResource( 7 )]
 position = Vector2( 192, -336 )
