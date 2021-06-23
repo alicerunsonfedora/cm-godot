@@ -64,14 +64,7 @@ onready var _settings: UserDefaults
 
 func _ready() -> void:
 	_settings = UserDefaults.new()
-	_player = _get_player()
-	if _player == null:
-		push_warning("Player is either missing or obstructed.")
-	_min_fov_bound = _player.FIELD_OF_VIEW
-	var _plyr_err = _player.connect("wants_clone", self, "toggle_clone")
-	if _plyr_err != OK:
-		push_error(_plyr_err)
-	
+	_instantiate_player()
 	_instantiate_music()
 	_instantiate_hud()
 	_instantiate_objects()
@@ -221,6 +214,15 @@ func _instantiate_objects() -> void:
 	for child in get_children():
 		if not child is MovableObject: continue
 		(child as MovableObject)._connect_to_player(_player)
+
+func _instantiate_player() -> void:
+	_player = _get_player()
+	if _player == null:
+		push_warning("Player is either missing or obstructed.")
+	_min_fov_bound = _player.FIELD_OF_VIEW
+	var _plyr_err = _player.connect("wants_clone", self, "toggle_clone")
+	if _plyr_err != OK:
+		push_error(_plyr_err)
 
 func _pause_game() -> void:
 	get_tree().paused = true

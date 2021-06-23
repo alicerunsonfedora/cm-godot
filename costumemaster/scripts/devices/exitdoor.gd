@@ -12,14 +12,30 @@ extends Door
 # The scene to transition to when activated.
 export(String, FILE, "*.tscn") var NEXT_SCENE = null
 
+onready var _tween = $Animator as Tween
+
+func _ready() -> void:
+	._ready()
+	var _tween_err = _tween.connect("tween_all_completed", self, "_switch_scene_context")
+	if _tween_err != OK:
+		push_error(_tween_err)
+
 func _check_active() -> void:
 	._check_active()
 	._update_textures_and_colliders()
 
+func _fade_out_scene() -> void:
+	var _root = get_tree().root.get_child(0)
+	if _root == null:
+		push_warning("Root could not be located. Skipping animation.")
+		_switch_scene_context()
+		return
+	_tween.interpolate_property(
+		_root, "modulate", _root.modulate, Color8(3, 0, 12, 1), 3.0, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	_tween.start()
+
 func _on_activate() -> void:
-	var _change_err = get_tree().change_scene(NEXT_SCENE)
-	if _change_err:
-		push_error(_change_err)
+	_fade_out_scene()
 
 func _on_body_entered(body: Node2D) -> void:
 	._on_body_entered(body)
@@ -34,3 +50,8 @@ func _on_body_exited(body: Node2D) -> void:
 		return
 	var player = body as Player
 	player.update_player_hint(0)
+
+func _switch_scene_context() -> void:
+	var _change_err = get_tree().change_scene(NEXT_SCENE)
+	if _change_err:
+		push_error(_change_err)
