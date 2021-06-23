@@ -14,6 +14,8 @@ export(String, FILE, "*.tscn") var NEXT_SCENE = null
 
 onready var _tween = $Animator as Tween
 
+var _block_animation: bool = false
+
 func _ready() -> void:
 	._ready()
 	var _tween_err = _tween.connect("tween_all_completed", self, "_switch_scene_context")
@@ -35,6 +37,8 @@ func _fade_out_scene() -> void:
 	_tween.start()
 
 func _on_activate() -> void:
+	if _block_animation:
+		_switch_scene_context()
 	_fade_out_scene()
 
 func _on_body_entered(body: Node2D) -> void:
@@ -55,3 +59,6 @@ func _switch_scene_context() -> void:
 	var _change_err = get_tree().change_scene(NEXT_SCENE)
 	if _change_err:
 		push_error(_change_err)
+
+func _update_animation(state: bool) -> void:
+	_block_animation = not state

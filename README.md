@@ -32,6 +32,7 @@ In addition to the debug options present in Godot under the Debug menu (note: re
 | :------- | :------------------------------------------------------------ |
 | Shift+Q  | Skip the current level, as if the player opened the exit door |
 | Shift+F  | Toggle fullbright mode                                        |
+| Shift+E  | Toggle animations at the end of levels                        |
 
 Debugging mode must be enabled in Settings to access these debugging features. Note that, for the browser version, you may need to hold Ctrl along with the desired keyboard shortcut.
 

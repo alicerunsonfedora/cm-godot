@@ -12,6 +12,10 @@ class_name UserDefaults
 # Defaults to True.
 var allow_music: bool = true setget _update_allow_music
 
+# Whether to allow the end level animations per level.
+# Defaults to true. Only toggleable with debug mode on.
+var animate_end_levels: bool = true setget _update_animate_end_levels
+
 # Whether to enable debug mode.
 # Defaults to False.
 var debug_mode: bool = false setget _update_debug_mode
@@ -42,6 +46,7 @@ func _init() -> void:
 	allow_music = _config.get_value("defaults", "allow_music", true)
 	show_mobile_controls = _config.get_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
 	debug_mode = _config.get_value("defaults", "debug_mode", false)
+	animate_end_levels = _config.get_value("debug", "animate_end_levels", true)
 
 func _save_defaults() -> void:
 	var _err = _config.save("user://userdefaults.cfg")
@@ -51,6 +56,11 @@ func _save_defaults() -> void:
 func _update_allow_music(new_value: bool) -> void:
 	allow_music = new_value
 	_config.set_value("defaults", "allow_music", new_value)
+	_save_defaults()
+
+func _update_animate_end_levels(new_value: bool) -> void:
+	animate_end_levels = new_value
+	_config.set_value("debug", "animate_end_levels", new_value)
 	_save_defaults()
 
 func _update_debug_mode(new_value: bool) -> void:
@@ -79,4 +89,5 @@ func _write_new_defaults() -> void:
 	_config.set_value("defaults", "allow_music", true)
 	_config.set_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
 	_config.set_value("defaults", "debug_mode", false)
+	_config.set_value("debug", "animate_end_levels", true)
 	_save_defaults()

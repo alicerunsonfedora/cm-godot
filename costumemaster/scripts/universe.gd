@@ -108,6 +108,14 @@ func trigger_lock() -> void:
 func _clone_exists() -> bool:
 	return _clone != null
 
+func _dbg_animations() -> void:
+	if not _settings.debug_mode: return
+	_settings.animate_end_levels = not _settings.animate_end_levels
+	print_debug("End Level Animations toggled %s" % ("ON" if _settings.animate_end_levels else "OFF"))
+	var _exit = find_node("Exit*")
+	if _exit == null: return
+	_exit._update_animation(_settings.animate_end_levels)
+
 func _dbg_fullbright() -> void:
 	$LightsOff.visible = not $LightsOff.visible
 	print_debug("Toggled fullbright %s" % ("ON" if not $LightsOff.visible else "OFF"))
@@ -195,8 +203,13 @@ func _instantiate_clone() -> void:
 	add_child(_clone)
 
 func _instantiate_debug() -> void:
-	if _settings.debug_mode and DEBUG_MODE:
+	if not _settings.debug_mode: return
+	if DEBUG_MODE:
 		_enable_debug_player()
+	
+	var _exit = find_node("Exit*")
+	if _exit == null: return
+	_exit._update_animation(_settings.animate_end_levels)
 
 func _instantiate_hud() -> void:
 	_hud.visible = true
@@ -261,5 +274,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_dbg_skip()
 	elif event.get_action_strength("dbg_toggle_fullbright") and _settings.debug_mode:
 		_dbg_fullbright()
+	elif event.get_action_strength("dbg_toggle_animation") and _settings.debug_mode:
+		_dbg_animations()
 	elif event.get_action_strength("ui_pause"):
 		_pause_game()
