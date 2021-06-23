@@ -35,4 +35,4 @@ func _ready() -> void:
     
 ## Other guidelines
 
-- Do not fuck with Roxanne.
+- Do not fuck with Chelsea.
