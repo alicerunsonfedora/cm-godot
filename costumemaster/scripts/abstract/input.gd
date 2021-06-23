@@ -63,10 +63,7 @@ func get_name() -> String:
 	return name
 
 func _ready() -> void:
-	_make_light()
-	_make_timer()
-	_make_timer_ui()
-	_make_audio_player()
+	_setup_children()
 	_setup_connections()
 
 # Activate the input device.
@@ -101,6 +98,30 @@ func _deactivate() -> void:
 	if DURATION > 0:
 		_timer.stop()
 		_hud_timer.visible = false
+
+func _make_audio_player() -> void:
+	_audio = AudioStreamPlayer2D.new()
+	if DURATION > 0:
+		_audio.stream = load("res://assets/sfx/alarmEnable.ogg") as AudioStreamOGGVorbis
+	else:
+		_audio.stream = load("res://assets/sfx/leverToggle.ogg") as AudioStreamOGGVorbis
+	_audio.stream.loop = false
+	add_child(_audio)
+
+func _make_audio_tick() -> void:
+	if _audio == null:
+		_make_audio_player()
+	_audio.stream = load("res://assets/sfx/alarmTick.ogg") as AudioStreamOGGVorbis
+	_audio.stream.loop = true
+	_audio.stream.loop_offset = 0
+
+func _make_audio_turnoff() -> void:
+	if _audio == null:
+		_make_audio_player()
+	if DURATION == 0:
+		return
+	_audio.stream = load("res://assets/sfx/alarmDisable.ogg") as AudioStreamOGGVorbis
+	_audio.stream.loop = false
 
 func _make_light() -> void:
 	_light = Light2D.new()
@@ -137,30 +158,6 @@ func _make_timer_ui() -> void:
 	_hud_timer.visible = false
 	_hud_timer.z_index = 5
 	add_child(_hud_timer)
-
-func _make_audio_player() -> void:
-	_audio = AudioStreamPlayer2D.new()
-	if DURATION > 0:
-		_audio.stream = load("res://assets/sfx/alarmEnable.ogg") as AudioStreamOGGVorbis
-	else:
-		_audio.stream = load("res://assets/sfx/leverToggle.ogg") as AudioStreamOGGVorbis
-	_audio.stream.loop = false
-	add_child(_audio)
-
-func _make_audio_tick() -> void:
-	if _audio == null:
-		_make_audio_player()
-	_audio.stream = load("res://assets/sfx/alarmTick.ogg") as AudioStreamOGGVorbis
-	_audio.stream.loop = true
-	_audio.stream.loop_offset = 0
-
-func _make_audio_turnoff() -> void:
-	if _audio == null:
-		_make_audio_player()
-	if DURATION == 0:
-		return
-	_audio.stream = load("res://assets/sfx/alarmDisable.ogg") as AudioStreamOGGVorbis
-	_audio.stream.loop = false
 
 func _on_area_entered(area: Area2D) -> void:
 	if not "Clone" in area.name and not area is MovableObject:
@@ -202,6 +199,12 @@ func _process(_delta) -> void:
 			_deactivate()
 		else:
 			_activate()
+
+func _setup_children() -> void:
+	_make_light()
+	_make_timer()
+	_make_timer_ui()
+	_make_audio_player()
 
 func _setup_connections() -> void:
 	var _err = connect("body_entered", self, "_on_body_entered")

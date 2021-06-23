@@ -133,26 +133,22 @@ func _costume_name() -> String:
 func _default_acceleration() -> int:
 	return 250
 
-func _physics_process(delta) -> void:
-	if Engine.editor_hint: return
-
+func _get_movement_vector() -> Vector2:
 	var move_vector = Vector2.ZERO
 	move_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	move_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
-	move_vector = move_vector.normalized()
+	return move_vector.normalized()
+
+func _physics_process(delta) -> void:
+	if Engine.editor_hint: return
+	var move_vector = _get_movement_vector()
 	
 	if move_vector != Vector2.ZERO and _can_move:
-		_asm.set("parameters/idle/blend_position", move_vector)
-		_asm.set("parameters/walk/blend_position", move_vector)
-		_aState.travel("walk")
-		_start_footsteps()
-		if _audio.playing:
-			_audio.pitch_scale = clamp(randf(), 0.5, 1.0)
+		_walk_start(move_vector)
 		_velocity += move_vector * acceleration * _actual_mass * delta
 		_velocity = _velocity.clamped(MAX_SPEED * _actual_mass * delta)
 	else:
-		_aState.travel("idle")
-		_stop_footsteps()
+		_walk_stop()
 		_velocity = _velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	_collision_velocity = move_and_slide(_velocity * delta * speed)
 
@@ -212,3 +208,15 @@ func _update_player_mass() -> void:
 			_actual_mass = MASS * 1.2
 		_:
 			_actual_mass = MASS
+
+func _walk_start(move_vector: Vector2) -> void:
+	_asm.set("parameters/idle/blend_position", move_vector)
+	_asm.set("parameters/walk/blend_position", move_vector)
+	_aState.travel("walk")
+	_start_footsteps()
+	if _audio.playing:
+		_audio.pitch_scale = clamp(randf(), 0.5, 1.0)
+
+func _walk_stop() -> void:
+	_aState.travel("idle")
+	_stop_footsteps()

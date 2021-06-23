@@ -37,40 +37,9 @@ signal output_inactive()
 onready var _cooldown: Timer
 
 func _ready() -> void:
-	var _ent_err = connect("body_entered", self, "_on_body_entered")
-	var _exi_err = connect("body_exited", self, "_on_body_exited")
-
-	_cooldown = Timer.new()
-	_cooldown.autostart = false
-	_cooldown.one_shot = true
-	_cooldown.wait_time = 5.0
-	add_child(_cooldown)
-
-	if _ent_err != OK:
-		print_debug(_ent_err)
-	if _exi_err != OK:
-		print_debug(_exi_err)
-
-	if len(INPUTS) == 0:
-		push_warning("Input list is empty.")
-
-	for input_path in INPUTS:
-		var node = get_node(input_path)
-		if not node or not node is AbstractInput:
-			continue
-
-		var input = node as AbstractInput
-		if input.get_name() in _input_map.keys():
-			continue
-
-		_input_map[input.get_name()] = input.active()
-		var _inp_act_err = input.connect("input_active", self, "_on_input_active")
-		var _inp_dea_err = input.connect("input_inactive", self, "_on_input_deactive")
-
-		if _inp_act_err != OK:
-			print_debug(_inp_act_err)
-		if _inp_dea_err != OK:
-			print_debug(_inp_dea_err)
+	_setup_collision_listeners()
+	_setup_cooldown()
+	_setup_input_list()
 
 # Returns whether the output device is active.
 func active() -> bool:
@@ -83,10 +52,6 @@ func active() -> bool:
 		_status = not _status
 	return _status
 
-# Returns the universe accessible to the output, or null if it cannot be found.
-# func find_universe() -> Universe:
-# 	return get_node("/root/Universe") as Universe
-
 # Returns whether the device is active, the key unlocking mechanism is on, and the cooldown is not
 # in effect.
 func _active_and_unlocked() -> bool:
@@ -95,15 +60,30 @@ func _active_and_unlocked() -> bool:
 	return active() and _key_lock and _cooldown.time_left == 0
 
 func _check_active():
-	if _active_and_unlocked():
-		_cooldown.start()
-		_on_activate()
-		emit_signal("output_active")
+	if not _active_and_unlocked():
+		return
+	_cooldown.start()
+	_on_activate()
+	emit_signal("output_active")
 
 func _check_inactive():
-	if not _active_and_unlocked():
-		_on_deactivate()
-		emit_signal("output_inactive")
+	if _active_and_unlocked():
+		return
+	_on_deactivate()
+	emit_signal("output_inactive")
+
+func _link_input(input_path: NodePath) -> void:
+	var node = get_node(input_path)
+	if not node or not node is AbstractInput:
+		return
+	var input = node as AbstractInput
+	if input.get_name() in _input_map.keys():
+		return
+	_input_map[input.get_name()] = input.active()
+	var _err = input.connect("input_active", self, "_on_input_active")
+	_err = input.connect("input_inactive", self, "_on_input_deactive")
+	if _err != OK:
+		push_error(_err)
 
 func _on_body_entered(body: Node2D) -> void:
 	if not body.name in ["Player", "PlayerNode", "Clone"]:
@@ -137,3 +117,24 @@ func _process(_delta) -> void:
 	if INTERACT_ON_KEYPRESS and Input.get_action_strength("interact") and _can_unlock_key:
 		_key_lock = active()
 		_check_active()
+
+func _setup_collision_listeners() -> void:
+	var _ent_err = connect("body_entered", self, "_on_body_entered")
+	var _exi_err = connect("body_exited", self, "_on_body_exited")
+	if _ent_err != OK:
+		print_debug(_ent_err)
+	if _exi_err != OK:
+		print_debug(_exi_err)
+
+func _setup_cooldown() -> void:
+	_cooldown = Timer.new()
+	_cooldown.autostart = false
+	_cooldown.one_shot = true
+	_cooldown.wait_time = 5.0
+	add_child(_cooldown)
+
+func _setup_input_list() -> void:
+	if len(INPUTS) == 0:
+		push_warning("Input list is empty.")
+	for input_path in INPUTS:
+		_link_input(input_path)

@@ -34,6 +34,18 @@ var show_mobile_controls: bool = OS.has_touchscreen_ui_hint() setget _update_sho
 
 onready var _config: ConfigFile
 
+var _debug = {
+	"animate_end_levels": true
+}
+
+var _defaults = {
+	"persist_field_of_view": false,
+	"field_of_view": 0.0,
+	"allow_music": true,
+	"show_mobile_controls": OS.has_touchscreen_ui_hint(),
+	"debug_mode": false
+}
+
 func _init() -> void:
 	_config = ConfigFile.new()
 	var _config_err = _config.load("user://userdefaults.cfg")
@@ -84,10 +96,8 @@ func _update_show_mobile_controls(new_value: bool) -> void:
 	_save_defaults()
 
 func _write_new_defaults() -> void:
-	_config.set_value("defaults", "persist_field_of_view", false)
-	_config.set_value("defaults", "field_of_view", 0.0)
-	_config.set_value("defaults", "allow_music", true)
-	_config.set_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
-	_config.set_value("defaults", "debug_mode", false)
-	_config.set_value("debug", "animate_end_levels", true)
+	for key in _defaults.keys():
+		_config.set_value("defaults", key, _defaults[key])
+	for key in _debug.keys():
+		_config.set_value("debug", key, _debug[key])
 	_save_defaults()
