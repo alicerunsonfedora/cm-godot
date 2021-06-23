@@ -64,11 +64,9 @@ onready var _settings: UserDefaults
 
 func _ready() -> void:
 	_settings = UserDefaults.new()
-	_instantiate_player()
+	_setup_world()
+	_setup_ui()
 	_instantiate_music()
-	_instantiate_hud()
-	_instantiate_objects()
-	_instantiate_debug()
 	_play_alarm()
 
 # Send a request to the player to change the costume if applicable or allowed by the universe.
@@ -120,8 +118,7 @@ func _dbg_skip() -> void:
 	_exit._on_activate()
 
 func _destroy_clone() -> void:
-	if not _clone_exists():
-		return
+	if not _clone_exists(): return
 	remove_child(_clone)
 	_clone.queue_free()
 	_clone = null
@@ -159,6 +156,36 @@ func _get_music_track() -> AudioStream:
 func _get_player() -> Player:
 	return find_node("Player") as Player
 
+func _hud_connect_events() -> void:
+	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
+	_hud_err = _hud.connect("restart_level_request", self, "_restart_level")
+	_hud_err = _hud.connect("update_field_of_view_request", self, "send_fov_request")
+	if _hud_err:
+		push_error(_hud_err)
+
+func _hud_disable_tutorials() -> void:
+	if not WALK_TUTORIAL:
+		_hud.disable_tut_walk()
+	if not COSTUME_TUTORIAL:
+		_hud.disable_tut_costume()
+	if not RESTART_TUTORIAL:
+		_hud.disable_tut_restart()
+
+func _hud_hide_unnecessary_components() -> void:
+	_hud.disable_unused(ALLOWED_COSTUMES)
+	if not _settings.show_mobile_controls:
+		_hud.disable_mobile_ui()
+	if not RESTARTABLE:
+		_hud.disable_restart()
+	_hud_disable_tutorials()
+
+func _hud_update_fov() -> void:
+	_hud.set_fov_bounds(_min_fov_bound)
+	if not _settings.persist_field_of_view: return
+	_hud.slider_fov.value = clamp(-_settings.field_of_view, -1 - _min_fov_bound, -_min_fov_bound)
+	if _player != null:
+		_player.FIELD_OF_VIEW = clamp(_settings.field_of_view, _min_fov_bound, _min_fov_bound + 1)
+
 func _instantiate_clone() -> void:
 	if _clone_exists():
 		return
@@ -173,32 +200,10 @@ func _instantiate_debug() -> void:
 
 func _instantiate_hud() -> void:
 	_hud.visible = true
-	_hud.disable_unused(ALLOWED_COSTUMES)
-
-	if not _settings.show_mobile_controls:
-		_hud.disable_mobile_ui()
-
-	if not RESTARTABLE:
-		_hud.disable_restart()
-
-	if not WALK_TUTORIAL:
-		_hud.disable_tut_walk()
-	if not COSTUME_TUTORIAL:
-		_hud.disable_tut_costume()
-	if not RESTART_TUTORIAL:
-		_hud.disable_tut_restart()
-
-	_hud.set_fov_bounds(_min_fov_bound)
-	if _settings.persist_field_of_view:
-		_hud.slider_fov.value = clamp(-_settings.field_of_view, -1 - _min_fov_bound, -_min_fov_bound)
-		if _player != null:
-			_player.FIELD_OF_VIEW = clamp(_settings.field_of_view, _min_fov_bound, _min_fov_bound + 1)
-
-	var _hud_err = _hud.connect("costume_request", self, "send_costume_request")
-	_hud_err = _hud.connect("restart_level_request", self, "_restart_level")
-	_hud_err = _hud.connect("update_field_of_view_request", self, "send_fov_request")
-	if _hud_err:
-		push_error(_hud_err)
+	_hud_hide_unnecessary_components()
+	_hud_disable_tutorials()
+	_hud_update_fov()
+	_hud_connect_events()
 
 func _instantiate_music() -> void:
 	_bgm = AudioStreamPlayer.new() as AudioStreamPlayer
@@ -242,6 +247,14 @@ func _restart_level() -> void:
 	var _err = get_tree().reload_current_scene()
 	if _err != OK:
 		push_error(_err)
+
+func _setup_world() -> void:
+	_instantiate_player()
+	_instantiate_objects()
+
+func _setup_ui() -> void:
+	_instantiate_hud()
+	_instantiate_debug()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.get_action_strength("dbg_skip_level") and _settings.debug_mode:
