@@ -23,8 +23,8 @@ __meta__ = {
 [node name="TextureRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -0.768768
-margin_bottom = -0.768799
+margin_top = -0.945373
+margin_bottom = -0.945435
 color = Color( 0, 0, 0, 0.552941 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -42,12 +42,23 @@ __meta__ = {
 }
 
 [node name="Resume" type="Button" parent="VBoxContainer"]
-margin_top = 537.0
+margin_top = 484.0
 margin_right = 302.0
-margin_bottom = 582.0
+margin_bottom = 529.0
 text = "PM_RESUME"
 flat = true
 align = 0
+
+[node name="Save" type="Button" parent="VBoxContainer"]
+margin_top = 537.0
+margin_right = 302.0
+margin_bottom = 582.0
+text = "PM_SAVE"
+flat = true
+align = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 margin_top = 590.0
@@ -83,3 +94,21 @@ text = "PM_TITLE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SaveText" type="Label" parent="."]
+visible = false
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -481.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = 57.0
+text = "PM_SAVE_TEXT"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Timer" type="Timer" parent="SaveText"]
+wait_time = 3.0
+one_shot = true

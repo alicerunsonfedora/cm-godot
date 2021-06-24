@@ -69,9 +69,6 @@ func _ready() -> void:
 	_instantiate_music()
 	_play_alarm()
 
-	var _example = _suspend_to_state()
-	print(_example)
-
 # Send a request to the player to change the costume if applicable or allowed by the universe.
 # Parameters:
 # 	costume_type: An integer representing the costume to request switching to.
@@ -228,6 +225,15 @@ func _instantiate_debug() -> void:
 	if _exit == null: return
 	_exit._update_animation(_settings.animate_end_levels)
 
+func _instantiate_from_save() -> void:
+	var _save = SaveUtils.new()
+	if _save.save_exists():
+		_save.load_from_file()
+		if _save.state.current_level == get_tree().current_scene.filename:
+			_resume_from_suspended_state(_save.state)
+	_save.state = _suspend_to_state()
+	_save.save_to_file()
+
 func _instantiate_hud() -> void:
 	_hud.visible = true
 	_hud_hide_unnecessary_components()
@@ -284,13 +290,14 @@ func _resume_from_suspended_state(save_file: SaveState) -> void:
 	for input in _find_all_inputs():
 		var _frozen = save_file.inputs[input.get_name()]
 		input._active = _frozen["active"]
-		input._timer.time_left = _frozen["time_left"]
+		# input._timer.start(_frozen["time"])
 	for object in _find_all_objects():
 		object.global_position = save_file.movable_objects[object.name]
 
 func _setup_world() -> void:
 	_instantiate_player()
 	_instantiate_objects()
+	_instantiate_from_save()
 
 func _setup_ui() -> void:
 	_instantiate_hud()
