@@ -2,11 +2,15 @@
 
 ## Commit syntax
 
-```
+```git-commit
 :gitmoji: Summary of action
 
 Additional description. Can include details of what exactly was done, what any issues were,
 and why the particular action was done. Warnings about potential issues can also go here.
+
+# If there's an issue that it can get tied to, add it here, along with any valid YouTrack
+# command.
+^CMR-0 stage Review work Development 42m
 ```
 
 More details on Gitmoji can be found at https://gitmoji.dev.
