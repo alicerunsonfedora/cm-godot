@@ -69,6 +69,9 @@ func _ready() -> void:
 	_instantiate_music()
 	_play_alarm()
 
+	var _example = _suspend_to_state()
+	print(_example)
+
 # Send a request to the player to change the costume if applicable or allowed by the universe.
 # Parameters:
 # 	costume_type: An integer representing the costume to request switching to.
@@ -143,6 +146,20 @@ func _exit_to_main() -> void:
 	var _err = get_tree().change_scene("res://scenes/main.tscn")
 	if _err != OK:
 		push_error(_err)
+
+func _find_all_inputs() -> Array:
+	var inputs = []
+	for node in get_children():
+		if not node is AbstractInput: continue
+		inputs.append(node)
+	return inputs
+
+func _find_all_objects() -> Array:
+	var objects = []
+	for node in get_children():
+		if not node is MovableObject: continue
+		objects.append(node)
+	return objects
 
 func _get_music_track() -> AudioStream:
 	if MUSIC == Track.RANDOM:
@@ -261,6 +278,16 @@ func _restart_level() -> void:
 	if _err != OK:
 		push_error(_err)
 
+func _resume_from_suspended_state(save_file: SaveState) -> void:
+	_player.global_position = save_file.player_position
+	_player.CURRENT_COSTUME = save_file.player_costume
+	for input in _find_all_inputs():
+		var _frozen = save_file.inputs[input.get_name()]
+		input._active = _frozen["active"]
+		input._timer.time_left = _frozen["time_left"]
+	for object in _find_all_objects():
+		object.global_position = save_file.movable_objects[object.name]
+
 func _setup_world() -> void:
 	_instantiate_player()
 	_instantiate_objects()
@@ -268,6 +295,15 @@ func _setup_world() -> void:
 func _setup_ui() -> void:
 	_instantiate_hud()
 	_instantiate_debug()
+
+func _suspend_to_state() -> SaveState:
+	var state = SaveState.new()
+	state.current_level = get_tree().current_scene.filename
+	state.player_costume = _player.CURRENT_COSTUME
+	state.player_position = _player.global_position
+	state.save_input_states(_find_all_inputs())
+	state.save_movable_objects(_find_all_objects())
+	return state
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.get_action_strength("dbg_skip_level") and _settings.debug_mode:
