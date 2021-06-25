@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/devices/exitdoor.gd"
 }, {
+"base": "Area2D",
+"class": "GDConfineScript",
+"language": "GDScript",
+"path": "res://scripts/devices/gd_confine_script.gd"
+}, {
 "base": "Control",
 "class": "HUD",
 "language": "GDScript",
@@ -74,6 +79,7 @@ _global_script_class_icons={
 "AbstractOutput": "",
 "Door": "",
 "ExitDoor": "",
+"GDConfineScript": "",
 "HUD": "",
 "MovableObject": "",
 "Player": "",
