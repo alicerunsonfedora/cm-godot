@@ -49,4 +49,6 @@ func _btn_quit_press() -> void:
 	get_tree().quit()
 
 func _load_scene(sv_utils: SaveUtils) -> void:
-	get_tree().change_scene(sv_utils.state.current_level)
+	var _err = get_tree().change_scene(sv_utils.state.current_level)
+	if _err != OK:
+		push_error("%s" % (_err))

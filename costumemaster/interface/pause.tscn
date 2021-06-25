@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://scripts/pause_menu.gd" type="Script" id=1]
+[ext_resource path="res://scripts/interfaces/pause_menu.gd" type="Script" id=1]
 [ext_resource path="res://interface/settings.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/gui/theme.tres" type="Theme" id=3]
 [ext_resource path="res://assets/gui/Cabin-Regular.ttf" type="DynamicFontData" id=4]

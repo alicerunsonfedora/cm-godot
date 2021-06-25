@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "HUD",
 "language": "GDScript",
-"path": "res://scripts/hud.gd"
+"path": "res://scripts/interfaces/hud.gd"
 }, {
 "base": "Area2D",
 "class": "MovableObject",
@@ -62,7 +62,7 @@ _global_script_classes=[ {
 "base": "WindowDialog",
 "class": "SettingsView",
 "language": "GDScript",
-"path": "res://scripts/settings.gd"
+"path": "res://scripts/interfaces/settings.gd"
 }, {
 "base": "Node2D",
 "class": "Universe",
