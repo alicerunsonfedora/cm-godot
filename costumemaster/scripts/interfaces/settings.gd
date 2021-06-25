@@ -9,10 +9,11 @@
 class_name SettingsView
 extends WindowDialog
 
-onready var chk_allow_music: CheckButton = $VBoxContainer/chk_allow_music as CheckButton
-onready var chk_mobile: CheckButton = $VBoxContainer/chk_mobile_controls as CheckButton
-onready var chk_persistent_fov: CheckButton = $VBoxContainer/chk_field_of_view as CheckButton
-onready var chk_debug_mode: CheckButton = $VBoxContainer/chk_dbg_mode as CheckButton
+onready var chk_allow_music := $VBoxContainer/chk_allow_music as CheckButton
+onready var chk_mobile := $VBoxContainer/chk_mobile_controls as CheckButton
+onready var chk_persistent_fov := $VBoxContainer/chk_field_of_view as CheckButton
+onready var chk_debug_mode := $VBoxContainer/chk_dbg_mode as CheckButton
+onready var sel_locale := $VBoxContainer/locale/sel_locale as OptionButton
 onready var _settings: UserDefaults
 
 func _ready() -> void:
@@ -21,6 +22,9 @@ func _ready() -> void:
 	chk_persistent_fov.pressed = _settings.persist_field_of_view
 	chk_mobile.pressed = _settings.show_mobile_controls
 	chk_debug_mode.pressed = _settings.debug_mode
+	
+	_load_locales()
+	sel_locale.selected = sel_locale.items.find(_settings.preferred_locale)
 
 	if OS.get_name() in ["Android", "iOS"]:
 		chk_mobile.disabled = true
@@ -29,6 +33,7 @@ func _ready() -> void:
 	_err = chk_allow_music.connect("toggled", self, "_chk_music_toggled")
 	_err = chk_mobile.connect("toggled", self, "_chk_mobile_toggled")
 	_err = chk_debug_mode.connect("toggled", self, "_chk_debug_toggled")
+	_err = sel_locale.connect("item_selected", self, "_sel_locale_selected")
 	if _err != OK:
 		push_error(_err)
 
@@ -47,3 +52,15 @@ func _chk_mobile_toggled(value) -> void:
 func _chk_music_toggled(value) -> void:
 	chk_allow_music.pressed = value
 	_settings.allow_music = value
+
+func _load_locales() -> void:
+	var locales = TranslationServer.get_loaded_locales()
+	for locale in locales:
+		sel_locale.add_item(locale)
+	if len(locales) < 2:
+		sel_locale.disabled = true
+	
+
+func _sel_locale_selected(idx: int) -> void:
+	sel_locale.selected = idx
+	_settings.preferred_locale = sel_locale.items[idx]

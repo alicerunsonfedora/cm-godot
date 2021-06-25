@@ -286,11 +286,10 @@ func _restart_level() -> void:
 
 func _resume_from_suspended_state(save_file: SaveState) -> void:
 	_player.global_position = save_file.player_position
-	_player.CURRENT_COSTUME = save_file.player_costume
+	_player.change_costume(save_file.player_costume)
 	for input in _find_all_inputs():
 		var _frozen = save_file.inputs[input.get_name()]
 		input._active = _frozen["active"]
-		# input._timer.start(_frozen["time"])
 	for object in _find_all_objects():
 		object.global_position = save_file.movable_objects[object.name]
 

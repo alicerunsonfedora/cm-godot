@@ -28,6 +28,10 @@ var field_of_view: float = 0.0 setget _update_field_of_view
 # Defaults to False.
 var persist_field_of_view: bool = false setget _update_persist_field_of_view
 
+# The user's preferred locale for translation purposes.
+# Defaults to the operating system's locale.
+var preferred_locale: String = OS.get_locale() setget _update_preferred_locale
+
 # Whether to show the mobile UI controls.
 # Defaults to the result of OS.has_touchscreen_ui_hint.
 var show_mobile_controls: bool = OS.has_touchscreen_ui_hint() setget _update_show_mobile_controls
@@ -39,11 +43,12 @@ var _debug = {
 }
 
 var _defaults = {
-	"persist_field_of_view": false,
-	"field_of_view": 0.0,
 	"allow_music": true,
+	"debug_mode": false,
+	"field_of_view": 0.0,
+	"persist_field_of_view": false,
+	"preferred_locale": OS.get_locale(),
 	"show_mobile_controls": OS.has_touchscreen_ui_hint(),
-	"debug_mode": false
 }
 
 func _init() -> void:
@@ -53,12 +58,17 @@ func _init() -> void:
 		push_warning("Failed to load the User Defaults file.")
 		_write_new_defaults()
 		return
-	persist_field_of_view = _config.get_value("defaults", "persist_field_of_view", false)
-	field_of_view = _config.get_value("defaults", "field_of_view", 0.0)
+	_load_defaults()
+	TranslationServer.set_locale(preferred_locale)
+
+func _load_defaults() -> void:
 	allow_music = _config.get_value("defaults", "allow_music", true)
-	show_mobile_controls = _config.get_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
-	debug_mode = _config.get_value("defaults", "debug_mode", false)
 	animate_end_levels = _config.get_value("debug", "animate_end_levels", true)
+	debug_mode = _config.get_value("defaults", "debug_mode", false)
+	field_of_view = _config.get_value("defaults", "field_of_view", 0.0)
+	persist_field_of_view = _config.get_value("defaults", "persist_field_of_view", false)
+	preferred_locale = _config.get_value("defaults", "preferred_locale", OS.get_locale())
+	show_mobile_controls = _config.get_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
 
 func _save_defaults() -> void:
 	var _err = _config.save("user://userdefaults.cfg")
@@ -89,6 +99,13 @@ func _update_persist_field_of_view(new_value: bool) -> void:
 	persist_field_of_view = new_value
 	_config.set_value("defaults", "persist_field_of_view", new_value)
 	_save_defaults()
+
+func _update_preferred_locale(new_value: String) -> void:
+	if not new_value in TranslationServer.get_loaded_locales():
+		push_error("%s is not a valid locale." % new_value)
+	preferred_locale = new_value
+	TranslationServer.set_locale(new_value)
+	_config.set_value("defaults", "preferred_locale", new_value)
 
 func _update_show_mobile_controls(new_value: bool) -> void:
 	show_mobile_controls = new_value

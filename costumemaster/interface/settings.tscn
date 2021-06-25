@@ -8,12 +8,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -273.314
-margin_top = -121.686
-margin_right = 274.686
-margin_bottom = 120.314
+margin_left = -352.0
+margin_top = -124.0
+margin_right = 355.0
+margin_bottom = 201.0
+rect_min_size = Vector2( 707, 325 )
 theme = ExtResource( 1 )
 window_title = "PERF_TITLE"
+resizable = true
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -22,12 +24,14 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 16.0
+margin_right = -16.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="chk_field_of_view" type="CheckButton" parent="VBoxContainer"]
-margin_right = 548.0
+margin_right = 675.0
 margin_bottom = 52.0
 hint_tooltip = "PERF_PERSIST_FOV_HINT"
 shortcut_in_tooltip = false
@@ -35,7 +39,7 @@ text = "PERF_PERSIST_FOV"
 
 [node name="chk_allow_music" type="CheckButton" parent="VBoxContainer"]
 margin_top = 60.0
-margin_right = 548.0
+margin_right = 675.0
 margin_bottom = 112.0
 hint_tooltip = "PERF_MUSIC_HINT"
 shortcut_in_tooltip = false
@@ -43,7 +47,7 @@ text = "PERF_MUSIC"
 
 [node name="chk_mobile_controls" type="CheckButton" parent="VBoxContainer"]
 margin_top = 120.0
-margin_right = 548.0
+margin_right = 675.0
 margin_bottom = 172.0
 hint_tooltip = "PERF_MOBILE_HINT"
 shortcut_in_tooltip = false
@@ -51,8 +55,28 @@ text = "PERF_MOBILE"
 
 [node name="chk_dbg_mode" type="CheckButton" parent="VBoxContainer"]
 margin_top = 180.0
-margin_right = 548.0
+margin_right = 675.0
 margin_bottom = 232.0
 hint_tooltip = "PERF_DEBUG_HINT"
 shortcut_in_tooltip = false
 text = "PERF_DEBUG"
+
+[node name="locale" type="HBoxContainer" parent="VBoxContainer"]
+margin_left = 8.0
+margin_top = 240.0
+margin_right = 659.0
+margin_bottom = 285.0
+
+[node name="sel_locale_lbl" type="Label" parent="VBoxContainer/locale"]
+margin_top = 2.0
+margin_right = 458.0
+margin_bottom = 43.0
+size_flags_horizontal = 3
+text = "PERF_LOCALE"
+
+[node name="sel_locale" type="OptionButton" parent="VBoxContainer/locale"]
+margin_left = 466.0
+margin_right = 651.0
+margin_bottom = 45.0
+hint_tooltip = "PERF_LOCALE_HINT"
+text = "PERF_LOCALE"
