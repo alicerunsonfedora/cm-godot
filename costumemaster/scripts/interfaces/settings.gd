@@ -9,11 +9,13 @@
 class_name SettingsView
 extends WindowDialog
 
-onready var chk_allow_music := $VBoxContainer/chk_allow_music as CheckButton
-onready var chk_mobile := $VBoxContainer/chk_mobile_controls as CheckButton
-onready var chk_persistent_fov := $VBoxContainer/chk_field_of_view as CheckButton
-onready var chk_debug_mode := $VBoxContainer/chk_dbg_mode as CheckButton
-onready var sel_locale := $VBoxContainer/locale/sel_locale as OptionButton
+onready var chk_allow_music := $TabContainer/PERF_TAB_AUDIO/VBoxContainer/chk_allow_music as CheckButton
+onready var chk_mobile := $TabContainer/PERF_TAB_GENERAL/VBoxContainer/chk_mobile_controls as CheckButton
+onready var chk_persistent_fov := $TabContainer/PERF_TAB_GENERAL/VBoxContainer/chk_field_of_view as CheckButton
+onready var chk_debug_mode := $TabContainer/PERF_TAB_EXTRA/VBoxContainer/chk_dbg_mode as CheckButton
+onready var sel_locale := $TabContainer/PERF_TAB_GENERAL/VBoxContainer/locale/sel_locale as OptionButton
+onready var sld_vol_music := $TabContainer/PERF_TAB_AUDIO/VBoxContainer/grp_vol_music/sld_vol_music as Slider
+onready var sld_vol_sfx := $TabContainer/PERF_TAB_AUDIO/VBoxContainer/grp_vol_sfx/sld_vol_sfx as Slider
 onready var _settings: UserDefaults
 
 func _ready() -> void:
@@ -22,6 +24,8 @@ func _ready() -> void:
 	chk_persistent_fov.pressed = _settings.persist_field_of_view
 	chk_mobile.pressed = _settings.show_mobile_controls
 	chk_debug_mode.pressed = _settings.debug_mode
+	sld_vol_music.value = _settings.volume_db_music
+	sld_vol_sfx.value = _settings.volume_db_sfx
 	
 	_load_locales()
 	sel_locale.selected = sel_locale.items.find(_settings.preferred_locale)
@@ -34,6 +38,8 @@ func _ready() -> void:
 	_err = chk_mobile.connect("toggled", self, "_chk_mobile_toggled")
 	_err = chk_debug_mode.connect("toggled", self, "_chk_debug_toggled")
 	_err = sel_locale.connect("item_selected", self, "_sel_locale_selected")
+	_err = sld_vol_music.connect("value_changed", self, "_sld_vol_music_changed")
+	_err = sld_vol_sfx.connect("value_changed", self, "_sld_vol_sfx_changed")
 	if _err != OK:
 		push_error(_err)
 
@@ -60,7 +66,14 @@ func _load_locales() -> void:
 	if len(locales) < 2:
 		sel_locale.disabled = true
 	
-
 func _sel_locale_selected(idx: int) -> void:
 	sel_locale.selected = idx
 	_settings.preferred_locale = sel_locale.items[idx]
+
+func _sld_vol_music_changed(new_value: float) -> void:
+	sld_vol_music.value = new_value
+	_settings.volume_db_music = new_value
+
+func _sld_vol_sfx_changed(new_value: float) -> void:
+	sld_vol_sfx.value = new_value
+	_settings.volume_db_sfx = new_value

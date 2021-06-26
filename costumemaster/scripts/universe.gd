@@ -247,7 +247,7 @@ func _instantiate_music() -> void:
 	if not _settings.allow_music or MUSIC == 0: return
 	
 	_bgm.stream = _get_music_track()
-	_bgm.volume_db = -0.6
+	_bgm.volume_db = _settings.volume_db_music
 	_bgm.play()
 
 func _instantiate_objects() -> void:

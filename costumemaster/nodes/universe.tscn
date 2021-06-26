@@ -10,7 +10,7 @@ script = ExtResource( 2 )
 
 [node name="Ambiance" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = -0.4
+volume_db = -0.8
 autoplay = true
 
 [node name="LightsOff" type="CanvasModulate" parent="."]

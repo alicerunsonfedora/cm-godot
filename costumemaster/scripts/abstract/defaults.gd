@@ -36,6 +36,14 @@ var preferred_locale: String = OS.get_locale() setget _update_preferred_locale
 # Defaults to the result of OS.has_touchscreen_ui_hint.
 var show_mobile_controls: bool = OS.has_touchscreen_ui_hint() setget _update_show_mobile_controls
 
+# The volume DB for music channels.
+# Defaults to 0.0.
+var volume_db_music: float = 0.0 setget _update_volume_db_music
+
+# The volume DB for sound effects.
+# Defaults to 0.0.
+var volume_db_sfx: float = 0.0 setget _update_volume_db_sfx
+
 onready var _config: ConfigFile
 
 var _debug = {
@@ -49,6 +57,8 @@ var _defaults = {
 	"persist_field_of_view": false,
 	"preferred_locale": OS.get_locale(),
 	"show_mobile_controls": OS.has_touchscreen_ui_hint(),
+	"volume_db_music": 0.0,
+	"volume_db_sfx": 0.0,
 }
 
 func _init() -> void:
@@ -69,6 +79,8 @@ func _load_defaults() -> void:
 	persist_field_of_view = _config.get_value("defaults", "persist_field_of_view", false)
 	preferred_locale = _config.get_value("defaults", "preferred_locale", OS.get_locale())
 	show_mobile_controls = _config.get_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
+	volume_db_music = _config.get_value("defaults", "volume_db_music", 0.0)
+	volume_db_sfx = _config.get_value("defaults", "volume_db_sfx", 0.0)
 
 func _save_defaults() -> void:
 	var _err = _config.save("user://userdefaults.cfg")
@@ -110,6 +122,16 @@ func _update_preferred_locale(new_value: String) -> void:
 func _update_show_mobile_controls(new_value: bool) -> void:
 	show_mobile_controls = new_value
 	_config.set_value("defaults", "show_mobile_controls", new_value)
+	_save_defaults()
+
+func _update_volume_db_music(new_value: float) -> void:
+	volume_db_music = clamp(new_value, -1.0, 0)
+	_config.set_value("defaults", "show_mobile_controls", volume_db_music)
+	_save_defaults()
+
+func _update_volume_db_sfx(new_value: float) -> void:
+	volume_db_sfx = clamp(new_value, -1.0, 0)
+	_config.set_value("defaults", "show_mobile_controls", volume_db_sfx)
 	_save_defaults()
 
 func _write_new_defaults() -> void:

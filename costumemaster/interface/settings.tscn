@@ -4,6 +4,7 @@
 [ext_resource path="res://scripts/interfaces/settings.gd" type="Script" id=2]
 
 [node name="SettingsView" type="WindowDialog"]
+visible = true
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -21,62 +22,149 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TabContainer" type="TabContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_right = -16.0
+tab_align = 0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="chk_field_of_view" type="CheckButton" parent="VBoxContainer"]
-margin_right = 675.0
+[node name="PERF_TAB_GENERAL" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 59.0
+margin_right = -10.0
+margin_bottom = -10.0
+tab_align = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/PERF_TAB_GENERAL"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chk_field_of_view" type="CheckButton" parent="TabContainer/PERF_TAB_GENERAL/VBoxContainer"]
+margin_right = 687.0
 margin_bottom = 52.0
 hint_tooltip = "PERF_PERSIST_FOV_HINT"
 shortcut_in_tooltip = false
 text = "PERF_PERSIST_FOV"
 
-[node name="chk_allow_music" type="CheckButton" parent="VBoxContainer"]
+[node name="chk_mobile_controls" type="CheckButton" parent="TabContainer/PERF_TAB_GENERAL/VBoxContainer"]
 margin_top = 60.0
-margin_right = 675.0
+margin_right = 687.0
 margin_bottom = 112.0
-hint_tooltip = "PERF_MUSIC_HINT"
-shortcut_in_tooltip = false
-text = "PERF_MUSIC"
-
-[node name="chk_mobile_controls" type="CheckButton" parent="VBoxContainer"]
-margin_top = 120.0
-margin_right = 675.0
-margin_bottom = 172.0
 hint_tooltip = "PERF_MOBILE_HINT"
 shortcut_in_tooltip = false
 text = "PERF_MOBILE"
 
-[node name="chk_dbg_mode" type="CheckButton" parent="VBoxContainer"]
-margin_top = 180.0
-margin_right = 675.0
-margin_bottom = 232.0
-hint_tooltip = "PERF_DEBUG_HINT"
-shortcut_in_tooltip = false
-text = "PERF_DEBUG"
+[node name="locale" type="HBoxContainer" parent="TabContainer/PERF_TAB_GENERAL/VBoxContainer"]
+margin_top = 120.0
+margin_right = 687.0
+margin_bottom = 165.0
 
-[node name="locale" type="HBoxContainer" parent="VBoxContainer"]
-margin_left = 8.0
-margin_top = 240.0
-margin_right = 659.0
-margin_bottom = 285.0
-
-[node name="sel_locale_lbl" type="Label" parent="VBoxContainer/locale"]
+[node name="sel_locale_lbl" type="Label" parent="TabContainer/PERF_TAB_GENERAL/VBoxContainer/locale"]
 margin_top = 2.0
-margin_right = 458.0
+margin_right = 494.0
 margin_bottom = 43.0
 size_flags_horizontal = 3
 text = "PERF_LOCALE"
 
-[node name="sel_locale" type="OptionButton" parent="VBoxContainer/locale"]
-margin_left = 466.0
-margin_right = 651.0
+[node name="sel_locale" type="OptionButton" parent="TabContainer/PERF_TAB_GENERAL/VBoxContainer/locale"]
+margin_left = 502.0
+margin_right = 687.0
 margin_bottom = 45.0
 hint_tooltip = "PERF_LOCALE_HINT"
 text = "PERF_LOCALE"
+
+[node name="PERF_TAB_AUDIO" type="Tabs" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 59.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/PERF_TAB_AUDIO"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chk_allow_music" type="CheckButton" parent="TabContainer/PERF_TAB_AUDIO/VBoxContainer"]
+margin_right = 687.0
+margin_bottom = 52.0
+hint_tooltip = "PERF_MUSIC_HINT"
+shortcut_in_tooltip = false
+text = "PERF_MUSIC"
+
+[node name="grp_vol_music" type="HBoxContainer" parent="TabContainer/PERF_TAB_AUDIO/VBoxContainer"]
+margin_top = 60.0
+margin_right = 687.0
+margin_bottom = 101.0
+
+[node name="Label" type="Label" parent="TabContainer/PERF_TAB_AUDIO/VBoxContainer/grp_vol_music"]
+margin_right = 339.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+text = "PERF_VOL_MUSIC"
+
+[node name="sld_vol_music" type="HSlider" parent="TabContainer/PERF_TAB_AUDIO/VBoxContainer/grp_vol_music"]
+margin_left = 347.0
+margin_right = 687.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = 1.0
+step = 0.1
+
+[node name="grp_vol_sfx" type="HBoxContainer" parent="TabContainer/PERF_TAB_AUDIO/VBoxContainer"]
+margin_top = 109.0
+margin_right = 687.0
+margin_bottom = 150.0
+
+[node name="Label" type="Label" parent="TabContainer/PERF_TAB_AUDIO/VBoxContainer/grp_vol_sfx"]
+margin_right = 339.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+text = "PERF_VOL_SFX"
+
+[node name="sld_vol_sfx" type="HSlider" parent="TabContainer/PERF_TAB_AUDIO/VBoxContainer/grp_vol_sfx"]
+margin_left = 347.0
+margin_right = 687.0
+margin_bottom = 32.0
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = 1.0
+step = 0.1
+
+[node name="PERF_TAB_EXTRA" type="Tabs" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 59.0
+margin_right = -10.0
+margin_bottom = -10.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/PERF_TAB_EXTRA"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="chk_dbg_mode" type="CheckButton" parent="TabContainer/PERF_TAB_EXTRA/VBoxContainer"]
+margin_right = 687.0
+margin_bottom = 52.0
+hint_tooltip = "PERF_DEBUG_HINT"
+shortcut_in_tooltip = false
+text = "PERF_DEBUG"
