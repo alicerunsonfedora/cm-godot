@@ -102,6 +102,10 @@ config/icon="res://icon.png"
 config/macos_native_icon="res://icon.icns"
 config/windows_native_icon="res://icon.ico"
 
+[audio]
+
+default_bus_layout="res://nodes/audio.tres"
+
 [display]
 
 window/size/width=1280

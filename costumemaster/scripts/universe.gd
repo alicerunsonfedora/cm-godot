@@ -244,10 +244,10 @@ func _instantiate_hud() -> void:
 func _instantiate_music() -> void:
 	_bgm = AudioStreamPlayer.new() as AudioStreamPlayer
 	add_child(_bgm)
-	if not _settings.allow_music or MUSIC == 0: return
+	if MUSIC == 0: return
 	
 	_bgm.stream = _get_music_track()
-	_bgm.volume_db = _settings.volume_db_music
+	_bgm.bus = "Music"
 	_bgm.play()
 
 func _instantiate_objects() -> void:
@@ -275,6 +275,7 @@ func _play_alarm() -> void:
 	_alarm.global_position = _player.global_position + Vector2(128, 0)
 	_alarm.stream = load("res://assets/sfx/alarmDisable.ogg")
 	_alarm.autoplay = true
+	_alarm.bus = "SFX"
 	(_alarm.stream as AudioStreamOGGVorbis).loop = false
 	_alarm.connect("finished", _alarm, "queue_free")
 	add_child(_alarm)

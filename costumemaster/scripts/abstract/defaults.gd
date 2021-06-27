@@ -70,6 +70,9 @@ func _init() -> void:
 		return
 	_load_defaults()
 	TranslationServer.set_locale(preferred_locale)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(volume_db_music))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear2db(volume_db_sfx))
+
 
 func _load_defaults() -> void:
 	allow_music = _config.get_value("defaults", "allow_music", true)
@@ -88,9 +91,11 @@ func _save_defaults() -> void:
 		push_error(_err)
 
 func _update_allow_music(new_value: bool) -> void:
+	push_warning("UserDefaults.allow_music has been deprecated and will be removed in a future release.")
 	allow_music = new_value
 	_config.set_value("defaults", "allow_music", new_value)
 	_save_defaults()
+	volume_db_music = 1 if new_value else 0
 
 func _update_animate_end_levels(new_value: bool) -> void:
 	animate_end_levels = new_value
@@ -125,13 +130,16 @@ func _update_show_mobile_controls(new_value: bool) -> void:
 	_save_defaults()
 
 func _update_volume_db_music(new_value: float) -> void:
-	volume_db_music = clamp(new_value, -1.0, 0)
-	_config.set_value("defaults", "show_mobile_controls", volume_db_music)
+	volume_db_music = new_value
+	_config.set_value("defaults", "volume_db_music", new_value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(new_value))
 	_save_defaults()
-
+	
 func _update_volume_db_sfx(new_value: float) -> void:
-	volume_db_sfx = clamp(new_value, -1.0, 0)
-	_config.set_value("defaults", "show_mobile_controls", volume_db_sfx)
+	volume_db_sfx = new_value
+	_config.set_value("defaults", "volume_db_sfx", new_value)
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear2db(new_value))
+	var _res = AudioServer.get_bus_volume_db(AudioServer.get_bus_index("SFX"))
 	_save_defaults()
 
 func _write_new_defaults() -> void:

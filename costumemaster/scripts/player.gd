@@ -159,6 +159,7 @@ func _play_cant_use_sound() -> void:
 	streamer.pitch_scale = 1
 	streamer.stream = load("res://assets/sfx/cantUse.ogg") as AudioStreamOGGVorbis
 	streamer.stream.loop = false
+	streamer.bus = "SFX"
 	streamer.play()
 
 func _start_footsteps() -> void:

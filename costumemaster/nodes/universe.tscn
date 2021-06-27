@@ -12,6 +12,7 @@ script = ExtResource( 2 )
 stream = ExtResource( 3 )
 volume_db = -0.8
 autoplay = true
+bus = "SFX"
 
 [node name="LightsOff" type="CanvasModulate" parent="."]
 color = Color( 0.1403, 0.15525, 0.23, 1 )

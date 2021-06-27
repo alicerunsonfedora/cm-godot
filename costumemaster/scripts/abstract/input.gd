@@ -101,6 +101,7 @@ func _deactivate() -> void:
 
 func _make_audio_player() -> void:
 	_audio = AudioStreamPlayer2D.new()
+	_audio.bus = "SFX"
 	if DURATION > 0:
 		_audio.stream = load("res://assets/sfx/alarmEnable.ogg") as AudioStreamOGGVorbis
 	else:
