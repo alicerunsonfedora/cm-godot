@@ -57,8 +57,8 @@ var _defaults = {
 	"persist_field_of_view": false,
 	"preferred_locale": OS.get_locale(),
 	"show_mobile_controls": OS.has_touchscreen_ui_hint(),
-	"volume_db_music": 0.0,
-	"volume_db_sfx": 0.0,
+	"volume_db_music": 0.7,
+	"volume_db_sfx": 0.7,
 }
 
 func _init() -> void:
