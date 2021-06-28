@@ -27,7 +27,7 @@ onready var tut_camera = $PanelCamera as Panel
 onready var tut_timer = $Timer as Timer
 onready var tween = $Tween as Tween
 
-var _costume_rocker = 0
+var _costume_rocker := Player.CostumeType.FLASH_DRIVE as float
 
 func _ready() -> void:
 	_button_connect()
@@ -107,10 +107,10 @@ func _button_connect() -> void:
 func _cycle_costume(reverse: bool = false) -> void:
 	_costume_rocker = clamp(
 		_costume_rocker + (-1 if reverse else 1),
-		Player.CostumeType.FLASH_DRIVE as float,
-		Player.CostumeType.NONE as float
+		Player.CostumeType.DEFAULT as float,
+		Player.CostumeType.ALL as float
 	) as int
-	emit_signal("costume_request", _costume_rocker)
+	emit_signal("costume_request", _costume_rocker as int)
 
 func _disable_all_btn() -> void:
 	for child in $Toolbar.get_children():

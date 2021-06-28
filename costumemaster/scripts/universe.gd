@@ -236,6 +236,8 @@ func _instantiate_from_save() -> void:
 
 func _instantiate_hud() -> void:
 	_hud.visible = true
+	if len(ALLOWED_COSTUMES) > 0:
+		_hud._costume_rocker = ALLOWED_COSTUMES[0] as float
 	_hud_hide_unnecessary_components()
 	_hud_disable_tutorials()
 	_hud_update_fov()
