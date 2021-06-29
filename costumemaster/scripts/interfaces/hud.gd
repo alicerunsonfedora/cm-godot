@@ -27,7 +27,9 @@ onready var tut_camera = $PanelCamera as Panel
 onready var tut_timer = $Timer as Timer
 onready var tween = $Tween as Tween
 
-var _costume_rocker := Player.CostumeType.FLASH_DRIVE as float
+var _available_costumes := []
+var _costume_rocker = Player.CostumeType.DEFAULT as float
+
 
 func _ready() -> void:
 	_button_connect()
@@ -72,6 +74,8 @@ func disable_unused(allowed: Array) -> void:
 		_disable_all_btn()
 		return
 	
+	_available_costumes = allowed.duplicate()
+	_costume_rocker = _available_costumes.pop_front()
 	if not Player.CostumeType.FLASH_DRIVE in allowed:
 		switch_flash.disabled = true
 	if not Player.CostumeType.SWIFT_BIRD in allowed:
@@ -105,11 +109,12 @@ func _button_connect() -> void:
 		push_error(_err)
 		
 func _cycle_costume(reverse: bool = false) -> void:
-	_costume_rocker = clamp(
-		_costume_rocker + (-1 if reverse else 1),
-		Player.CostumeType.DEFAULT as float,
-		Player.CostumeType.ALL as float
-	) as int
+	if reverse:
+		_available_costumes.push_front(_costume_rocker)
+		_costume_rocker = _available_costumes.pop_back()
+	else:
+		_available_costumes.push_back(_costume_rocker)
+		_costume_rocker = _available_costumes.pop_front()
 	emit_signal("costume_request", _costume_rocker as int)
 
 func _disable_all_btn() -> void:
