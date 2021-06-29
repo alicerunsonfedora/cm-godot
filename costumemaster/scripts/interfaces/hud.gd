@@ -12,6 +12,7 @@ signal restart_level_request()
 signal update_field_of_view_request(fov)
 
 onready var btn_restart = $Toolbar/Restart as Button
+onready var lbl_level = $AuxToolbar/DBG_LevelName as Label
 onready var mobile_ui = $MobileUI as Control
 onready var slider_fov = $AuxToolbar/FOVSlider as Slider
 onready var switch_flash = $Toolbar/FlashCostume as Button
@@ -96,6 +97,10 @@ func set_fov_bounds(min_value: float) -> void:
 	slider_fov.min_value = -1 - min_value
 	slider_fov.max_value = -1 * min_value
 	slider_fov.value = min_value
+
+func toggle_debug_level_name(name: String) -> void:
+	lbl_level.text = name
+	lbl_level.visible = not lbl_level.visible
 
 func _button_connect() -> void:
 	var _err = switch_flash.connect("button_up", self, "_send_flash")

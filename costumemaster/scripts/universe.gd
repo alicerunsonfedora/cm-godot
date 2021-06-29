@@ -120,6 +120,10 @@ func _dbg_fullbright() -> void:
 	$LightsOff.visible = not $LightsOff.visible
 	print_debug("Toggled fullbright %s" % ("ON" if not $LightsOff.visible else "OFF"))
 
+func _dbg_name_show() -> void:
+	var name = get_tree().current_scene.filename.replace("res://scenes/", "").replace(".tscn", "")
+	_hud.toggle_debug_level_name(name)
+
 func _dbg_skip() -> void:
 	var _exit = find_node("Exit*")
 	if _exit == null: return
@@ -321,5 +325,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		_dbg_fullbright()
 	elif event.get_action_strength("dbg_toggle_animation") and _settings.debug_mode:
 		_dbg_animations()
+	elif event.get_action_strength("dbg_toggle_level_name") and _settings.debug_mode:
+		_dbg_name_show()
 	elif event.get_action_strength("ui_pause"):
 		_pause_game()

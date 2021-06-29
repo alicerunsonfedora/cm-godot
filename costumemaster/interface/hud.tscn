@@ -190,6 +190,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="DBG_LevelName" type="Label" parent="AuxToolbar"]
+visible = false
+margin_right = 112.0
+margin_bottom = 41.0
+text = "LVL_NAME"
+
 [node name="VSeparator" type="VSeparator" parent="AuxToolbar"]
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 8.0
