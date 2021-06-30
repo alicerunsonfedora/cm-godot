@@ -139,6 +139,7 @@ __meta__ = {
 }
 
 [node name="SettingsView" parent="CanvasLayer/Control" instance=ExtResource( 12 )]
+visible = false
 margin_left = -274.0
 margin_top = -121.0
 margin_right = 274.0
@@ -292,7 +293,7 @@ scale = Vector2( 7.8, 7.80334 )
 texture = ExtResource( 2 )
 offset = Vector2( 81.0644, 63.4941 )
 hframes = 38
-frame = 31
+frame = 32
 
 [node name="AnimationTree" type="AnimationTree" parent="Sprite"]
 tree_root = SubResource( 11 )

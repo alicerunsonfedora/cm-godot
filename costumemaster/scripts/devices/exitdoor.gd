@@ -26,6 +26,9 @@ func _check_active() -> void:
 	._check_active()
 	._update_textures_and_colliders()
 
+func _fade_body_through_door(_body: Node2D, _to_value: float = 1) -> void:
+	pass
+
 func _fade_out_scene() -> void:
 	var _root = get_tree().root.get_child(0)
 	if _root == null:

@@ -58,4 +58,6 @@ texture_scale = 0.5
 color = Color( 0.152941, 0.517647, 0.266667, 1 )
 energy = 0.9
 
+[node name="Fader" type="Tween" parent="."]
+
 [node name="Animator" type="Tween" parent="."]
