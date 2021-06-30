@@ -98,6 +98,10 @@ func set_fov_bounds(min_value: float) -> void:
 	slider_fov.max_value = -1 * min_value
 	slider_fov.value = min_value
 
+func set_debug_level_name(name: String, value: bool) -> void:
+	lbl_level.text = name
+	lbl_level.visible = value
+
 func toggle_debug_level_name(name: String) -> void:
 	lbl_level.text = name
 	lbl_level.visible = not lbl_level.visible

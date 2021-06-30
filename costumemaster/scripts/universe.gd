@@ -117,12 +117,14 @@ func _dbg_animations() -> void:
 	_exit._update_animation(_settings.animate_end_levels)
 
 func _dbg_fullbright() -> void:
-	$LightsOff.visible = not $LightsOff.visible
-	print_debug("Toggled fullbright %s" % ("ON" if not $LightsOff.visible else "OFF"))
+	_settings.fullbright = not _settings.fullbright
+	$LightsOff.visible = not _settings.fullbright
+	print_debug("Toggled fullbright %s" % ("ON" if _settings.fullbright else "OFF"))
 
 func _dbg_name_show() -> void:
+	_settings.level_name_in_toolbar = not _settings.level_name_in_toolbar
 	var name = get_tree().current_scene.filename.replace("res://scenes/", "").replace(".tscn", "")
-	_hud.toggle_debug_level_name(name)
+	_hud.set_debug_level_name(name, _settings.level_name_in_toolbar)
 
 func _dbg_skip() -> void:
 	var _exit = find_node("Exit*")
@@ -246,6 +248,9 @@ func _instantiate_hud() -> void:
 	_hud_disable_tutorials()
 	_hud_update_fov()
 	_hud_connect_events()
+	if _settings.debug_mode:
+		_settings.level_name_in_toolbar = not _settings.level_name_in_toolbar
+		_dbg_name_show()
 
 func _instantiate_music() -> void:
 	_bgm = AudioStreamPlayer.new() as AudioStreamPlayer
@@ -304,6 +309,8 @@ func _setup_world() -> void:
 	_instantiate_player()
 	_instantiate_objects()
 	_instantiate_from_save()
+	if _settings.debug_mode and _settings.fullbright:
+		$LightsOff.visible = not _settings.fullbright
 
 func _setup_ui() -> void:
 	_instantiate_hud()

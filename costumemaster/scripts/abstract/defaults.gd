@@ -8,7 +8,7 @@
 # A class that manages user defaults.
 class_name UserDefaults
 
-# Whether to allow the end level animations per level.
+# Debug: Whether to allow the end level animations per level.
 # Defaults to true. Only toggleable with debug mode on.
 var animate_end_levels: bool = true setget _update_animate_end_levels
 
@@ -19,6 +19,14 @@ var debug_mode: bool = false setget _update_debug_mode
 # The persistent field of view.
 # Defaults to zero when no persistent field of view is present.
 var field_of_view: float = 0.0 setget _update_field_of_view
+
+# Debug: Whether to show the map using fullbright.
+# Defaults to false.
+var fullbright: bool = false setget _update_fullbright
+
+# Debug: Whether to display the level's filename in the bottom left.
+# Defaults to false.
+var level_name_in_toolbar: bool = false setget _update_level_name_in_toolbar
 
 # Whether to keep the field of view persistent across levels.
 # Defaults to False.
@@ -43,7 +51,9 @@ var volume_db_sfx: float = 0.0 setget _update_volume_db_sfx
 onready var _config: ConfigFile
 
 var _debug = {
-	"animate_end_levels": true
+	"animate_end_levels": true,
+	"fullbright": false,
+	"level_name_in_toolbar": false
 }
 
 var _defaults = {
@@ -73,6 +83,8 @@ func _load_defaults() -> void:
 	animate_end_levels = _config.get_value("debug", "animate_end_levels", true)
 	debug_mode = _config.get_value("defaults", "debug_mode", false)
 	field_of_view = _config.get_value("defaults", "field_of_view", 0.0)
+	fullbright = _config.get_value("debug", "fullbright", false)
+	level_name_in_toolbar = _config.get_value("debug", "level_name_in_toolbar", false)
 	persist_field_of_view = _config.get_value("defaults", "persist_field_of_view", true)
 	preferred_locale = _config.get_value("defaults", "preferred_locale", OS.get_locale())
 	show_mobile_controls = _config.get_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
@@ -97,6 +109,16 @@ func _update_debug_mode(new_value: bool) -> void:
 func _update_field_of_view(new_value: float) -> void:
 	field_of_view = new_value
 	_config.set_value("defaults", "field_of_view", new_value)
+	_save_defaults()
+
+func _update_fullbright(new_value: bool) -> void:
+	fullbright = new_value
+	_config.set_value("debug", "fullbright", new_value)
+	_save_defaults()
+
+func _update_level_name_in_toolbar(new_value: bool) -> void:
+	level_name_in_toolbar = new_value
+	_config.set_value("debug", "level_name_in_toolbar", new_value)
 	_save_defaults()
 
 func _update_persist_field_of_view(new_value: bool) -> void:
