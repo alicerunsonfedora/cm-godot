@@ -8,10 +8,6 @@
 # A class that manages user defaults.
 class_name UserDefaults
 
-# Whether to play the soundtrack on top of the sound effects.
-# Defaults to True.
-var allow_music: bool = true setget _update_allow_music
-
 # Whether to allow the end level animations per level.
 # Defaults to true. Only toggleable with debug mode on.
 var animate_end_levels: bool = true setget _update_animate_end_levels
@@ -51,10 +47,9 @@ var _debug = {
 }
 
 var _defaults = {
-	"allow_music": true,
 	"debug_mode": false,
 	"field_of_view": 0.0,
-	"persist_field_of_view": false,
+	"persist_field_of_view": true,
 	"preferred_locale": OS.get_locale(),
 	"show_mobile_controls": OS.has_touchscreen_ui_hint(),
 	"volume_db_music": 0.7,
@@ -75,11 +70,10 @@ func _init() -> void:
 
 
 func _load_defaults() -> void:
-	allow_music = _config.get_value("defaults", "allow_music", true)
 	animate_end_levels = _config.get_value("debug", "animate_end_levels", true)
 	debug_mode = _config.get_value("defaults", "debug_mode", false)
 	field_of_view = _config.get_value("defaults", "field_of_view", 0.0)
-	persist_field_of_view = _config.get_value("defaults", "persist_field_of_view", false)
+	persist_field_of_view = _config.get_value("defaults", "persist_field_of_view", true)
 	preferred_locale = _config.get_value("defaults", "preferred_locale", OS.get_locale())
 	show_mobile_controls = _config.get_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
 	volume_db_music = _config.get_value("defaults", "volume_db_music", 0.0)
@@ -89,13 +83,6 @@ func _save_defaults() -> void:
 	var _err = _config.save("user://userdefaults.cfg")
 	if _err != OK:
 		push_error(_err)
-
-func _update_allow_music(new_value: bool) -> void:
-	push_warning("UserDefaults.allow_music has been deprecated and will be removed in a future release.")
-	allow_music = new_value
-	_config.set_value("defaults", "allow_music", new_value)
-	_save_defaults()
-	volume_db_music = 1 if new_value else 0
 
 func _update_animate_end_levels(new_value: bool) -> void:
 	animate_end_levels = new_value

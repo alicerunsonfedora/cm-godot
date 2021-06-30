@@ -9,7 +9,6 @@
 class_name SettingsView
 extends WindowDialog
 
-onready var chk_allow_music := $TabContainer/PERF_TAB_AUDIO/VBoxContainer/chk_allow_music as CheckButton
 onready var chk_mobile := $TabContainer/PERF_TAB_GENERAL/VBoxContainer/chk_mobile_controls as CheckButton
 onready var chk_persistent_fov := $TabContainer/PERF_TAB_GENERAL/VBoxContainer/chk_field_of_view as CheckButton
 onready var chk_debug_mode := $TabContainer/PERF_TAB_EXTRA/VBoxContainer/chk_dbg_mode as CheckButton
@@ -20,7 +19,6 @@ onready var _settings: UserDefaults
 
 func _ready() -> void:
 	_settings = UserDefaults.new()
-	chk_allow_music.pressed = _settings.allow_music
 	chk_persistent_fov.pressed = _settings.persist_field_of_view
 	chk_mobile.pressed = _settings.show_mobile_controls
 	chk_debug_mode.pressed = _settings.debug_mode
@@ -34,7 +32,6 @@ func _ready() -> void:
 		chk_mobile.disabled = true
 
 	var _err = chk_persistent_fov.connect("toggled", self, "_chk_fov_toggled")
-	_err = chk_allow_music.connect("toggled", self, "_chk_music_toggled")
 	_err = chk_mobile.connect("toggled", self, "_chk_mobile_toggled")
 	_err = chk_debug_mode.connect("toggled", self, "_chk_debug_toggled")
 	_err = sel_locale.connect("item_selected", self, "_sel_locale_selected")
@@ -54,10 +51,6 @@ func _chk_fov_toggled(value) -> void:
 func _chk_mobile_toggled(value) -> void:
 	chk_mobile.pressed = value
 	_settings.show_mobile_controls = value
-
-func _chk_music_toggled(value) -> void:
-	chk_allow_music.pressed = value
-	_settings.allow_music = value
 
 func _load_locales() -> void:
 	var locales = TranslationServer.get_loaded_locales()
