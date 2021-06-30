@@ -6,8 +6,8 @@
 [ext_resource path="res://assets/fx/lightsource.png" type="Texture" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 10.2351
-height = 18.3891
+radius = 7.73597
+height = 11.6661
 
 [sub_resource type="AnimationNodeAnimation" id=2]
 animation = "idle_front"
@@ -223,10 +223,10 @@ energy = 0.75
 scale = Vector2( 0.9, 0.9 )
 texture = ExtResource( 1 )
 hframes = 24
-frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.264862, 15.7667 )
+position = Vector2( 0.264862, 29.7384 )
+rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="AnimationStateTree" type="AnimationTree" parent="."]
