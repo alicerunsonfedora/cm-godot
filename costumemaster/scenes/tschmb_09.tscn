@@ -103,7 +103,7 @@ shape = SubResource( 3 )
 position = Vector2( 144, -48 )
 INPUTS = [ NodePath("../Plate"), NodePath("../Plate2") ]
 REQUIRE_ALL_INPUTS = true
-NEXT_SCENE = "res://scenes/main.tscn"
+NEXT_SCENE = "res://scenes/tschmb_10.tscn"
 
 [node name="Light2D2" type="Light2D" parent="."]
 position = Vector2( -170.726, -76.9959 )

@@ -1,0 +1,198 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://nodes/obj_player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://nodes/dec_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://nodes/universe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://nodes/obj_exit.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/abstract/input.gd" type="Script" id=6]
+[ext_resource path="res://assets/fx/lightsource.png" type="Texture" id=7]
+[ext_resource path="res://nodes/sig_tileset.tres" type="TileSet" id=8]
+[ext_resource path="res://nodes/obj_door.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/fx/lightsource2.png" type="Texture" id=10]
+[ext_resource path="res://assets/tileset/dec_bedroon.png" type="Texture" id=11]
+[ext_resource path="res://scripts/abstract/movable.gd" type="Script" id=12]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 47.1155, 38.9967 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 11 )
+region = Rect2( 335.577, 491.879, 48.3487, 72.1367 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 30.0579, 37.9578 )
+
+[node name="World" type="Node2D"]
+
+[node name="Universe" parent="." instance=ExtResource( 4 )]
+ALLOWED_COSTUMES = [ 1, 3 ]
+
+[node name="Player" parent="Universe" instance=ExtResource( 1 )]
+position = Vector2( -108.444, -114.793 )
+MASS = 0.7
+FIELD_OF_VIEW = 0.35
+CURRENT_COSTUME = 1
+
+[node name="Layout" type="TileMap" parent="Universe"]
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -589831, 0, 0, -589830, 5, 0, -589829, 5, 0, -589828, 5, 0, -589827, 5, 0, -589826, 5, 0, -589825, 5, 0, -655360, 39, 0, -655359, 5, 0, -655358, 5, 0, -655357, 5, 0, -655356, 5, 0, -655355, 5, 0, -655354, 5, 0, -655353, 4, 0, -524295, 1, 0, -524294, 6, 0, -524293, 6, 0, -524292, 6, 0, -524291, 6, 0, -524290, 6, 0, -524289, 6, 0, -589824, 43, 0, -589823, 6, 0, -589822, 6, 0, -589821, 6, 0, -589820, 6, 0, -589819, 6, 0, -589818, 6, 0, -589817, 11, 0, -458759, 1, 0, -458758, 7, 0, -458757, 8, 0, -458756, 8, 0, -458755, 8, 0, -458754, 8, 0, -458753, 8, 0, -524288, 43, 0, -524287, 7, 0, -524286, 8, 0, -524285, 8, 0, -524284, 8, 0, -524283, 8, 0, -524282, 8, 0, -524281, 11, 0, -393223, 1, 0, -393222, 9, 0, -393221, 10, 0, -393220, 10, 0, -393219, 10, 0, -393218, 10, 0, -393217, 10, 0, -458752, 43, 0, -458751, 9, 0, -458750, 10, 0, -458749, 10, 0, -458748, 10, 0, -458747, 10, 0, -458746, 10, 0, -458745, 11, 0, -327687, 1, 0, -327686, 9, 0, -327685, 10, 0, -327684, 10, 0, -327683, 10, 0, -327682, 10, 0, -327681, 10, 0, -393216, 43, 0, -393215, 9, 0, -393214, 10, 0, -393213, 10, 0, -393212, 10, 0, -393211, 10, 0, -393210, 10, 0, -393209, 11, 0, -262151, 1, 0, -262150, 9, 0, -262149, 10, 0, -262148, 10, 0, -262147, 10, 0, -262146, 10, 0, -262145, 10, 0, -327680, 43, 0, -327679, 9, 0, -327678, 10, 0, -327677, 10, 0, -327676, 10, 0, -327675, 10, 0, -327674, 10, 0, -327673, 11, 0, -196615, 1, 0, -196614, 5, 0, -196613, 9, 0, -196612, 5, 0, -196611, 5, 0, -196610, 5, 0, -196609, 5, 0, -262144, 24, 0, -262143, 5, 0, -262142, 5, 0, -262141, 5, 0, -262140, 9, 0, -262139, 5, 0, -262138, 5, 0, -262137, 11, 0, -131079, 1, 0, -131078, 6, 0, -131077, 9, 0, -131076, 6, 0, -131075, 6, 0, -131074, 6, 0, -131073, 6, 0, -196608, 6, 0, -196607, 6, 0, -196606, 6, 0, -196605, 6, 0, -196604, 9, 0, -196603, 6, 0, -196602, 6, 0, -196601, 11, 0, -65543, 1, 0, -65542, 9, 0, -65541, 8, 0, -65540, 8, 0, -65539, 8, 0, -65538, 8, 0, -65537, 8, 0, -131072, 8, 0, -131071, 8, 0, -131070, 10, 0, -131069, 10, 0, -131068, 10, 0, -131067, 10, 0, -131066, 10, 0, -131065, 11, 0, -7, 1, 0, -6, 9, 0, -5, 10, 0, -4, 10, 0, -3, 10, 0, -2, 10, 0, -1, 10, 0, -65536, 10, 0, -65535, 10, 0, -65534, 10, 0, -65533, 10, 0, -65532, 10, 0, -65531, 10, 0, -65530, 10, 0, -65529, 11, 0, 65529, 1, 0, 65530, 9, 0, 65531, 10, 0, 65532, 10, 0, 65533, 10, 0, 65534, 10, 0, 65535, 10, 0, 0, 10, 0, 1, 10, 0, 2, 10, 0, 3, 10, 0, 4, 10, 0, 5, 10, 0, 6, 10, 0, 7, 11, 0, 131065, 1, 0, 131066, 9, 0, 131067, 10, 0, 131068, 10, 0, 131069, 10, 0, 131070, 10, 0, 131071, 10, 0, 65536, 10, 0, 65537, 10, 0, 65538, 10, 0, 65539, 10, 0, 65540, 10, 0, 65541, 10, 0, 65542, 10, 0, 65543, 11, 0, 196601, 1, 0, 196602, 9, 0, 196603, 10, 0, 196604, 10, 0, 196605, 10, 0, 196606, 16, 0, 196607, 12, 0, 131072, 12, 0, 131073, 15, 0, 131074, 10, 0, 131075, 10, 0, 131076, 10, 0, 131077, 10, 0, 131078, 10, 0, 131079, 11, 0, 262137, 1, 0, 262138, 9, 0, 262139, 10, 0, 262140, 10, 0, 262141, 10, 0, 262142, 11, 0, 196609, 1, 0, 196610, 10, 0, 196611, 10, 0, 196612, 10, 0, 196613, 10, 0, 196614, 10, 0, 196615, 11, 0, 327673, 2, 0, 327674, 12, 0, 327675, 12, 0, 327676, 12, 0, 327677, 12, 0, 327678, 3, 0, 262145, 2, 0, 262146, 12, 0, 262147, 12, 0, 262148, 12, 0, 262149, 12, 0, 262150, 12, 0, 262151, 3, 0 )
+
+[node name="Decor" type="TileMap" parent="Universe/Layout"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -589827, 44, 0, -589826, 66, 0, -655359, 38, 0, -655356, 5, 0, -589821, 54, 0, -393222, 49, 0, -393218, 49, 0, -458749, 49, 0, -196614, 35, 0, -196612, 44, 0, -262144, 42, 0, -262143, 28, 0, -262138, 44, 0, -131074, 12, 0, -196608, 4, 0, -65538, 13, 0, -131071, 43, 0, -2, 14, 0, 65531, 49, 0, 131066, 18, 0, 131069, 20, 0, 65541, 35, 0, 196602, 21, 0, 196603, 11, 0, 131074, 36, 0, 262138, 15, 0, 262140, 16, 0, 262141, 17, 0 )
+
+[node name="Barrier" type="TileMap" parent="Universe/Layout"]
+visible = false
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+collision_layer = 7
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( -655368, 50, 0, -655367, 50, 0, -655366, 50, 0, -655365, 50, 0, -655364, 50, 0, -655363, 50, 0, -655362, 50, 0, -655361, 50, 0, -720896, 50, 0, -720895, 50, 0, -720894, 50, 0, -720893, 50, 0, -720892, 50, 0, -720891, 50, 0, -720890, 50, 0, -720889, 50, 0, -720888, 50, 0, -589832, 50, 0, -655352, 50, 0, -524296, 50, 0, -589816, 50, 0, -458760, 50, 0, -524280, 50, 0, -393224, 50, 0, -458744, 50, 0, -327688, 50, 0, -393208, 50, 0, -262152, 50, 0, -327672, 50, 0, -196616, 50, 0, -262136, 50, 0, -131080, 50, 0, -196600, 50, 0, -65544, 50, 0, -131064, 50, 0, -8, 50, 0, -65528, 50, 0, 65528, 50, 0, 8, 50, 0, 131064, 50, 0, 65544, 50, 0, 196600, 50, 0, 131080, 50, 0, 262136, 50, 0, 262143, 50, 0, 196608, 50, 0, 196616, 50, 0, 327672, 50, 0, 327679, 50, 0, 262144, 50, 0, 262152, 50, 0, 393208, 50, 0, 393209, 50, 0, 393210, 50, 0, 393211, 50, 0, 393212, 50, 0, 393213, 50, 0, 393214, 50, 0, 393215, 50, 0, 327680, 50, 0, 327681, 50, 0, 327682, 50, 0, 327683, 50, 0, 327684, 50, 0, 327685, 50, 0, 327686, 50, 0, 327687, 50, 0, 327688, 50, 0 )
+
+[node name="Signage" type="TileMap" parent="Universe/Layout"]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 48, 48 )
+cell_tile_origin = 1
+format = 1
+tile_data = PoolIntArray( -393212, 39, 0, -327676, 25, 0, -131076, 33, 0, -131075, 28, 0, -65539, 25, 0, -4, 29, 0, -3, 26, 0, 65532, 38, 0 )
+
+[node name="LampLight" type="Light2D" parent="Universe"]
+position = Vector2( 301.71, -99.061 )
+texture = ExtResource( 10 )
+texture_scale = 2.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="LampLight2" type="Light2D" parent="Universe"]
+position = Vector2( -123.655, -382.638 )
+texture = ExtResource( 10 )
+texture_scale = 2.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="LampLight3" type="Light2D" parent="Universe"]
+position = Vector2( -167.731, -112.337 )
+texture = ExtResource( 10 )
+texture_scale = 2.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="Light2D" type="Light2D" parent="Universe"]
+position = Vector2( 257.387, -338.567 )
+scale = Vector2( 1, 2.506 )
+texture = ExtResource( 7 )
+color = Color( 0.698039, 0.858824, 0.933333, 1 )
+energy = 0.3
+shadow_enabled = true
+shadow_gradient_length = 0.3
+shadow_filter = 1
+shadow_filter_smooth = 0.5
+
+[node name="Light2D2" type="Light2D" parent="Universe"]
+position = Vector2( 71, -76 )
+texture = ExtResource( 7 )
+texture_scale = 3.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="Exit" parent="Universe" instance=ExtResource( 5 )]
+position = Vector2( -240, -432 )
+INPUTS = [ NodePath("../Plate_E1"), NodePath("../Plate_E2") ]
+REQUIRE_ALL_INPUTS = true
+NEXT_SCENE = "res://scenes/main.tscn"
+
+[node name="Door" parent="Universe" instance=ExtResource( 9 )]
+position = Vector2( 192, -144 )
+INPUTS = [ NodePath("../Plate_Box") ]
+REQUIRE_ALL_INPUTS = true
+
+[node name="Door2" parent="Universe" instance=ExtResource( 9 )]
+position = Vector2( -240, -144 )
+INPUTS = [ NodePath("../Plate_LDoor") ]
+REQUIRE_ALL_INPUTS = true
+
+[node name="Plate_LDoor" type="Area2D" parent="Universe"]
+position = Vector2( -192, 48 )
+collision_mask = 7
+script = ExtResource( 6 )
+INTERACTION = 1
+PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
+ACTIVE_LIGHT_SCALE = 1.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_LDoor"]
+shape = SubResource( 2 )
+
+[node name="Plate_E1" type="Area2D" parent="Universe"]
+position = Vector2( -240, -288 )
+collision_mask = 7
+script = ExtResource( 6 )
+INTERACTION = 1
+PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
+ACTIVE_LIGHT_SCALE = 1.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_E1"]
+shape = SubResource( 2 )
+
+[node name="Plate_E2" type="Area2D" parent="Universe"]
+position = Vector2( -48, -288 )
+collision_mask = 7
+script = ExtResource( 6 )
+INTERACTION = 1
+PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
+ACTIVE_LIGHT_SCALE = 1.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_E2"]
+shape = SubResource( 2 )
+
+[node name="Plate_Box" type="Area2D" parent="Universe"]
+position = Vector2( 192, -288 )
+collision_mask = 7
+script = ExtResource( 6 )
+INTERACTION = 1
+PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
+ACTIVE_LIGHT_SCALE = 1.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_Box"]
+shape = SubResource( 2 )
+
+[node name="Dresser" type="Area2D" parent="Universe"]
+position = Vector2( 193.079, -310.984 )
+z_index = -1
+script = ExtResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="Universe/Dresser"]
+texture = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Dresser"]
+shape = SubResource( 4 )
