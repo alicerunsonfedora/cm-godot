@@ -22,13 +22,13 @@ points = PoolVector2Array( 0, -38, 76, 40, -76, 40 )
 [sub_resource type="ConvexPolygonShape2D" id=4]
 points = PoolVector2Array( -38, 0, 40, 76, 40, -76 )
 
-[sub_resource type="CircleShape2D" id=7]
-radius = 64.0
-
 [sub_resource type="CircleShape2D" id=5]
 radius = 64.0
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=6]
+radius = 64.0
+
+[sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 36, 36 )
 
 [node name="MobileUI" type="Control"]
@@ -42,7 +42,6 @@ __meta__ = {
 }
 
 [node name="DPad" type="Control" parent="."]
-visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 150.0
@@ -80,6 +79,7 @@ shape = SubResource( 4 )
 action = "move_right"
 
 [node name="JoyPad" type="Control" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 150.0
@@ -97,7 +97,7 @@ texture = ExtResource( 7 )
 
 [node name="Joystick" type="TouchScreenButton" parent="JoyPad/Sprite"]
 normal = ExtResource( 8 )
-shape = SubResource( 7 )
+shape = SubResource( 5 )
 
 [node name="Others" type="Control" parent="."]
 anchor_left = 1.0
@@ -115,7 +115,7 @@ __meta__ = {
 [node name="Interact" type="TouchScreenButton" parent="Others"]
 position = Vector2( -152.592, -133.04 )
 normal = ExtResource( 5 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 action = "interact"
 
 [node name="Toolbar" type="Control" parent="."]
@@ -131,5 +131,5 @@ margin_right = 20.0
 position = Vector2( 0, -64 )
 scale = Vector2( 1.5, 1.5 )
 normal = ExtResource( 6 )
-shape = SubResource( 6 )
+shape = SubResource( 7 )
 action = "ui_pause"
