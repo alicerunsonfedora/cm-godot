@@ -13,14 +13,14 @@
 [ext_resource path="res://assets/tileset/dec_bedroon.png" type="Texture" id=11]
 [ext_resource path="res://scripts/abstract/movable.gd" type="Script" id=12]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 47.1155, 38.9967 )
 
-[sub_resource type="AtlasTexture" id=3]
+[sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 11 )
 region = Rect2( 335.577, 491.879, 48.3487, 72.1367 )
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30.0579, 37.9578 )
 
 [node name="World" type="Node2D"]
@@ -145,7 +145,7 @@ ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
 ACTIVE_LIGHT_SCALE = 1.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_LDoor"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Plate_E1" type="Area2D" parent="Universe"]
 position = Vector2( -240, -288 )
@@ -158,7 +158,7 @@ ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
 ACTIVE_LIGHT_SCALE = 1.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_E1"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Plate_E2" type="Area2D" parent="Universe"]
 position = Vector2( -48, -288 )
@@ -171,7 +171,7 @@ ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
 ACTIVE_LIGHT_SCALE = 1.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_E2"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Plate_Box" type="Area2D" parent="Universe"]
 position = Vector2( 192, -288 )
@@ -184,7 +184,7 @@ ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
 ACTIVE_LIGHT_SCALE = 1.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_Box"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Dresser" type="Area2D" parent="Universe"]
 position = Vector2( 193.079, -310.984 )
@@ -192,7 +192,7 @@ z_index = -1
 script = ExtResource( 12 )
 
 [node name="Sprite" type="Sprite" parent="Universe/Dresser"]
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Dresser"]
-shape = SubResource( 4 )
+shape = SubResource( 3 )

@@ -135,8 +135,8 @@ func _default_acceleration() -> int:
 	return 250
 
 func _get_movement_vector() -> Vector2:
-    if _mobile_movement != Vector2.ZERO:
-			return _mobile_movement
+	if _mobile_movement != Vector2.ZERO:
+		return _mobile_movement
 	var move_vector = Vector2.ZERO
 	move_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	move_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
