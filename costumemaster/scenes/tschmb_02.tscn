@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://nodes/obj_player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=2]
@@ -22,6 +22,9 @@ extents = Vector2( 25.955, 31.1851 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 48, 48 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 76.9084, 97.5592 )
 
 [node name="World" type="Node2D"]
 
@@ -138,6 +141,15 @@ LOAD_DIALOGUE_SET = "tschmb_02"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueCanvas/DialogueTrigger"]
 shape = SubResource( 3 )
 
+[node name="DialogueTrigger2" type="Area2D" parent="Universe/DialogueCanvas"]
+script = ExtResource( 11 )
+INPUTS = [ NodePath("../../DialogueTriggerInput2") ]
+REQUIRE_ALL_INPUTS = true
+LOAD_DIALOGUE_SET = "tschmb_02b"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueCanvas/DialogueTrigger2"]
+shape = SubResource( 3 )
+
 [node name="DialogueTriggerInput" type="Area2D" parent="Universe"]
 position = Vector2( -144, -96 )
 script = ExtResource( 6 )
@@ -146,6 +158,15 @@ SILENT = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueTriggerInput"]
 shape = SubResource( 4 )
+
+[node name="DialogueTriggerInput2" type="Area2D" parent="Universe"]
+position = Vector2( 304, 104 )
+script = ExtResource( 6 )
+INTERACTION = 1
+SILENT = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueTriggerInput2"]
+shape = SubResource( 5 )
 
 [node name="LightLamp" type="Light2D" parent="."]
 position = Vector2( 69.7724, -127.559 )

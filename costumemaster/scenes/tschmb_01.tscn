@@ -10,7 +10,7 @@
 [ext_resource path="res://nodes/sig_tileset.tres" type="TileSet" id=8]
 [ext_resource path="res://scripts/devices/dialogue_trigger.gd" type="Script" id=9]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 11.8832, 38.9967 )
 
 [sub_resource type="LineShape2D" id=2]
@@ -74,7 +74,7 @@ ACTIVE_LIGHT_SCALE = 0.75
 ACTIVE_LIGHT_ENERGY = 0.8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Lever"]
-shape = SubResource( 1 )
+shape = SubResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="Universe"]
 position = Vector2( -170.719, -114.653 )

@@ -13,9 +13,26 @@
         "T02_02",
         "T02_03"
     ],
+    "tschmb_02b": [
+        "T02_04",
+        "T02_05",
+        "T02_06"
+    ],
+    "tschmb_03": [
+        "TIMER_INTRO_01",
+        "TIMER_INTRO_02",
+        "TIMER_INTRO_03",
+        "TIMER_INTRO_04"
+    ],
     "tschmb_04": [
         "BLOCKED_BIRD_01",
         "BLOCKED_BIRD_02",
         "BLOCKED_BIRD_03"
+    ],
+    "tschmb_08": [
+        "CARPET_INTRO_01",
+        "CARPET_INTRO_02",
+        "CARPET_INTRO_03",
+        "CARPET_INTRO_04"
     ]
 }
