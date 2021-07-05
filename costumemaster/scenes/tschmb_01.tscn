@@ -101,6 +101,7 @@ shape = SubResource( 2 )
 position = Vector2( -144, -96 )
 script = ExtResource( 6 )
 INTERACTION = 1
+SILENT = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueTriggerInput"]
 shape = SubResource( 3 )
