@@ -12,5 +12,10 @@
         "T02_01",
         "T02_02",
         "T02_03"
+    ],
+    "tschmb_04": [
+        "BLOCKED_BIRD_01",
+        "BLOCKED_BIRD_02",
+        "BLOCKED_BIRD_03"
     ]
 }
