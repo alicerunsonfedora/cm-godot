@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/abstract/output.gd"
 }, {
+"base": "Popup",
+"class": "Dialogue",
+"language": "GDScript",
+"path": "res://scripts/interfaces/dialogue.gd"
+}, {
+"base": "AbstractOutput",
+"class": "DialogueTrigger",
+"language": "GDScript",
+"path": "res://scripts/devices/dialogue_trigger.gd"
+}, {
 "base": "AbstractOutput",
 "class": "Door",
 "language": "GDScript",
@@ -38,6 +48,11 @@ _global_script_classes=[ {
 "class": "HUD",
 "language": "GDScript",
 "path": "res://scripts/interfaces/hud.gd"
+}, {
+"base": "Control",
+"class": "MobileInterface",
+"language": "GDScript",
+"path": "res://scripts/interfaces/mobile.gd"
 }, {
 "base": "Area2D",
 "class": "MovableObject",
@@ -77,10 +92,13 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "AbstractInput": "",
 "AbstractOutput": "",
+"Dialogue": "",
+"DialogueTrigger": "",
 "Door": "",
 "ExitDoor": "",
 "GDConfineScript": "",
 "HUD": "",
+"MobileInterface": "",
 "MovableObject": "",
 "Player": "",
 "SaveState": "",
@@ -266,7 +284,7 @@ pointing/emulate_touch_from_mouse=true
 
 [locale]
 
-translations=PoolStringArray( "res://translations/translations.en.translation" )
+translations=PoolStringArray( "res://translations/translations.en.translation", "res://translations/dialogue.translations.en.translation" )
 locale_filter=[ 0, [ "en" ] ]
 
 [physics]
@@ -276,6 +294,7 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 batching/lights/scissor_area_threshold=0.7

@@ -34,6 +34,9 @@ export var ACTIVE_LIGHT_SCALE: float = 1
 # The brightness of the light when activated.
 export var ACTIVE_LIGHT_ENERGY: float = 1
 
+# Whether to not play any noises.
+export var SILENT: bool = false
+
 var _active: bool = false
 var _entered = []
 var _listening_for_keypress = false
@@ -76,14 +79,16 @@ func _activate() -> void:
 	emit_signal("input_active", get_name())
 	if LIGHT_WHEN_ACTIVE:
 		_light.visible = true
-	_audio.play()
+	if not SILENT:
+		_audio.play()
 	if PERMANENT:
 		_permalock = true
 	if DURATION > 0:
 		_timer.start()
 		_hud_timer.visible = true
-		_make_audio_tick()
-		_audio.play()
+		if not SILENT:
+			_make_audio_tick()
+			_audio.play()
 
 # Deactivate the input device.
 # If the duration is a non-zero value, the internal timer will stop.
@@ -94,7 +99,8 @@ func _deactivate() -> void:
 	_make_audio_turnoff()
 	if LIGHT_WHEN_ACTIVE:
 		_light.visible = false
-	_audio.play()
+	if not SILENT:
+		_audio.play()
 	if DURATION > 0:
 		_timer.stop()
 		_hud_timer.visible = false

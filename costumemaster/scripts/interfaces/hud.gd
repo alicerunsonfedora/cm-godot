@@ -90,6 +90,11 @@ func disable_unused(allowed: Array) -> void:
 		switch_none.disabled = true
 		switch_none.visible = false
 
+func get_mobile_from_joypad() -> Vector2:
+		if not mobile_ui.visible:
+				return Vector2.ZERO
+		return mobile_ui.get_joypad_value()
+
 # Set tbe bounds for the field of view slider on the HUD.
 # Parameters:
 # 	min_value: The absolute minimum field of view for the level.

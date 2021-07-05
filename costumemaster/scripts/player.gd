@@ -53,6 +53,7 @@ var _can_move = true
 var _collision_velocity = Vector2.ZERO
 var _has_item = false
 var _hint = PlayerHint.NONE
+var _mobile_movement = Vector2.ZERO
 var _near_item = false
 var _velocity = Vector2.ZERO
 
@@ -134,6 +135,8 @@ func _default_acceleration() -> int:
 	return 250
 
 func _get_movement_vector() -> Vector2:
+	if _mobile_movement != Vector2.ZERO:
+		return _mobile_movement
 	var move_vector = Vector2.ZERO
 	move_vector.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	move_vector.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -185,6 +188,9 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 		_play_cant_use_sound()
 	elif event.get_action_strength("clone"):
 		emit_signal("wants_clone")
+
+func _update_mobile_movement(new_value: Vector2) -> void:
+		_mobile_movement = new_value
 
 func _update_player_camera(value: float):
 	FIELD_OF_VIEW = value

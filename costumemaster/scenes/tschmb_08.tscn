@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://nodes/obj_player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/tileset/dec_bedroon.png" type="Texture" id=9]
 [ext_resource path="res://scripts/abstract/movable.gd" type="Script" id=10]
 [ext_resource path="res://nodes/sig_tileset.tres" type="TileSet" id=11]
+[ext_resource path="res://scripts/devices/dialogue_trigger.gd" type="Script" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 47.1155, 38.9967 )
@@ -24,6 +25,11 @@ region = Rect2( 335.577, 491.879, 48.3487, 72.1367 )
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 30.0579, 37.9578 )
+
+[sub_resource type="LineShape2D" id=5]
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 48, 48 )
 
 [node name="World" type="Node2D"]
 
@@ -127,6 +133,26 @@ position = Vector2( 144, -48 )
 INPUTS = [ NodePath("../Plate"), NodePath("../Computer") ]
 REQUIRE_ALL_INPUTS = true
 NEXT_SCENE = "res://scenes/tschmb_09.tscn"
+
+[node name="DialogueCanvas" type="CanvasLayer" parent="Universe"]
+
+[node name="DialogueTrigger" type="Area2D" parent="Universe/DialogueCanvas"]
+script = ExtResource( 12 )
+INPUTS = [ NodePath("../../DialogueTriggerInput") ]
+REQUIRE_ALL_INPUTS = true
+LOAD_DIALOGUE_SET = "tschmb_08"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueCanvas/DialogueTrigger"]
+shape = SubResource( 5 )
+
+[node name="DialogueTriggerInput" type="Area2D" parent="Universe"]
+position = Vector2( -96, 0 )
+script = ExtResource( 6 )
+INTERACTION = 1
+SILENT = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueTriggerInput"]
+shape = SubResource( 6 )
 
 [node name="LightLamp2" type="Light2D" parent="."]
 position = Vector2( 260.64, 112.014 )
