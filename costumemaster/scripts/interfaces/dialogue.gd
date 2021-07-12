@@ -36,7 +36,6 @@ func load_json_values() -> void:
 		push_error("Unexpected JSON format.")
 
 	_dialogue = json_data.result[DIALOGUE_SET]
-	print_debug(_dialogue)
 
 func _pop_dialogue() -> void:
 	var new = _dialogue.pop_front()
