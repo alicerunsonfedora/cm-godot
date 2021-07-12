@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://scripts/interfaces/hud.gd" type="Script" id=1]
 [ext_resource path="res://assets/gui/theme.tres" type="Theme" id=2]
@@ -11,52 +11,65 @@
 [ext_resource path="res://assets/gui/hud/restart.png" type="Texture" id=9]
 [ext_resource path="res://assets/gui/UI_48x48.png" type="Texture" id=10]
 [ext_resource path="res://interface/mobile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/gui/controller.png" type="Texture" id=12]
 
-[sub_resource type="InputEventAction" id=1]
-action = "costume_change_flash"
-
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 12 )
+region = Rect2( 3, 15, 42, 21 )
 
 [sub_resource type="InputEventAction" id=3]
-action = "costume_change_bird"
+action = "costume_change_flash"
 
 [sub_resource type="ShortCut" id=4]
 shortcut = SubResource( 3 )
 
 [sub_resource type="InputEventAction" id=5]
-action = "costume_change_magic"
+action = "costume_change_bird"
 
 [sub_resource type="ShortCut" id=6]
 shortcut = SubResource( 5 )
 
 [sub_resource type="InputEventAction" id=7]
-action = "costume_change_all"
+action = "costume_change_magic"
 
 [sub_resource type="ShortCut" id=8]
 shortcut = SubResource( 7 )
 
 [sub_resource type="InputEventAction" id=9]
-action = "costume_change_none"
+action = "costume_change_all"
 
 [sub_resource type="ShortCut" id=10]
 shortcut = SubResource( 9 )
 
 [sub_resource type="InputEventAction" id=11]
-action = "restart"
+action = "costume_change_none"
 
 [sub_resource type="ShortCut" id=12]
 shortcut = SubResource( 11 )
 
-[sub_resource type="AtlasTexture" id=13]
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 12 )
+region = Rect2( 51, 15, 42, 21 )
+
+[sub_resource type="InputEventAction" id=13]
+action = "restart"
+
+[sub_resource type="ShortCut" id=14]
+shortcut = SubResource( 13 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 12 )
+region = Rect2( 249, 9, 30, 33 )
+
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 10 )
 region = Rect2( 102.05, 191.902, 36.347, 48 )
 
-[sub_resource type="AtlasTexture" id=14]
+[sub_resource type="AtlasTexture" id=16]
 atlas = ExtResource( 10 )
 region = Rect2( 482.728, 194.409, 41.885, 48 )
 
-[sub_resource type="DynamicFont" id=15]
+[sub_resource type="DynamicFont" id=17]
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 7 )
@@ -87,13 +100,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CtrlrCostumeLeft" type="TextureRect" parent="Toolbar"]
+margin_right = 48.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 48, 48 )
+texture = SubResource( 1 )
+expand = true
+stretch_mode = 6
+
 [node name="FlashCostume" type="Button" parent="Toolbar"]
-margin_right = 64.0
+margin_left = 56.0
+margin_right = 120.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_FLASH"
 shortcut_in_tooltip = false
-shortcut = SubResource( 2 )
+shortcut = SubResource( 4 )
 icon = ExtResource( 6 )
 expand_icon = true
 __meta__ = {
@@ -101,13 +123,13 @@ __meta__ = {
 }
 
 [node name="BirdCostume" type="Button" parent="Toolbar"]
-margin_left = 72.0
-margin_right = 136.0
+margin_left = 128.0
+margin_right = 192.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_BIRD"
 shortcut_in_tooltip = false
-shortcut = SubResource( 4 )
+shortcut = SubResource( 6 )
 icon = ExtResource( 3 )
 expand_icon = true
 __meta__ = {
@@ -115,13 +137,13 @@ __meta__ = {
 }
 
 [node name="MagiCostume" type="Button" parent="Toolbar"]
-margin_left = 144.0
-margin_right = 208.0
+margin_left = 200.0
+margin_right = 264.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_MAGIC"
 shortcut_in_tooltip = false
-shortcut = SubResource( 6 )
+shortcut = SubResource( 8 )
 icon = ExtResource( 4 )
 expand_icon = true
 __meta__ = {
@@ -129,13 +151,13 @@ __meta__ = {
 }
 
 [node name="MegaCostume" type="Button" parent="Toolbar"]
-margin_left = 216.0
-margin_right = 280.0
+margin_left = 272.0
+margin_right = 336.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_MEGA"
 shortcut_in_tooltip = false
-shortcut = SubResource( 8 )
+shortcut = SubResource( 10 )
 icon = ExtResource( 8 )
 expand_icon = true
 __meta__ = {
@@ -143,23 +165,32 @@ __meta__ = {
 }
 
 [node name="NoneCostume" type="Button" parent="Toolbar"]
-margin_left = 288.0
-margin_right = 352.0
+margin_left = 344.0
+margin_right = 408.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_NONE"
 shortcut_in_tooltip = false
-shortcut = SubResource( 10 )
+shortcut = SubResource( 12 )
 icon = ExtResource( 5 )
 expand_icon = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CtrlrCostumeRight" type="TextureRect" parent="Toolbar"]
+margin_left = 416.0
+margin_right = 464.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 48, 48 )
+texture = SubResource( 2 )
+expand = true
+stretch_mode = 6
+
 [node name="VSeparator" type="VSeparator" parent="Toolbar"]
 modulate = Color( 1, 1, 1, 0 )
-margin_left = 360.0
-margin_right = 368.0
+margin_left = 472.0
+margin_right = 480.0
 margin_bottom = 3.0
 size_flags_horizontal = 2
 size_flags_vertical = 0
@@ -168,15 +199,24 @@ __meta__ = {
 }
 
 [node name="Restart" type="Button" parent="Toolbar"]
-margin_left = 1183.0
-margin_right = 1247.0
+margin_left = 1127.0
+margin_right = 1191.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_RESTART"
 shortcut_in_tooltip = false
-shortcut = SubResource( 12 )
+shortcut = SubResource( 14 )
 icon = ExtResource( 9 )
 expand_icon = true
+
+[node name="CtrlrRestart" type="TextureRect" parent="Toolbar"]
+margin_left = 1199.0
+margin_right = 1247.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 48, 48 )
+texture = SubResource( 18 )
+expand = true
+stretch_mode = 6
 
 [node name="AuxToolbar" type="HBoxContainer" parent="."]
 anchor_top = 1.0
@@ -394,7 +434,7 @@ margin_left = 208.0
 margin_right = 240.0
 margin_bottom = 41.0
 rect_min_size = Vector2( 32, 41 )
-texture = SubResource( 13 )
+texture = SubResource( 15 )
 expand = true
 stretch_mode = 5
 __meta__ = {
@@ -406,7 +446,7 @@ margin_left = 248.0
 margin_right = 279.0
 margin_bottom = 41.0
 rect_min_size = Vector2( 31, 41 )
-texture = SubResource( 14 )
+texture = SubResource( 16 )
 expand = true
 stretch_mode = 5
 __meta__ = {
@@ -464,7 +504,7 @@ margin_top = 14.0
 margin_right = 464.0
 margin_bottom = 50.0
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 17 )
 text = "TUT_COSTUME"
 autowrap = true
 
@@ -494,7 +534,7 @@ margin_top = 14.0
 margin_right = 464.0
 margin_bottom = 50.0
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 17 )
 text = "TUT_RESTART"
 align = 2
 autowrap = true
@@ -527,7 +567,7 @@ margin_top = 11.0
 margin_right = 308.0
 margin_bottom = 47.0
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 15 )
+custom_fonts/font = SubResource( 17 )
 text = "TUT_FOV_SLIDER"
 align = 2
 autowrap = true
