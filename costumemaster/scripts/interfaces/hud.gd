@@ -34,7 +34,10 @@ var _costume_rocker = Player.CostumeType.DEFAULT as float
 
 func _ready() -> void:
 	_button_connect()
-	if not _has_controller():
+	if _has_controller():
+		$PanelInteract/VBoxContainer/HBoxContainer/Key_Interact.visible = false
+		$PanelInteract/VBoxContainer/HBoxContainer2/Key_Clone.visible = false
+	else:
 		_disable_controller_hints()
 	var _err = tut_timer.connect("timeout", self, "_on_timer_timeout")
 	if _err != OK:
@@ -144,6 +147,8 @@ func _disable_all_btn() -> void:
 		child.visible = false
 
 func _disable_controller_hints() -> void:
+	$PanelInteract/VBoxContainer/HBoxContainer/CtrlrInteract.visible = false
+	$PanelInteract/VBoxContainer/HBoxContainer2/CtrlrClone.visible = false
 	for child in $Toolbar.get_children():
 		if not child.name.begins_with("Ctrlr"): continue
 		child.visible = false

@@ -1,6 +1,8 @@
 # Godot-specific files
 **/.import/
 **.import
+**/export_presets.cfg
+**.translation
 
 # macOS-specific files
 .DS_Store

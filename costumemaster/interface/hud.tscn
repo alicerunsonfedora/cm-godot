@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://scripts/interfaces/hud.gd" type="Script" id=1]
 [ext_resource path="res://assets/gui/theme.tres" type="Theme" id=2]
@@ -17,37 +17,37 @@
 atlas = ExtResource( 12 )
 region = Rect2( 3, 15, 42, 21 )
 
-[sub_resource type="InputEventAction" id=3]
+[sub_resource type="InputEventAction" id=2]
 action = "costume_change_flash"
 
-[sub_resource type="ShortCut" id=4]
-shortcut = SubResource( 3 )
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
-[sub_resource type="InputEventAction" id=5]
+[sub_resource type="InputEventAction" id=4]
 action = "costume_change_bird"
 
-[sub_resource type="ShortCut" id=6]
-shortcut = SubResource( 5 )
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
 
-[sub_resource type="InputEventAction" id=7]
+[sub_resource type="InputEventAction" id=6]
 action = "costume_change_magic"
 
-[sub_resource type="ShortCut" id=8]
-shortcut = SubResource( 7 )
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
 
-[sub_resource type="InputEventAction" id=9]
+[sub_resource type="InputEventAction" id=8]
 action = "costume_change_all"
 
-[sub_resource type="ShortCut" id=10]
-shortcut = SubResource( 9 )
+[sub_resource type="ShortCut" id=9]
+shortcut = SubResource( 8 )
 
-[sub_resource type="InputEventAction" id=11]
+[sub_resource type="InputEventAction" id=10]
 action = "costume_change_none"
 
-[sub_resource type="ShortCut" id=12]
-shortcut = SubResource( 11 )
+[sub_resource type="ShortCut" id=11]
+shortcut = SubResource( 10 )
 
-[sub_resource type="AtlasTexture" id=2]
+[sub_resource type="AtlasTexture" id=12]
 atlas = ExtResource( 12 )
 region = Rect2( 51, 15, 42, 21 )
 
@@ -57,19 +57,27 @@ action = "restart"
 [sub_resource type="ShortCut" id=14]
 shortcut = SubResource( 13 )
 
-[sub_resource type="AtlasTexture" id=18]
+[sub_resource type="AtlasTexture" id=15]
 atlas = ExtResource( 12 )
 region = Rect2( 249, 9, 30, 33 )
 
-[sub_resource type="AtlasTexture" id=15]
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 12 )
+region = Rect2( 297, 9, 30, 33 )
+
+[sub_resource type="AtlasTexture" id=17]
 atlas = ExtResource( 10 )
 region = Rect2( 102.05, 191.902, 36.347, 48 )
 
-[sub_resource type="AtlasTexture" id=16]
+[sub_resource type="AtlasTexture" id=18]
 atlas = ExtResource( 10 )
 region = Rect2( 482.728, 194.409, 41.885, 48 )
 
-[sub_resource type="DynamicFont" id=17]
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 12 )
+region = Rect2( 201, 9, 30, 33 )
+
+[sub_resource type="DynamicFont" id=19]
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 7 )
@@ -88,6 +96,8 @@ __meta__ = {
 }
 
 [node name="MobileUI" parent="." instance=ExtResource( 11 )]
+margin_left = 1.55389
+margin_right = 1.55396
 
 [node name="Toolbar" type="HBoxContainer" parent="."]
 anchor_right = 1.0
@@ -115,7 +125,7 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_FLASH"
 shortcut_in_tooltip = false
-shortcut = SubResource( 4 )
+shortcut = SubResource( 3 )
 icon = ExtResource( 6 )
 expand_icon = true
 __meta__ = {
@@ -129,7 +139,7 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_BIRD"
 shortcut_in_tooltip = false
-shortcut = SubResource( 6 )
+shortcut = SubResource( 5 )
 icon = ExtResource( 3 )
 expand_icon = true
 __meta__ = {
@@ -143,7 +153,7 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_MAGIC"
 shortcut_in_tooltip = false
-shortcut = SubResource( 8 )
+shortcut = SubResource( 7 )
 icon = ExtResource( 4 )
 expand_icon = true
 __meta__ = {
@@ -157,7 +167,7 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_MEGA"
 shortcut_in_tooltip = false
-shortcut = SubResource( 10 )
+shortcut = SubResource( 9 )
 icon = ExtResource( 8 )
 expand_icon = true
 __meta__ = {
@@ -171,7 +181,7 @@ margin_bottom = 64.0
 rect_min_size = Vector2( 64, 64 )
 hint_tooltip = "HUD_COST_NONE"
 shortcut_in_tooltip = false
-shortcut = SubResource( 12 )
+shortcut = SubResource( 11 )
 icon = ExtResource( 5 )
 expand_icon = true
 __meta__ = {
@@ -183,7 +193,7 @@ margin_left = 416.0
 margin_right = 464.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 48, 48 )
-texture = SubResource( 2 )
+texture = SubResource( 12 )
 expand = true
 stretch_mode = 6
 
@@ -214,7 +224,7 @@ margin_left = 1199.0
 margin_right = 1247.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 48, 48 )
-texture = SubResource( 18 )
+texture = SubResource( 15 )
 expand = true
 stretch_mode = 6
 
@@ -260,7 +270,7 @@ value = 0.3
 scrollable = false
 
 [node name="PanelMove" type="Panel" parent="."]
-modulate = Color( 1, 1, 1, 0.54902 )
+modulate = Color( 1, 1, 1, 0.666667 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 16.0
@@ -284,9 +294,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
-margin_top = 13.0
+margin_top = 28.0
 margin_right = 240.0
-margin_bottom = 54.0
+margin_bottom = 69.0
 alignment = 2
 
 [node name="Key_MoveUp" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer"]
@@ -309,9 +319,9 @@ size_flags_horizontal = 3
 text = "TUT_MOVE_UP"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
-margin_top = 62.0
+margin_top = 77.0
 margin_right = 240.0
-margin_bottom = 103.0
+margin_bottom = 118.0
 
 [node name="Key_MoveLeft" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer2"]
 margin_right = 41.0
@@ -335,9 +345,9 @@ __meta__ = {
 }
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
-margin_top = 111.0
+margin_top = 126.0
 margin_right = 240.0
-margin_bottom = 152.0
+margin_bottom = 167.0
 
 [node name="Key_MoveDown" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer3"]
 margin_right = 41.0
@@ -358,9 +368,9 @@ size_flags_horizontal = 3
 text = "TUT_MOVE_DOWN"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
-margin_top = 160.0
+margin_top = 175.0
 margin_right = 240.0
-margin_bottom = 201.0
+margin_bottom = 216.0
 
 [node name="Key_MoveRight" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer4"]
 margin_right = 41.0
@@ -381,7 +391,7 @@ size_flags_horizontal = 3
 text = "TUT_MOVE_RIGHT"
 
 [node name="PanelInteract" type="Panel" parent="."]
-modulate = Color( 1, 1, 1, 0.54902 )
+modulate = Color( 1, 1, 1, 0.666667 )
 anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
@@ -407,14 +417,14 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelInteract/VBoxContainer"]
-margin_top = 10.0
-margin_right = 279.0
+margin_top = 3.0
+margin_right = 391.0
 margin_bottom = 51.0
 alignment = 2
 
 [node name="Key_Interact" type="RichTextLabel" parent="PanelInteract/VBoxContainer/HBoxContainer"]
 margin_right = 41.0
-margin_bottom = 41.0
+margin_bottom = 48.0
 grow_horizontal = 0
 rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
@@ -422,19 +432,29 @@ bbcode_text = "[color=#f0c188]E[/color]"
 text = "E"
 scroll_active = false
 
-[node name="Interact" type="Label" parent="PanelInteract/VBoxContainer/HBoxContainer"]
+[node name="CtrlrInteract" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer"]
 margin_left = 49.0
-margin_right = 200.0
-margin_bottom = 41.0
+margin_right = 97.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = SubResource( 20 )
+expand = true
+stretch_mode = 6
+
+[node name="Interact" type="Label" parent="PanelInteract/VBoxContainer/HBoxContainer"]
+margin_left = 105.0
+margin_top = 3.0
+margin_right = 312.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 text = "TUT_INTERACT"
 
 [node name="TextureRect" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer"]
-margin_left = 208.0
-margin_right = 240.0
-margin_bottom = 41.0
+margin_left = 320.0
+margin_right = 352.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 32, 41 )
-texture = SubResource( 15 )
+texture = SubResource( 17 )
 expand = true
 stretch_mode = 5
 __meta__ = {
@@ -442,11 +462,11 @@ __meta__ = {
 }
 
 [node name="TextureRect2" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer"]
-margin_left = 248.0
-margin_right = 279.0
-margin_bottom = 41.0
+margin_left = 360.0
+margin_right = 391.0
+margin_bottom = 48.0
 rect_min_size = Vector2( 31, 41 )
-texture = SubResource( 16 )
+texture = SubResource( 18 )
 expand = true
 stretch_mode = 5
 __meta__ = {
@@ -455,13 +475,13 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelInteract/VBoxContainer"]
 margin_top = 59.0
-margin_right = 279.0
-margin_bottom = 100.0
+margin_right = 391.0
+margin_bottom = 107.0
 alignment = 2
 
 [node name="Key_Clone" type="RichTextLabel" parent="PanelInteract/VBoxContainer/HBoxContainer2"]
 margin_right = 41.0
-margin_bottom = 41.0
+margin_bottom = 48.0
 grow_horizontal = 0
 rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
@@ -469,10 +489,20 @@ bbcode_text = "[color=#f0c188]C[/color]"
 text = "C"
 scroll_active = false
 
-[node name="Clone" type="Label" parent="PanelInteract/VBoxContainer/HBoxContainer2"]
+[node name="CtrlrClone" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer2"]
 margin_left = 49.0
-margin_right = 279.0
-margin_bottom = 41.0
+margin_right = 97.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 48 )
+texture = SubResource( 21 )
+expand = true
+stretch_mode = 6
+
+[node name="Clone" type="Label" parent="PanelInteract/VBoxContainer/HBoxContainer2"]
+margin_left = 105.0
+margin_top = 3.0
+margin_right = 391.0
+margin_bottom = 44.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 text = "TUT_CLONE"
@@ -504,7 +534,7 @@ margin_top = 14.0
 margin_right = 464.0
 margin_bottom = 50.0
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 19 )
 text = "TUT_COSTUME"
 autowrap = true
 
@@ -534,7 +564,7 @@ margin_top = 14.0
 margin_right = 464.0
 margin_bottom = 50.0
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 19 )
 text = "TUT_RESTART"
 align = 2
 autowrap = true
@@ -567,7 +597,7 @@ margin_top = 11.0
 margin_right = 308.0
 margin_bottom = 47.0
 size_flags_vertical = 6
-custom_fonts/font = SubResource( 17 )
+custom_fonts/font = SubResource( 19 )
 text = "TUT_FOV_SLIDER"
 align = 2
 autowrap = true

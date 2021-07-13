@@ -16,20 +16,31 @@ onready var win_settings = $CanvasLayer/Control/SettingsView as SettingsView
 
 func _ready() -> void:
 	settings = UserDefaults.new()
+	_btn_connect()
+	_btn_hide_quit_for_mobile()
+	
+	# Autoselect start if a controller is connected. This lets controllers select the
+	# main menu.
+	if len(Input.get_connected_joypads()) > 0:
+		btn_start.grab_focus()
+	
+	var sv_utils = SaveUtils.new()
+	if not sv_utils.save_exists():
+		btn_resume.disabled = true
+		
+func _btn_connect() -> void:
 	var _err = btn_start.connect("button_up", self, "_btn_start_press")
 	_err = btn_resume.connect("button_up", self, "_btn_resume_press")
 	_err = btn_options.connect("button_up", self, "_btn_options_press")
 	_err = btn_quit.connect("button_up", self, "_btn_quit_press")
 	if _err != OK:
 		push_error(_err)
-	
-	if OS.get_name() in ["HTML5", "iOS", "Android"]:
-		btn_quit.disabled = true
-		btn_quit.visible = false
 
-	var sv_utils = SaveUtils.new()
-	if not sv_utils.save_exists():
-		btn_resume.disabled = true
+func _btn_hide_quit_for_mobile() -> void:
+	if not OS.get_name() in ["HTML5", "iOS", "Android"]:
+		return
+	btn_quit.disabled = true
+	btn_quit.visible = false
 
 func _btn_options_press() -> void:
 	win_settings.show()
