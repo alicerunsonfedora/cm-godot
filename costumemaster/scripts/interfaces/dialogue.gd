@@ -5,10 +5,13 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
-# UI scene that shows a piece of dialogue from a character.
+# UI scene that shows a piece of dialogue from a character via translations.
+# For a specified key (DIALOGUE_SET), the dialogue system will load the appropriate line of text that
+# coresponds to the user's preferred locale, if supported.
 class_name Dialogue
 extends Popup
 
+# The name of the dialogue set to load. This should correspond to a key in the dialogue file.
 export var DIALOGUE_SET: String = "tschmb_00"
 
 var _dialogue: Array = []
@@ -21,7 +24,11 @@ func _ready():
 	if not _dialogue.empty():
 		_pop_dialogue()
 	next_button.connect("pressed", self, "_on_button_press")
+	
+	if len(Input.get_connected_joypads()) < 1:
+		next_button.icon = null
 
+# Load the dialogue information from the dialogue JSON file.
 func load_json_values() -> void:
 	var json_file = File.new()
 	if not json_file.file_exists("res://dialogue.json"):
@@ -36,7 +43,6 @@ func load_json_values() -> void:
 		push_error("Unexpected JSON format.")
 
 	_dialogue = json_data.result[DIALOGUE_SET]
-	print_debug(_dialogue)
 
 func _pop_dialogue() -> void:
 	var new = _dialogue.pop_front()

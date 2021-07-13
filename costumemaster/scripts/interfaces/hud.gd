@@ -34,6 +34,11 @@ var _costume_rocker = Player.CostumeType.DEFAULT as float
 
 func _ready() -> void:
 	_button_connect()
+	if _has_controller():
+		$PanelInteract/VBoxContainer/HBoxContainer/Key_Interact.visible = false
+		$PanelInteract/VBoxContainer/HBoxContainer2/Key_Clone.visible = false
+	else:
+		_disable_controller_hints()
 	var _err = tut_timer.connect("timeout", self, "_on_timer_timeout")
 	if _err != OK:
 		push_error(_err)
@@ -66,12 +71,16 @@ func disable_tut_walk() -> void:
 func disable_restart() -> void:
 	btn_restart.disabled = true
 	btn_restart.visible = false
+	if _has_controller():
+		$Toolbar/CtrlrRestart.visible = false
 
 # Disable buttons that will not be in use for the level.
 # Parameters:
 # 	allowed: An array of costumes to allow; i.e., remain enabled.
 func disable_unused(allowed: Array) -> void:
 	if len(allowed) < 2:
+		$Toolbar/CtrlrCostumeLeft.visible = false
+		$Toolbar/CtrlrCostumeRight.visible = false
 		_disable_all_btn()
 		return
 	
@@ -136,6 +145,16 @@ func _disable_all_btn() -> void:
 		if not child is Button or child.name == "Restart": continue
 		child.disabled = true
 		child.visible = false
+
+func _disable_controller_hints() -> void:
+	$PanelInteract/VBoxContainer/HBoxContainer/CtrlrInteract.visible = false
+	$PanelInteract/VBoxContainer/HBoxContainer2/CtrlrClone.visible = false
+	for child in $Toolbar.get_children():
+		if not child.name.begins_with("Ctrlr"): continue
+		child.visible = false
+
+func _has_controller() -> bool:
+	return len(Input.get_connected_joypads()) > 0
 
 func _on_timer_timeout() -> void:
 	var original = tut_cost.modulate
