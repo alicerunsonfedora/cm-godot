@@ -21,8 +21,11 @@ _The Costumemaster: Reloaded_ is a modern reimagining of the original game relea
 - (Optional) Xcode 12 or better, for signing certificates and iOS exports
 - (Optional) iconutil, for creating the Mac icon file
 - (Optional) Aseprite, for making the sprite files
+- (Optional) clickable, for making the Ubuntu Touch variant
 
 Clone the repository code from GitHub via `git clone`, then open the project in Godot. To export the projects, edit the signing configurations under **Project &rsaquo; Export...** for each platform you want to distribute to, then click "Export Project" for each project.
+
+For instructions on how to build the Ubuntu Touch version of the game, consult the [README file in the clickable subdirectory](./clickable/README.md).
 
 ## Debugging options
 
