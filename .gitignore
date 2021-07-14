@@ -3,6 +3,7 @@
 **.import
 **/export_presets.cfg
 **.translation
+clickable/costumemaster.pck
 
 # macOS-specific files
 .DS_Store
