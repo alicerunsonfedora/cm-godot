@@ -1,0 +1,48 @@
+name: Clickable
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    name: Publish clickable package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone source
+        uses: actions/checkout@v2
+      - name: Install clickable dependencies
+        run: |
+          sudo add-apt-repository ppa:bhdouglass/clickable
+          sudo apt update
+          sudo apt install -y containerd docker.io runc clickable
+          sudo systemctl unmask docker.service
+          sudo systemctl start docker.service
+      - name: Add export_presets.cfg
+        run: | 
+          echo $EXPORT_PRESETS_CFG > costumemaster/export_presets.cfg
+        env:
+          EXPORT_PRESETS_CFG: ${{ secrets.EXPORT_PRESETS_CFG }}
+      - name: Build Godot project
+        id: build_godot
+        uses: josephbmanley/build-godot-action@v1.4.1
+        with:
+          name: "costumemaster"
+          preset: "Linux/X11" 
+          projectDir: "costumemaster"
+          debugMode: "false"
+      - name: Copy Costumemaster pack file
+        run: |
+          cp build/*.pck clickable/
+      - name: Run Clickable
+        run: |
+          cd clickable
+          clickable build
+      - name: Butler Push
+        uses: josephbmanley/butler-publish-itchio-action@v1.0.2
+        env:
+          BUTLER_CREDENTIALS: ${{ secrets.ITCH_API_KEY }}
+          CHANNEL: clickable
+          ITCH_GAME: costumemaster-reloaded
+          ITCH_USER: marquiskurt
+          VERSION: ${{ github.event.release.tag_name }}
+
