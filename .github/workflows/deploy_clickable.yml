@@ -14,7 +14,7 @@ jobs:
         run: |
           sudo add-apt-repository ppa:bhdouglass/clickable
           sudo apt update
-          sudo apt install -y containerd docker.io runc clickable
+          sudo apt install -y zip containerd docker.io runc clickable
           sudo systemctl unmask docker.service
           sudo systemctl start docker.service
       - name: Add export_presets.cfg
@@ -37,6 +37,7 @@ jobs:
         run: |
           cd clickable
           clickable build
+          zip costumemaster_clickable.zip *.click 
       - name: Butler Push
         uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         env:
@@ -45,4 +46,4 @@ jobs:
           ITCH_GAME: costumemaster-reloaded
           ITCH_USER: marquiskurt
           VERSION: ${{ github.event.release.tag_name }}
-          PACKAGE: clickable/build/costumemaster*.click
+          PACKAGE: clickable/build/costumemaster_clickable.zip
