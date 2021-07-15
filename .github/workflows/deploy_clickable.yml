@@ -45,4 +45,4 @@ jobs:
           ITCH_GAME: costumemaster-reloaded
           ITCH_USER: marquiskurt
           VERSION: ${{ github.event.release.tag_name }}
-
+          PACKAGE: clickable/build/costumemaster*.click
