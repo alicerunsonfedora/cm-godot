@@ -132,6 +132,7 @@ window/dpi/allow_hidpi=true
 window/handheld/orientation="sensor"
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+window/handheld/orientation.iOS="sensor_landscape"
 
 [gui]
 
@@ -300,6 +301,7 @@ quality/intended_usage/framebuffer_allocation.mobile=0
 2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
+vram_compression/import_pvrtc=true
 batching/lights/scissor_area_threshold=0.7
 gles2/compatibility/disable_half_float=true
 environment/default_clear_color=Color( 0.0117647, 0, 0.0470588, 1 )
