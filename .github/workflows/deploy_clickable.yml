@@ -7,6 +7,11 @@ jobs:
   build:
     name: Publish clickable package
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        architectures:
+          - armhf
+          - arm64
     steps:
       - name: Clone source
         uses: actions/checkout@v2
@@ -38,11 +43,13 @@ jobs:
           cd clickable
           clickable build
           zip costumemaster_clickable.zip build/*.click 
+        env:
+          CLICKABLE_ARCH: ${{ matrix.architectures }}
       - name: Butler Push
         uses: josephbmanley/butler-publish-itchio-action@v1.0.2
         env:
           BUTLER_CREDENTIALS: ${{ secrets.ITCH_API_KEY }}
-          CHANNEL: clickable
+          CHANNEL: ${{ format('utouch_{0}', matrix.architectures) }}
           ITCH_GAME: costumemaster-reloaded
           ITCH_USER: marquiskurt
           VERSION: ${{ github.event.release.tag_name }}

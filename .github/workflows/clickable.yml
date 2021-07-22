@@ -5,6 +5,11 @@ jobs:
   build:
     name: Create clickable package
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        architectures:
+          - armhf
+          - arm64
     steps:
       - name: Clone source
         uses: actions/checkout@v2
@@ -35,6 +40,8 @@ jobs:
         run: |
           cd clickable
           clickable build
+        env:
+          CLICKABLE_ARCH: ${{ matrix.architectures }}
       - name: Upload click package artifact
         uses: actions/upload-artifact@v2
         with:
