@@ -23,7 +23,7 @@ jobs:
           debugMode: "false"
       - name: Create Linux archive
         run: | 
-          mv build/costumemaster build/costumemaster.x86_64
+          sudo mv build/costumemaster build/costumemaster.x86_64
           zip -rv cm-reloaded_linux.zip build/*
       - name: Build snap package
         uses: snapcore/action-build@v1
