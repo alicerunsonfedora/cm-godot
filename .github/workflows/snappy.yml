@@ -8,10 +8,6 @@ jobs:
     steps:
       - name: Clone source
         uses: actions/checkout@v2
-      - name: Install Snapcraft
-        uses: samuelmeuli/action-snapcraft@v1
-        with:
-          use_lxd: true
       - name: Add export_presets.cfg
         run: | 
           echo $EXPORT_PRESETS_CFG > costumemaster/export_presets.cfg
@@ -28,12 +24,11 @@ jobs:
       - name: Create Linux archive
         run: |
           zip cm-reloaded_linux.zip build/*
-      - name: Create snap package
-        run: |
-          snapcraft --version
-          sg lxd -c 'snapcraft --use-lxd'
-      - name: Upload click package artifact
+      - name: Build snap package
+        uses: snapcore/action-build@v1
+        id: snapcraft
+      - name: Upload snap package artifact
         uses: actions/upload-artifact@v2
         with:
-          name: costumemaster_reloaded_click
-          path: '**.snap'
+          name: costumemaster_reloaded_snap
+          path: ${{ steps.snapcraft.outputs.snap }}
