@@ -23,7 +23,7 @@ jobs:
           debugMode: "false"
       - name: Create Linux archive
         run: |
-          zip cm-reloaded_linux.zip build/*
+          zip -rv cm-reloaded_linux.zip build/*
       - name: Build snap package
         uses: snapcore/action-build@v1
         id: snapcraft
