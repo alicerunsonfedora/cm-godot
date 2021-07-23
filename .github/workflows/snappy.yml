@@ -1,0 +1,39 @@
+name: Snapcraft
+on: [push]
+
+jobs:
+  build:
+    name: Create snap package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone source
+        uses: actions/checkout@v2
+      - name: Install Snapcraft
+        uses: samuelmeuli/action-snapcraft@v1
+        with:
+          use_lxd: true
+      - name: Add export_presets.cfg
+        run: | 
+          echo $EXPORT_PRESETS_CFG > costumemaster/export_presets.cfg
+        env:
+          EXPORT_PRESETS_CFG: ${{ secrets.EXPORT_PRESETS_CFG }}
+      - name: Build Godot project
+        id: build_godot
+        uses: josephbmanley/build-godot-action@v1.4.1
+        with:
+          name: "costumemaster"
+          preset: "Linux/X11" 
+          projectDir: "costumemaster"
+          debugMode: "false"
+      - name: Create Linux archive
+        run: |
+          zip cm-reloaded_linux.zip build/*
+      - name: Create snap package
+        run: |
+          snapcraft --version
+          sg lxd -c 'snapcraft --use-lxd'
+      - name: Upload click package artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: costumemaster_reloaded_click
+          path: **.snap
