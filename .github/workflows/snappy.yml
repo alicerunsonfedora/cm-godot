@@ -22,7 +22,7 @@ jobs:
           projectDir: "costumemaster"
           debugMode: "false"
       - name: Create Linux archive
-        run: |
+        run: | 
           mv build/costumemaster build/costumemaster.x86_64
           zip -rv cm-reloaded_linux.zip build/*
      - name: Build snap package
