@@ -24,11 +24,11 @@ jobs:
       - name: Create Linux archive
         run: | 
           zip -rv cm-reloaded_linux.zip build/*
-     - name: Build snap package
-       uses: snapcore/action-build@v1
-       id: snapcraft
-     - name: Upload snap package artifact
-       uses: actions/upload-artifact@v2
-       with:
-         name: costumemaster_reloaded_snap
-         path: ${{ steps.snapcraft.outputs.snap }}
+      - name: Build snap package
+        uses: snapcore/action-build@v1
+        id: snapcraft
+      - name: Upload snap package artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: costumemaster_reloaded_snap
+          path: ${{ steps.snapcraft.outputs.snap }}
