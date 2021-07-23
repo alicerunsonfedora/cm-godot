@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=2.5
+Encoding=UTF-8
+Name=The Costumemaster: Reloaded
+Comment=Switch costumes. Solve puzzles. Wake up.
+Icon=${SNAP}/meta/gui/cm-reloaded.png
+Exec=costumemaster-reloaded
+Terminal=false
+Startup-Notify=false
+Categories=Game;
