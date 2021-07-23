@@ -36,4 +36,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: costumemaster_reloaded_click
-          path: **.snap
+          path: '**.snap'
