@@ -74,7 +74,7 @@ parts:
       find ${SNAPCRAFT_PRIME}/usr -type d -empty -delete || true
 apps:
   costumemaster-reloaded:
-    command: costumemaster.x86_64
+    command: costumemaster
     command-chain:
       - bin/desktop-launch
       - snap/command-chain/alsa-launch
