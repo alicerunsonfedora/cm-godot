@@ -10,8 +10,8 @@ description : |
     fix it. But she keeps waking up over and over again, with her 
     surroundings changing. Can you solve the puzzles and make it to 
     the home office in time?
-grade: devel
-confinement: devmode
+grade: stable
+confinement: strict
 compression: lzo
 
 layout:
