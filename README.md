@@ -13,6 +13,8 @@ _The Costumemaster: Reloaded_ is a modern reimagining of the original game relea
 
 [**Play on Itch.io &rsaquo;**](https://marquiskurt.itch.io/costumemaster-reloaded)
 
+[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/costumemaster-reloaded)
+
 ## Build from source
 
 **Requirements**
