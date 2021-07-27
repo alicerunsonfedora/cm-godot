@@ -1,9 +1,11 @@
-name: Snapcraft
-on: [push]
+name: Snapcraft (Deploy)
+on:
+  release:
+    types: [published]
 
 jobs:
   build:
-    name: Create snap package
+    name: Publish snap package
     runs-on: ubuntu-latest
     steps:
       - name: Clone source
@@ -36,9 +38,4 @@ jobs:
         with:
           store_login: ${{ secrets.STORE_LOGIN }}
           snap: ${{ steps.snapcraft.outputs.snap }}
-          release: edge
-      - name: Upload snap package artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: costumemaster_reloaded_snap
-          path: ${{ steps.snapcraft.outputs.snap }}
+          release: stable
