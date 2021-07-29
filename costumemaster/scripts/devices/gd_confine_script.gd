@@ -8,8 +8,7 @@ var _listening_for_keypress = false
 var _should_console_print: bool = false
 
 func _ready() -> void:
-	var _settings = UserDefaults.new()
-	_should_console_print = _settings.debug_mode
+	_should_console_print = UserDefaults.debug_mode
 	var _err = connect("body_entered", self, "_on_body_entered")
 	_err = connect("body_exited", self, "_on_body_exited")
 	if _err != OK:

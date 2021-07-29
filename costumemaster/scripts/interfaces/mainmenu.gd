@@ -11,11 +11,9 @@ onready var btn_start = $CanvasLayer/Control/MenuButtons/btn_start as Button
 onready var btn_resume = $CanvasLayer/Control/MenuButtons/btn_resume as Button
 onready var btn_options = $CanvasLayer/Control/MenuButtons/btn_options as Button
 onready var btn_quit = $CanvasLayer/Control/MenuButtons/btn_quit as Button
-onready var settings: UserDefaults
 onready var win_settings = $CanvasLayer/Control/SettingsView as SettingsView
 
 func _ready() -> void:
-	settings = UserDefaults.new()
 	_btn_connect()
 	_btn_hide_quit_for_mobile()
 	

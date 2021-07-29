@@ -6,7 +6,7 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 # A class that manages user defaults.
-class_name UserDefaults
+extends Node
 
 # Debug: Whether to allow the end level animations per level.
 # Defaults to true. Only toggleable with debug mode on.

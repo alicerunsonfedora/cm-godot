@@ -83,11 +83,6 @@ _global_script_classes=[ {
 "class": "Universe",
 "language": "GDScript",
 "path": "res://scripts/universe.gd"
-}, {
-"base": "Reference",
-"class": "UserDefaults",
-"language": "GDScript",
-"path": "res://scripts/abstract/defaults.gd"
 } ]
 _global_script_class_icons={
 "AbstractInput": "",
@@ -104,8 +99,7 @@ _global_script_class_icons={
 "SaveState": "",
 "SaveUtils": "",
 "SettingsView": "",
-"Universe": "",
-"UserDefaults": ""
+"Universe": ""
 }
 
 [application]
@@ -123,6 +117,10 @@ config/windows_native_icon="res://icon.ico"
 [audio]
 
 default_bus_layout="res://nodes/audio.tres"
+
+[autoload]
+
+UserDefaults="*res://scripts/abstract/defaults.gd"
 
 [display]
 
@@ -283,6 +281,7 @@ dbg_toggle_level_name={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+pointing/emulate_touch_from_mouse.X11=false
 
 [locale]
 

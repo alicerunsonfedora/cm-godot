@@ -23,7 +23,7 @@ extents = Vector2( 30.0579, 37.9578 )
 [node name="World" type="Node2D"]
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
-ALLOWED_COSTUMES = [ 1, 2, 3, 0 ]
+ALLOWED_COSTUMES = [ 1, 2, 3, 0, 4 ]
 
 [node name="Player" parent="Universe" instance=ExtResource( 1 )]
 position = Vector2( -108.444, -114.793 )

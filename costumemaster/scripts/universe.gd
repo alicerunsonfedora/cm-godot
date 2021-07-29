@@ -60,10 +60,8 @@ onready var _clone: Node2D
 onready var _hud: HUD = $CanvasLayer/HUD as HUD
 onready var _player: Player
 onready var _pause = $CanvasLayer/PauseMenu
-onready var _settings: UserDefaults
 
 func _ready() -> void:
-	_settings = UserDefaults.new()
 	_setup_world()
 	_setup_ui()
 	_instantiate_music()
@@ -82,7 +80,7 @@ func send_costume_request(costume_type: int) -> void:
 # 	fov: The field of view factor to update the player's field of view to.
 func send_fov_request(fov: float) -> void:
 	_player.FIELD_OF_VIEW = fov
-	_settings.field_of_view = fov
+	UserDefaults.field_of_view = fov
 
 # Toggle the player clone in the universe.
 func toggle_clone() -> void:
@@ -109,22 +107,22 @@ func _clone_exists() -> bool:
 	return _clone != null
 
 func _dbg_animations() -> void:
-	if not _settings.debug_mode: return
-	_settings.animate_end_levels = not _settings.animate_end_levels
-	print_debug("End Level Animations toggled %s" % ("ON" if _settings.animate_end_levels else "OFF"))
+	if not UserDefaults.debug_mode: return
+	UserDefaults.animate_end_levels = not UserDefaults.animate_end_levels
+	print_debug("End Level Animations toggled %s" % ("ON" if UserDefaults.animate_end_levels else "OFF"))
 	var _exit = find_node("Exit*")
 	if _exit == null: return
-	_exit._update_animation(_settings.animate_end_levels)
+	_exit._update_animation(UserDefaults.animate_end_levels)
 
 func _dbg_fullbright() -> void:
-	_settings.fullbright = not _settings.fullbright
-	$LightsOff.visible = not _settings.fullbright
-	print_debug("Toggled fullbright %s" % ("ON" if _settings.fullbright else "OFF"))
+	UserDefaults.fullbright = not UserDefaults.fullbright
+	$LightsOff.visible = not UserDefaults.fullbright
+	print_debug("Toggled fullbright %s" % ("ON" if UserDefaults.fullbright else "OFF"))
 
 func _dbg_name_show() -> void:
-	_settings.level_name_in_toolbar = not _settings.level_name_in_toolbar
+	UserDefaults.level_name_in_toolbar = not UserDefaults.level_name_in_toolbar
 	var name = get_tree().current_scene.filename.replace("res://scenes/", "").replace(".tscn", "")
-	_hud.set_debug_level_name(name, _settings.level_name_in_toolbar)
+	_hud.set_debug_level_name(name, UserDefaults.level_name_in_toolbar)
 
 func _dbg_skip() -> void:
 	var _exit = find_node("Exit*")
@@ -201,7 +199,7 @@ func _hud_disable_tutorials() -> void:
 
 func _hud_hide_unnecessary_components() -> void:
 	_hud.disable_unused(ALLOWED_COSTUMES)
-	if not _settings.show_mobile_controls:
+	if not UserDefaults.show_mobile_controls:
 		_hud.disable_mobile_ui()
 	if not RESTARTABLE:
 		_hud.disable_restart()
@@ -209,10 +207,10 @@ func _hud_hide_unnecessary_components() -> void:
 
 func _hud_update_fov() -> void:
 	_hud.set_fov_bounds(_min_fov_bound)
-	if not _settings.persist_field_of_view: return
-	_hud.slider_fov.value = clamp(-_settings.field_of_view, -1 - _min_fov_bound, -_min_fov_bound)
+	if not UserDefaults.persist_field_of_view: return
+	_hud.slider_fov.value = clamp(-UserDefaults.field_of_view, -1 - _min_fov_bound, -_min_fov_bound)
 	if _player != null:
-		_player.FIELD_OF_VIEW = clamp(_settings.field_of_view, _min_fov_bound, _min_fov_bound + 1)
+		_player.FIELD_OF_VIEW = clamp(UserDefaults.field_of_view, _min_fov_bound, _min_fov_bound + 1)
 
 func _instantiate_clone() -> void:
 	if _clone_exists():
@@ -223,13 +221,13 @@ func _instantiate_clone() -> void:
 	add_child(_clone)
 
 func _instantiate_debug() -> void:
-	if not _settings.debug_mode: return
+	if not UserDefaults.debug_mode: return
 	if DEBUG_MODE:
 		_enable_debug_player()
 	
 	var _exit = find_node("Exit*")
 	if _exit == null: return
-	_exit._update_animation(_settings.animate_end_levels)
+	_exit._update_animation(UserDefaults.animate_end_levels)
 
 func _instantiate_from_save() -> void:
 	var _save = SaveUtils.new()
@@ -248,8 +246,8 @@ func _instantiate_hud() -> void:
 	_hud_disable_tutorials()
 	_hud_update_fov()
 	_hud_connect_events()
-	if _settings.debug_mode:
-		_settings.level_name_in_toolbar = not _settings.level_name_in_toolbar
+	if UserDefaults.debug_mode:
+		UserDefaults.level_name_in_toolbar = not UserDefaults.level_name_in_toolbar
 		_dbg_name_show()
 
 func _instantiate_music() -> void:
@@ -309,8 +307,8 @@ func _setup_world() -> void:
 	_instantiate_player()
 	_instantiate_objects()
 	_instantiate_from_save()
-	if _settings.debug_mode and _settings.fullbright:
-		$LightsOff.visible = not _settings.fullbright
+	if UserDefaults.debug_mode and UserDefaults.fullbright:
+		$LightsOff.visible = not UserDefaults.fullbright
 
 func _setup_ui() -> void:
 	_instantiate_hud()
@@ -326,13 +324,13 @@ func _suspend_to_state() -> SaveState:
 	return state
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.get_action_strength("dbg_skip_level") and _settings.debug_mode:
+	if event.get_action_strength("dbg_skip_level") and UserDefaults.debug_mode:
 		_dbg_skip()
-	elif event.get_action_strength("dbg_toggle_fullbright") and _settings.debug_mode:
+	elif event.get_action_strength("dbg_toggle_fullbright") and UserDefaults.debug_mode:
 		_dbg_fullbright()
-	elif event.get_action_strength("dbg_toggle_animation") and _settings.debug_mode:
+	elif event.get_action_strength("dbg_toggle_animation") and UserDefaults.debug_mode:
 		_dbg_animations()
-	elif event.get_action_strength("dbg_toggle_level_name") and _settings.debug_mode:
+	elif event.get_action_strength("dbg_toggle_level_name") and UserDefaults.debug_mode:
 		_dbg_name_show()
 	elif event.get_action_strength("ui_pause"):
 		_pause_game()
