@@ -84,7 +84,7 @@ func send_fov_request(fov: float) -> void:
 
 # Toggle the player clone in the universe.
 func toggle_clone() -> void:
-	if _player == null or _player.CURRENT_COSTUME != Player.CostumeType.FLASH_DRIVE:
+	if _player == null or not _player.CURRENT_COSTUME in [Player.CostumeType.FLASH_DRIVE, Player.CostumeType.ALL]:
 		return
 	if _clone_exists():
 		_destroy_clone()
@@ -298,6 +298,8 @@ func _resume_from_suspended_state(save_file: SaveState) -> void:
 	_player.global_position = save_file.player_position
 	_player.change_costume(save_file.player_costume)
 	for input in _find_all_inputs():
+		if not input.get_name() in save_file.inputs:
+			continue
 		var _frozen = save_file.inputs[input.get_name()]
 		input._active = _frozen["active"]
 	for object in _find_all_objects():

@@ -31,7 +31,7 @@ func _connect_to_player(player: Player) -> void:
 		push_error(_err)
 
 func _drop() -> void:
-	if _player.CURRENT_COSTUME != Player.CostumeType.MAGIC:
+	if not _player.CURRENT_COSTUME in [Player.CostumeType.MAGIC, Player.CostumeType.ALL]:
 		_player._play_cant_use_sound()
 		return
 	_player._has_item = false
@@ -52,7 +52,7 @@ func _on_body_entered(body: Node2D) -> void:
 		return
 	_listening_for_keypress = true
 	_player.toggle_item_detection(true)
-	if _player.CURRENT_COSTUME == Player.CostumeType.MAGIC:
+	if _player.CURRENT_COSTUME in [Player.CostumeType.MAGIC, Player.CostumeType.ALL]:
 		modulate = Color.cornflower
 		_light.visible = true
 
@@ -65,7 +65,7 @@ func _on_body_exited(body: Node2D) -> void:
 	_light.visible = false
 
 func _pickup() -> void:
-	if not _listening_for_keypress or _player.CURRENT_COSTUME != Player.CostumeType.MAGIC:
+	if not _listening_for_keypress or not _player.CURRENT_COSTUME in [Player.CostumeType.MAGIC, Player.CostumeType.ALL]:
 		_player._play_cant_use_sound()
 		return
 	get_parent().remove_child(self)

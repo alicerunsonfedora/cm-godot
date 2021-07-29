@@ -1,0 +1,227 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://nodes/obj_player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://nodes/dec_tileset.tres" type="TileSet" id=3]
+[ext_resource path="res://nodes/universe.tscn" type="PackedScene" id=4]
+[ext_resource path="res://nodes/obj_door.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scripts/abstract/input.gd" type="Script" id=6]
+[ext_resource path="res://assets/fx/lightsource.png" type="Texture" id=7]
+[ext_resource path="res://nodes/sig_tileset.tres" type="TileSet" id=8]
+[ext_resource path="res://scripts/devices/dialogue_trigger.gd" type="Script" id=9]
+[ext_resource path="res://scripts/devices/scene_manager.gd" type="Script" id=10]
+[ext_resource path="res://assets/tileset/dec_bedroon.png" type="Texture" id=11]
+[ext_resource path="res://scripts/abstract/movable.gd" type="Script" id=12]
+
+[sub_resource type="LineShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 48, 48 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 80, 48 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 26.3087, 52.6789 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 56, 56 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 47.1155, 38.9967 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 11 )
+region = Rect2( 335.577, 491.879, 48.3487, 72.1367 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 30.0579, 37.9578 )
+
+[node name="World" type="Node2D"]
+
+[node name="Universe" parent="." instance=ExtResource( 4 )]
+MUSIC = 3
+MULTIPLE_COSTUMES = false
+DEBUG_MODE = true
+
+[node name="Player" parent="Universe" instance=ExtResource( 1 )]
+position = Vector2( -108.444, -114.793 )
+MASS = 0.7
+FIELD_OF_VIEW = 0.35
+CURRENT_COSTUME = 4
+
+[node name="Layout" type="TileMap" parent="Universe"]
+z_index = -1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -589822, 40, 0, -589821, 5, 0, -589820, 5, 0, -589819, 5, 0, -589818, 5, 0, -589817, 5, 0, -589816, 5, 0, -589815, 5, 0, -589814, 5, 0, -589813, 5, 0, -589812, 4, 0, -524286, 43, 0, -524285, 6, 0, -524284, 6, 0, -524283, 6, 0, -524282, 6, 0, -524281, 6, 0, -524280, 6, 0, -524279, 6, 0, -524278, 6, 0, -524277, 6, 0, -524276, 11, 0, -458750, 43, 0, -458749, 7, 0, -458748, 8, 0, -458747, 8, 0, -458746, 8, 0, -458745, 8, 0, -458744, 8, 0, -458743, 8, 0, -458742, 8, 0, -458741, 8, 0, -458740, 11, 0, -393214, 43, 0, -393213, 9, 0, -393212, 10, 0, -393211, 10, 0, -393210, 10, 0, -393209, 10, 0, -393208, 10, 0, -393207, 10, 0, -393206, 10, 0, -393205, 10, 0, -393204, 11, 0, -327678, 43, 0, -327677, 9, 0, -327676, 10, 0, -327675, 10, 0, -327674, 10, 0, -327673, 10, 0, -327672, 10, 0, -327671, 10, 0, -327670, 10, 0, -327669, 10, 0, -327668, 11, 0, -196615, 0, 0, -196614, 5, 0, -196613, 5, 0, -196612, 5, 0, -196611, 5, 0, -196610, 5, 0, -196609, 5, 0, -262144, 5, 0, -262143, 5, 0, -262142, 43, 0, -262141, 9, 0, -262140, 10, 0, -262139, 10, 0, -262138, 10, 0, -262137, 10, 0, -262136, 10, 0, -262135, 10, 0, -262134, 10, 0, -262133, 10, 0, -262132, 11, 0, -131079, 1, 0, -131078, 6, 0, -131077, 6, 0, -131076, 6, 0, -131075, 6, 0, -131074, 6, 0, -131073, 6, 0, -196608, 6, 0, -196607, 6, 0, -196606, 43, 0, -196605, 9, 0, -196604, 10, 0, -196603, 10, 0, -196602, 10, 0, -196601, 10, 0, -196600, 10, 0, -196599, 10, 0, -196598, 10, 0, -196597, 10, 0, -196596, 11, 0, -65543, 1, 0, -65542, 7, 0, -65541, 8, 0, -65540, 8, 0, -65539, 8, 0, -65538, 8, 0, -65537, 8, 0, -131072, 8, 0, -131071, 8, 0, -131070, 23, 0, -131069, 5, 0, -131068, 9, 0, -131067, 5, 0, -131066, 5, 0, -131065, 16, 0, -131064, 12, 0, -131063, 12, 0, -131062, 12, 0, -131061, 12, 0, -131060, 3, 0, -7, 1, 0, -6, 9, 0, -5, 10, 0, -4, 10, 0, -3, 10, 0, -2, 10, 0, -1, 10, 0, -65536, 10, 0, -65535, 10, 0, -65534, 26, 0, -65533, 6, 0, -65532, 9, 0, -65531, 6, 0, -65530, 6, 0, -65529, 11, 0, 65529, 1, 0, 65530, 9, 0, 65531, 10, 0, 65532, 10, 0, 65533, 10, 0, 65534, 10, 0, 65535, 10, 0, 0, 10, 0, 1, 10, 0, 2, 8, 0, 3, 8, 0, 4, 8, 0, 5, 8, 0, 6, 8, 0, 7, 11, 0, 131065, 1, 0, 131066, 9, 0, 131067, 10, 0, 131068, 10, 0, 131069, 10, 0, 131070, 10, 0, 131071, 10, 0, 65536, 10, 0, 65537, 10, 0, 65538, 10, 0, 65539, 10, 0, 65540, 10, 0, 65541, 10, 0, 65542, 10, 0, 65543, 11, 0, 196601, 1, 0, 196602, 9, 0, 196603, 10, 0, 196604, 10, 0, 196605, 10, 0, 196606, 16, 0, 196607, 12, 0, 131072, 12, 0, 131073, 15, 0, 131074, 10, 0, 131075, 10, 0, 131076, 10, 0, 131077, 10, 0, 131078, 10, 0, 131079, 11, 0, 262137, 1, 0, 262138, 9, 0, 262139, 10, 0, 262140, 10, 0, 262141, 10, 0, 262142, 11, 0, 196609, 1, 0, 196610, 10, 0, 196611, 10, 0, 196612, 10, 0, 196613, 10, 0, 196614, 10, 0, 196615, 11, 0, 327673, 2, 0, 327674, 12, 0, 327675, 12, 0, 327676, 12, 0, 327677, 12, 0, 327678, 3, 0, 262145, 2, 0, 262146, 12, 0, 262147, 12, 0, 262148, 12, 0, 262149, 12, 0, 262150, 12, 0, 262151, 3, 0 )
+
+[node name="Decor" type="TileMap" parent="Universe/Layout"]
+tile_set = ExtResource( 3 )
+cell_size = Vector2( 48, 48 )
+format = 1
+tile_data = PoolIntArray( -589821, 66, 0, -589820, 35, 0, -589819, 61, 0, -589815, 37, 0, -524285, 70, 0, -524277, 43, 0, -393207, 65, 0, -327674, 67, 0, -327671, 64, 0, -327669, 62, 0, -196614, 35, 0, -196613, 5, 0, -262144, 42, 0, -262143, 59, 0, -262137, 68, 0, -262136, 63, 0, -262135, 63, 0, -262134, 63, 0, -131074, 12, 0, -65542, 29, 0, -65541, 33, 0, -65540, 33, 0, -65539, 31, 0, -65538, 13, 0, -131067, 24, 0, -2, 14, 0, -65534, 3, 0, 65530, 30, 0, 65531, 34, 0, 65532, 34, 0, 65533, 32, 0, 65534, 36, 0, 65542, 43, 0, 196603, 49, 0, 131075, 49, 0 )
+
+[node name="Barrier" type="TileMap" parent="Universe/Layout"]
+visible = false
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+collision_layer = 7
+collision_mask = 7
+format = 1
+tile_data = PoolIntArray( -655359, 50, 0, -655358, 50, 0, -655357, 50, 0, -655356, 50, 0, -655355, 50, 0, -655354, 50, 0, -655353, 50, 0, -655352, 50, 0, -655351, 50, 0, -655350, 50, 0, -655349, 50, 0, -655348, 50, 0, -655347, 50, 0, -589823, 50, 0, -589811, 50, 0, -524287, 50, 0, -524275, 50, 0, -458751, 50, 0, -458739, 50, 0, -393215, 50, 0, -393203, 50, 0, -262152, 50, 0, -262151, 50, 0, -262150, 50, 0, -262149, 50, 0, -262148, 50, 0, -262147, 50, 0, -262146, 50, 0, -262145, 50, 0, -327680, 50, 0, -327679, 50, 0, -327667, 50, 0, -196616, 50, 0, -262131, 50, 0, -131080, 50, 0, -196595, 50, 0, -65544, 50, 0, -131059, 50, 0, -8, 50, 0, -65528, 50, 0, -65527, 50, 0, -65526, 50, 0, -65525, 50, 0, -65524, 50, 0, -65523, 50, 0, 65528, 50, 0, 8, 50, 0, 131064, 50, 0, 65544, 50, 0, 196600, 50, 0, 131080, 50, 0, 262136, 50, 0, 262143, 50, 0, 196608, 50, 0, 196616, 50, 0, 327672, 50, 0, 327679, 50, 0, 262144, 50, 0, 262152, 50, 0, 393208, 50, 0, 393209, 50, 0, 393210, 50, 0, 393211, 50, 0, 393212, 50, 0, 393213, 50, 0, 393214, 50, 0, 393215, 50, 0, 327680, 50, 0, 327681, 50, 0, 327682, 50, 0, 327683, 50, 0, 327684, 50, 0, 327685, 50, 0, 327686, 50, 0, 327687, 50, 0, 327688, 50, 0, 327689, 50, 0 )
+
+[node name="Signage" type="TileMap" parent="Universe/Layout"]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 48, 48 )
+cell_tile_origin = 1
+format = 1
+tile_data = PoolIntArray( -131071, 39, 0, -65535, 25, 0, -65533, 21, 0, -65531, 5, 0, 1, 27, 0, 2, 24, 0, 3, 26, 0, 65539, 25, 0, 131075, 38, 0, 262140, 39, 0, 262141, 5, 0 )
+
+[node name="Door" parent="Universe" instance=ExtResource( 5 )]
+position = Vector2( 192, -48 )
+INPUTS = [ NodePath("../Server"), NodePath("../Plate_Door1"), NodePath("../Plate_Door2") ]
+REQUIRE_ALL_INPUTS = true
+
+[node name="Light2D" type="Light2D" parent="Universe"]
+position = Vector2( -170.719, -114.653 )
+scale = Vector2( 1, 2.506 )
+texture = ExtResource( 7 )
+color = Color( 0.698039, 0.858824, 0.933333, 1 )
+energy = 0.3
+shadow_enabled = true
+shadow_gradient_length = 0.3
+shadow_filter = 1
+shadow_filter_smooth = 0.5
+
+[node name="DialogueCanvas" type="CanvasLayer" parent="Universe"]
+
+[node name="DialogueTrigger" type="Area2D" parent="Universe/DialogueCanvas"]
+script = ExtResource( 9 )
+INPUTS = [ NodePath("../../DialogueTriggerInput") ]
+REQUIRE_ALL_INPUTS = true
+LOAD_DIALOGUE_SET = "escape"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueCanvas/DialogueTrigger"]
+shape = SubResource( 1 )
+
+[node name="DialogueTrigger2" type="Area2D" parent="Universe/DialogueCanvas"]
+script = ExtResource( 9 )
+INPUTS = [ NodePath("../../DialogueTriggerInput2") ]
+REQUIRE_ALL_INPUTS = true
+LOAD_DIALOGUE_SET = "escape02"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueCanvas/DialogueTrigger2"]
+shape = SubResource( 1 )
+
+[node name="DialogueTriggerInput" type="Area2D" parent="Universe"]
+position = Vector2( -144, -96 )
+script = ExtResource( 6 )
+INTERACTION = 1
+SILENT = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueTriggerInput"]
+shape = SubResource( 2 )
+
+[node name="DialogueTriggerInput2" type="Area2D" parent="Universe"]
+position = Vector2( -144, -96 )
+script = ExtResource( 6 )
+INTERACTION = 1
+SILENT = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/DialogueTriggerInput2"]
+position = Vector2( 360, -48 )
+shape = SubResource( 3 )
+
+[node name="Server" type="Area2D" parent="Universe"]
+position = Vector2( 68.8388, -113.087 )
+collision_layer = 9
+collision_mask = 9
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="LightComputer" type="Light2D" parent="Universe/Server"]
+scale = Vector2( 0.986943, 1.60502 )
+texture = ExtResource( 7 )
+color = Color( 0.780392, 0.603922, 0.266667, 1 )
+energy = 0.8
+shadow_enabled = true
+shadow_gradient_length = 0.3
+shadow_filter = 1
+shadow_filter_smooth = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Server"]
+shape = SubResource( 4 )
+
+[node name="EndTrigger" type="Area2D" parent="Universe"]
+position = Vector2( 480, -360 )
+script = ExtResource( 10 )
+INPUTS = [ NodePath("../Server") ]
+REQUIRE_ALL_INPUTS = true
+INTERACT_ON_KEYPRESS = true
+DESTINATION_SCENE = "res://scenes/end.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/EndTrigger"]
+shape = SubResource( 5 )
+
+[node name="Plate_Door1" type="Area2D" parent="Universe"]
+position = Vector2( -192, 144 )
+collision_mask = 7
+script = ExtResource( 6 )
+INTERACTION = 1
+PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
+ACTIVE_LIGHT_SCALE = 1.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_Door1"]
+shape = SubResource( 6 )
+
+[node name="Plate_Door2" type="Area2D" parent="Universe"]
+position = Vector2( 192, 144 )
+collision_mask = 7
+script = ExtResource( 6 )
+INTERACTION = 1
+PERMANENT = false
+LIGHT_WHEN_ACTIVE = true
+ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
+ACTIVE_LIGHT_SCALE = 1.2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_Door2"]
+shape = SubResource( 6 )
+
+[node name="Dresser" type="Area2D" parent="Universe"]
+position = Vector2( 23.6764, -94.3182 )
+z_index = -1
+script = ExtResource( 12 )
+
+[node name="Sprite" type="Sprite" parent="Universe/Dresser"]
+texture = SubResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Dresser"]
+shape = SubResource( 8 )
+
+[node name="Light2D" type="Light2D" parent="."]
+position = Vector2( 308.028, 61.8244 )
+texture = ExtResource( 7 )
+texture_scale = 3.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="Light2D2" type="Light2D" parent="."]
+position = Vector2( 551.114, -364.523 )
+texture = ExtResource( 7 )
+texture_scale = 3.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3

@@ -1,0 +1,347 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://nodes/arc_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://nodes/dec_tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/fx/lightsource2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/megacostume.png" type="Texture" id=4]
+[ext_resource path="res://assets/fx/square.png" type="Texture" id=5]
+[ext_resource path="res://assets/sfx/changeCostume.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scripts/endscene.gd" type="Script" id=7]
+[ext_resource path="res://assets/gui/theme.tres" type="Theme" id=8]
+[ext_resource path="res://assets/gui/controller.png" type="Texture" id=9]
+[ext_resource path="res://assets/sfx/518863__idomusics__rain.ogg" type="AudioStream" id=10]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 9 )
+region = Rect2( 153, 9, 30, 33 )
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "post_idle (copy)"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "post_idle"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "pre_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachine" id=7]
+states/post_idle/node = SubResource( 3 )
+states/post_idle/position = Vector2( 547.5, 56.1094 )
+"states/post_idle (copy)/node" = SubResource( 2 )
+"states/post_idle (copy)/position" = Vector2( 547.25, 149.5 )
+states/pre_idle/node = SubResource( 4 )
+states/pre_idle/position = Vector2( 215, 56.0625 )
+transitions = [ "pre_idle", "post_idle", SubResource( 5 ), "post_idle", "post_idle (copy)", SubResource( 6 ) ]
+start_node = "pre_idle"
+end_node = "post_idle (copy)"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=8]
+
+[sub_resource type="StreamTexture" id=9]
+load_path = "res://.import/default.png-dac4b0e63649c8a72306f766c6cf0baf.stex"
+
+[sub_resource type="StreamTexture" id=10]
+load_path = "res://.import/default.png-dac4b0e63649c8a72306f766c6cf0baf.stex"
+
+[sub_resource type="Animation" id=11]
+length = 2.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Mirror:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Player:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 9 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Mirror:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 10 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("../Zipper:playing")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../Zipper:stream:loop")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=12]
+length = 2.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Mirror:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Player:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 9 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Mirror:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 10 ) ]
+}
+
+[sub_resource type="StreamTexture" id=13]
+load_path = "res://.import/megacostume.png-1849664562e8606bfd0320862ca0020b.stex"
+
+[sub_resource type="Animation" id=14]
+length = 2.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("../Player:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Mirror:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../Player:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 4 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("../Mirror:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ SubResource( 13 ) ]
+}
+
+[node name="Node2D" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
+script = ExtResource( 7 )
+
+[node name="StartTween" type="Tween" parent="."]
+
+[node name="EndTween" type="Tween" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -163.0
+margin_top = -61.0
+margin_right = -10.0
+margin_bottom = -8.0
+theme = ExtResource( 8 )
+text = "CUTSCN_SKIP"
+icon = SubResource( 1 )
+align = 2
+expand_icon = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.117647, 0.113725, 0.156863, 1 )
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="Layout" type="TileMap" parent="World"]
+scale = Vector2( 8, 8 )
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 48, 48 )
+cell_custom_transform = Transform2D( 128, 0, 0, 128, 0, 0 )
+cell_tile_origin = 1
+format = 1
+tile_data = PoolIntArray( 65534, 5, 0, 65535, 5, 0, 0, 5, 0, 1, 5, 0, 2, 5, 0, 3, 5, 0, 4, 5, 0, 5, 5, 0, 6, 5, 0, 7, 5, 0, 8, 5, 0, 9, 5, 0, 10, 5, 0, 11, 5, 0, 131070, 6, 0, 131071, 6, 0, 65536, 6, 0, 65537, 6, 0, 65538, 6, 0, 65539, 6, 0, 65540, 6, 0, 65541, 6, 0, 65542, 6, 0, 65543, 6, 0, 65544, 6, 0, 65545, 6, 0, 65546, 6, 0, 65547, 6, 0, 196606, 8, 0, 196607, 8, 0, 131072, 8, 0, 131073, 8, 0, 131074, 8, 0, 131075, 8, 0, 131076, 8, 0, 131077, 8, 0, 131078, 8, 0, 131079, 8, 0, 131080, 8, 0, 131081, 8, 0, 131082, 8, 0, 131083, 8, 0 )
+
+[node name="Decor" type="TileMap" parent="World"]
+scale = Vector2( 8, 8 )
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 48, 48 )
+cell_custom_transform = Transform2D( 128, 0, 0, 128, 0, 0 )
+cell_tile_origin = 1
+format = 1
+tile_data = PoolIntArray( 1, 37, 0 )
+
+[node name="Lamp" type="Light2D" parent="World"]
+position = Vector2( 1336.58, 466.831 )
+scale = Vector2( 0.322581, 0.322581 )
+texture = ExtResource( 3 )
+texture_scale = 48.0
+color = Color( 0.992157, 0.905882, 0.756863, 1 )
+mode = 2
+shadow_enabled = true
+shadow_gradient_length = 0.2
+shadow_filter = 1
+shadow_filter_smooth = 0.3
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 7 )
+anim_player = NodePath("AnimationPlayer")
+parameters/playback = SubResource( 8 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="AnimationTree"]
+anims/post_idle = SubResource( 11 )
+"anims/post_idle (copy)" = SubResource( 12 )
+anims/pre_idle = SubResource( 14 )
+
+[node name="Player" type="Sprite" parent="."]
+position = Vector2( 420.315, 656.841 )
+scale = Vector2( 9, 9 )
+texture = ExtResource( 4 )
+hframes = 24
+frame = 3
+
+[node name="Mirror" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.235294 )
+light_mask = 16
+position = Vector2( 762.12, 597.71 )
+scale = Vector2( 7, 7 )
+texture = SubResource( 13 )
+hframes = 24
+frame = 1
+
+[node name="MirrorMask" type="Light2D" parent="."]
+position = Vector2( 768.193, 444.459 )
+scale = Vector2( 1.14358, 1 )
+texture = ExtResource( 5 )
+texture_scale = 12.0
+mode = 3
+range_item_cull_mask = 16
+
+[node name="Zipper" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 418.145, 689.007 )
+stream = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 12.0
+one_shot = true
+autostart = true
+
+[node name="AmbientRain" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+autoplay = true
+bus = "SFX"
