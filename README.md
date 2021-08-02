@@ -1,6 +1,8 @@
 # The Costumemaster: Reloaded
 **Switch costumes. Solve puzzles. Wake up.**
 
+[![Clickable](https://github.com/alicerunsonfedora/cm-godot/actions/workflows/clickable.yml/badge.svg)](https://github.com/alicerunsonfedora/cm-godot/actions/workflows/clickable.yml) [![Snapcraft](https://github.com/alicerunsonfedora/cm-godot/actions/workflows/snappy.yml/badge.svg)](https://github.com/alicerunsonfedora/cm-godot/actions/workflows/snappy.yml)
+
 Acclaimed software engineer and costume designer Zephyr Emerson wakes up from a long and unexpected nap, realizing she's still got her flash drive costume on. Realizing part of the zipper is broken, she needs to get to her home office in the other room to fix it. But she keeps waking up over and over again, with her surroundings changing. Can you solve the puzzles and make it to the home office in time?
 
 _The Costumemaster: Reloaded_ is a modern reimagining of the original game released on the Mac App Store, redesigned from the ground up. For the first time, you can play across macOS, Linux, and Windows with new visuals and lighting effects, expanded sounds and music, and major improvements to the experience.
@@ -11,9 +13,10 @@ _The Costumemaster: Reloaded_ is a modern reimagining of the original game relea
 
 ## Get it now
 
-[**Play on Itch.io &rsaquo;**](https://marquiskurt.itch.io/costumemaster-reloaded)
+[![Available on itch.io](.github/itch-badge-color.png)][itch] [![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)][snap]
 
-[![Get it from the Snap Store](https://snapcraft.io/static/images/badges/en/snap-store-black.svg)](https://snapcraft.io/costumemaster-reloaded)
+[itch]: https://marquiskurt.itch.io/costumemaster-reloaded
+[snap]: https://snapcraft.io/costumemaster-reloaded
 
 ## Build from source
 
