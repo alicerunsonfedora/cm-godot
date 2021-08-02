@@ -58,6 +58,17 @@ In addition to the debug options present in Godot under the Debug menu (note: re
 
 Debugging mode must be enabled in Settings to access these debugging features. Note that, for the browser version, you may need to hold Ctrl along with the desired keyboard shortcut.
 
+## Localization
+
+The following list demonstrates the following locales the game currently supports:
+
+| Status | Language                    |
+| ------ | :-------------------------- |
+| ✅     | English (default, fallback) |
+| ✅     | Spanish                     |
+
+If you'd like to provide translations for your language, please make a pull request with the appropriate changes to the translations files. More information on the format can be found in the [Godot Engine documentation](https://docs.godotengine.org/en/stable/getting_started/workflow/assets/importing_translations.html#translation-format).
+
 ## Licensing
 
 The source code is licensed under the Mozilla Public License, v2.0.
