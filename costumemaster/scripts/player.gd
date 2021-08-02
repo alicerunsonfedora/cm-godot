@@ -179,7 +179,7 @@ func _stop_footsteps() -> void:
 func _unblock_movement():
 	_can_move = true
 
-func _unhandled_key_input(event: InputEventKey) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	if event.get_action_strength("interact") and not _has_item and _near_item:
 		emit_signal("wants_pickup")
 	elif event.get_action_strength("interact") and _has_item:
@@ -189,8 +189,8 @@ func _unhandled_key_input(event: InputEventKey) -> void:
 	elif event.get_action_strength("clone"):
 		emit_signal("wants_clone")
 
-func _update_mobile_movement(new_value: Vector2) -> void:
-		_mobile_movement = new_value
+func _update_mobile_movement(_new_value: Vector2) -> void:
+	push_warning("This method is deprecated.")
 
 func _update_player_camera(value: float):
 	FIELD_OF_VIEW = value
