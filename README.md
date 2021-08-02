@@ -17,17 +17,30 @@ _The Costumemaster: Reloaded_ is a modern reimagining of the original game relea
 
 ## Build from source
 
-**Requirements**
+### Developer Tools
 
+For this project, you will need the following tools installed:
 - Godot 3.3 or better
-- (Optional) Xcode 12 or better, for signing certificates and iOS exports
-- (Optional) iconutil, for creating the Mac icon file
-- (Optional) Aseprite, for making the sprite files
-- (Optional) clickable, for making the Ubuntu Touch variant
 
-Clone the repository code from GitHub via `git clone`, then open the project in Godot. To export the projects, edit the signing configurations under **Project &rsaquo; Export...** for each platform you want to distribute to, then click "Export Project" for each project.
+The following tools are not required to build the game, but are useful for certain variants or other source purposes:
 
+- Xcode 12 or better, for signing certificates and iOS exports
+- iconutil, for creating the Mac icon file
+- Aseprite, for making the sprite files
+- clickable, for making the Ubuntu Touch variant
+- snapcraft, for making the Snapcraft variant
+
+### Export the project
+Clone the repository code from GitHub via `git clone`, then open the project in Godot. To export the projects, go to **Project > Export**
+and then create the export settings for the platforms you want to target.
+
+> Note: You will need to make sure the export configurations also export JSON files in the "Features" tab to ensure the dialogue appears correctly.
+
+### Ubuntu Touch click packages
 For instructions on how to build the Ubuntu Touch version of the game, consult the [README file in the clickable subdirectory](./clickable/README.md).
+
+### Snap packages
+After exporting the project, create a ZIP file of the exported `linux` directory and name it `cm-reloaded_linux.zip`. Move the ZIP file to the root directory of the project and run `snapcraft`.
 
 ## Debugging options
 
