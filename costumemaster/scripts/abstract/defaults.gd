@@ -129,9 +129,10 @@ func _update_persist_field_of_view(new_value: bool) -> void:
 func _update_preferred_locale(new_value: String) -> void:
 	if not new_value in TranslationServer.get_loaded_locales():
 		push_error("%s is not a valid locale." % new_value)
-	preferred_locale = new_value
 	TranslationServer.set_locale(new_value)
-	_config.set_value("defaults", "preferred_locale", new_value)
+	preferred_locale = TranslationServer.get_locale()
+	_config.set_value("defaults", "preferred_locale", TranslationServer.get_locale())
+	_save_defaults()
 
 func _update_show_mobile_controls(new_value: bool) -> void:
 	show_mobile_controls = new_value

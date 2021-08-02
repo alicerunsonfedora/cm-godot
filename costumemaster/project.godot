@@ -293,7 +293,7 @@ pointing/emulate_touch_from_mouse.X11=false
 
 [locale]
 
-translations=PoolStringArray( "res://translations/translations.en.translation", "res://translations/dialogue.translations.en.translation" )
+translations=PoolStringArray( "res://translations/translations.en.translation", "res://translations/dialogue.translations.en.translation", "res://translations/dialogue.translations.es.translation", "res://translations/translations.es.translation" )
 locale_filter=[ 0, [ "en" ] ]
 
 [physics]

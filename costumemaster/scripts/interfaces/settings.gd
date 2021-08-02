@@ -84,13 +84,14 @@ func _disable_debug_pane():
 func _load_locales() -> void:
 	var locales = TranslationServer.get_loaded_locales()
 	for locale in locales:
+		if locale in sel_locale.items: continue
 		sel_locale.add_item(locale)
 	if len(locales) < 2:
 		sel_locale.disabled = true
 	
 func _sel_locale_selected(idx: int) -> void:
 	sel_locale.selected = idx
-	UserDefaults.preferred_locale = sel_locale.items[idx]
+	UserDefaults.preferred_locale = sel_locale.get_item_text(idx)
 
 func _sld_vol_music_changed(new_value: float) -> void:
 	sld_vol_music.value = new_value
