@@ -172,7 +172,7 @@ ACTIVE_LIGHT_SCALE = 1.2
 shape = SubResource( 1 )
 
 [node name="Plate_E2" type="Area2D" parent="Universe"]
-position = Vector2( -48, -288 )
+position = Vector2( -96, -288 )
 collision_mask = 7
 script = ExtResource( 6 )
 INTERACTION = 1
@@ -182,7 +182,6 @@ ACTIVE_LIGHT_COLOR = Color( 0.956863, 0.592157, 0.270588, 1 )
 ACTIVE_LIGHT_SCALE = 1.2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Universe/Plate_E2"]
-position = Vector2( -48, 0 )
 shape = SubResource( 1 )
 
 [node name="Plate_Box" type="Area2D" parent="Universe"]
