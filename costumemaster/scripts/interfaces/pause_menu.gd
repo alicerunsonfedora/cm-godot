@@ -44,10 +44,11 @@ func _lbl_save_toggle_visible() -> void:
 	lbl_save.visible = false
 
 func _save_progress() -> void:
-	var _save = SaveUtils.new()
-	var _root = get_tree().root.get_child(0).find_node("Universe")
-	if _root != null:
-		_save.state = _root._suspend_to_state()
-		_save.save_to_file()
-		lbl_save.visible = true
-		lbl_save_timer.start()
+	var _root = get_tree().root.get_child(2).find_node("Universe")
+	if _root == null:
+		push_warning("Could not locate Universe to suspend state.")
+		return
+	SaveUtils.state = _root._suspend_to_state()
+	SaveUtils.save_to_file()
+	lbl_save.visible = true
+	lbl_save_timer.start()

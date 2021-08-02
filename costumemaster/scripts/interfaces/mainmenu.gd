@@ -22,8 +22,7 @@ func _ready() -> void:
 	if len(Input.get_connected_joypads()) > 0:
 		btn_start.grab_focus()
 	
-	var sv_utils = SaveUtils.new()
-	if not sv_utils.save_exists():
+	if not SaveUtils.save_exists():
 		btn_resume.disabled = true
 		
 func _btn_connect() -> void:
@@ -44,10 +43,9 @@ func _btn_options_press() -> void:
 	win_settings.show()
 
 func _btn_resume_press() -> void:
-	var sv_utils = SaveUtils.new()
-	if not sv_utils.save_exists(): return
-	sv_utils.load_from_file()
-	_load_scene(sv_utils)
+	if not SaveUtils.save_exists(): return
+	SaveUtils.load_from_file()
+	_load_scene()
 
 func _btn_start_press() -> void:
 	var _err = get_tree().change_scene("res://scenes/tschmb_01.tscn")
@@ -57,7 +55,7 @@ func _btn_start_press() -> void:
 func _btn_quit_press() -> void:
 	get_tree().quit()
 
-func _load_scene(sv_utils: SaveUtils) -> void:
-	var _err = get_tree().change_scene(sv_utils.state.current_level)
+func _load_scene() -> void:
+	var _err = get_tree().change_scene(SaveUtils.state.current_level)
 	if _err != OK:
 		push_error("%s" % (_err))

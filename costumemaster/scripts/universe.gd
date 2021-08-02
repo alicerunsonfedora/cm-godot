@@ -230,13 +230,12 @@ func _instantiate_debug() -> void:
 	_exit._update_animation(UserDefaults.animate_end_levels)
 
 func _instantiate_from_save() -> void:
-	var _save = SaveUtils.new()
-	if _save.save_exists():
-		_save.load_from_file()
-		if _save.state.current_level == get_tree().current_scene.filename:
-			_resume_from_suspended_state(_save.state)
-	_save.state = _suspend_to_state()
-	_save.save_to_file()
+	if SaveUtils.save_exists():
+		SaveUtils.load_from_file()
+		if SaveUtils.state.current_level == get_tree().current_scene.filename:
+			_resume_from_suspended_state(SaveUtils.state)
+	SaveUtils.state = _suspend_to_state()
+	SaveUtils.save_to_file()
 
 func _instantiate_hud() -> void:
 	_hud.visible = true

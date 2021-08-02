@@ -30,7 +30,7 @@ func _fade_body_through_door(_body: Node2D, _to_value: float = 1) -> void:
 	pass
 
 func _fade_out_scene() -> void:
-	var _root = get_tree().root.get_child(1)
+	var _root = get_tree().root.get_child(2)
 	if _root == null:
 		push_warning("Root could not be located. Skipping animation.")
 		_switch_scene_context()

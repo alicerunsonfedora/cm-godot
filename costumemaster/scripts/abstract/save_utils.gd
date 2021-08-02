@@ -6,7 +6,6 @@
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 # A helper class designed to faciliate saving and loading states.
-class_name SaveUtils
 extends Node
 
 # The current save state.

@@ -69,11 +69,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/abstract/savefile.gd"
 }, {
-"base": "Node",
-"class": "SaveUtils",
-"language": "GDScript",
-"path": "res://scripts/abstract/save_utils.gd"
-}, {
 "base": "AbstractOutput",
 "class": "SceneManagerOutput",
 "language": "GDScript",
@@ -102,7 +97,6 @@ _global_script_class_icons={
 "MovableObject": "",
 "Player": "",
 "SaveState": "",
-"SaveUtils": "",
 "SceneManagerOutput": "",
 "SettingsView": "",
 "Universe": ""
@@ -128,6 +122,7 @@ default_bus_layout="res://nodes/audio.tres"
 [autoload]
 
 UserDefaults="*res://scripts/abstract/defaults.gd"
+SaveUtils="*res://scripts/abstract/save_utils.gd"
 
 [display]
 
