@@ -35,6 +35,7 @@ func _ready() -> void:
 	sel_locale.selected = sel_locale.items.find(UserDefaults.preferred_locale)
 
 	if OS.get_name() in ["Android", "iOS"]:
+		chk_mobile.visible = false
 		chk_mobile.disabled = true
 
 	_connect_ui()
