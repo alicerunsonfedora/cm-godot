@@ -40,6 +40,10 @@ var preferred_locale: String = OS.get_locale() setget _update_preferred_locale
 # Defaults to the result of OS.has_touchscreen_ui_hint.
 var show_mobile_controls: bool = OS.has_touchscreen_ui_hint() setget _update_show_mobile_controls
 
+# Whether to use the joypad on the mobile UI instead of the DPad.
+# Defaults to true. This property will be removed in a future release.
+var use_joypad: bool = true setget _update_use_joypad
+
 # The volume DB for music channels.
 # Defaults to 0.0.
 var volume_db_music: float = 0.0 setget _update_volume_db_music
@@ -53,7 +57,8 @@ onready var _config: ConfigFile
 var _debug = {
 	"animate_end_levels": true,
 	"fullbright": false,
-	"level_name_in_toolbar": false
+	"level_name_in_toolbar": false,
+	"use_joypad": true
 }
 
 var _defaults = {
@@ -88,6 +93,7 @@ func _load_defaults() -> void:
 	persist_field_of_view = _config.get_value("defaults", "persist_field_of_view", true)
 	preferred_locale = _config.get_value("defaults", "preferred_locale", OS.get_locale())
 	show_mobile_controls = _config.get_value("defaults", "show_mobile_controls", OS.has_touchscreen_ui_hint())
+	use_joypad = _config.get_value("debug", "use_joypad", true)
 	volume_db_music = _config.get_value("defaults", "volume_db_music", 0.0)
 	volume_db_sfx = _config.get_value("defaults", "volume_db_sfx", 0.0)
 
@@ -137,6 +143,11 @@ func _update_preferred_locale(new_value: String) -> void:
 func _update_show_mobile_controls(new_value: bool) -> void:
 	show_mobile_controls = new_value
 	_config.set_value("defaults", "show_mobile_controls", new_value)
+	_save_defaults()
+	
+func _update_use_joypad(value: bool) -> void:
+	use_joypad = value
+	_config.set_value("debug", "use_joypad", value)
 	_save_defaults()
 
 func _update_volume_db_music(new_value: float) -> void:

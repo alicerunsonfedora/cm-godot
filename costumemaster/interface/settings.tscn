@@ -30,6 +30,7 @@ __meta__ = {
 }
 
 [node name="PERF_TAB_GENERAL" type="Tabs" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
@@ -183,7 +184,6 @@ shortcut_in_tooltip = false
 text = "PERF_DEBUG"
 
 [node name="PERF_TAB_DEBUG" type="Tabs" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
@@ -233,3 +233,10 @@ margin_right = 854.0
 margin_bottom = 221.0
 hint_tooltip = "PERF_DEBUG_LVL_NINT"
 text = "PERF_DEBUG_LVL"
+
+[node name="chk_dbg_joy" type="CheckButton" parent="TabContainer/PERF_TAB_DEBUG/View/Contents"]
+margin_top = 229.0
+margin_right = 854.0
+margin_bottom = 281.0
+hint_tooltip = "PERF_DEBUG_LVL_NINT"
+text = "PERF_DEBUG_JOY"

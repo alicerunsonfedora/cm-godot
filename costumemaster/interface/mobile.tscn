@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/gui/mobile/d_up.png" type="Texture" id=1]
 [ext_resource path="res://assets/gui/mobile/d_down.png" type="Texture" id=2]
@@ -6,9 +6,9 @@
 [ext_resource path="res://assets/gui/mobile/d_right.png" type="Texture" id=4]
 [ext_resource path="res://assets/gui/mobile/interact.png" type="Texture" id=5]
 [ext_resource path="res://assets/gui/mobile/pause.png" type="Texture" id=6]
-[ext_resource path="res://assets/gui/mobile/joypadOuter.png" type="Texture" id=7]
-[ext_resource path="res://assets/gui/mobile/joypadInner.png" type="Texture" id=8]
+[ext_resource path="res://interface/analog/Analog.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scripts/interfaces/mobile.gd" type="Script" id=9]
+[ext_resource path="res://assets/gui/mobile/fire.png" type="Texture" id=10]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 38, 76, -40, -76, -40 )
@@ -23,25 +23,28 @@ points = PoolVector2Array( 0, -38, 76, 40, -76, 40 )
 points = PoolVector2Array( -38, 0, 40, 76, 40, -76 )
 
 [sub_resource type="CircleShape2D" id=5]
-radius = 64.0
+radius = 76.0
 
-[sub_resource type="CircleShape2D" id=6]
-radius = 64.0
-
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 36, 36 )
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 40, 40 )
 
 [node name="MobileUI" type="Control"]
+modulate = Color( 1, 1, 1, 0.729412 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 1.18335
-margin_right = 1.18335
+margin_left = 0.344727
+margin_right = 0.344727
 script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Analog" parent="." instance=ExtResource( 7 )]
+position = Vector2( 183.912, 558.915 )
+scale = Vector2( 1.5, 1.5 )
+
 [node name="DPad" type="Control" parent="."]
+visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 150.0
@@ -78,27 +81,6 @@ normal = ExtResource( 4 )
 shape = SubResource( 4 )
 action = "move_right"
 
-[node name="JoyPad" type="Control" parent="."]
-visible = false
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 150.0
-margin_top = -168.0
-margin_right = 190.0
-margin_bottom = -128.0
-rect_scale = Vector2( 1.2, 1.2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Sprite" type="Sprite" parent="JoyPad"]
-position = Vector2( 16.6667, 0 )
-texture = ExtResource( 7 )
-
-[node name="Joystick" type="TouchScreenButton" parent="JoyPad/Sprite"]
-normal = ExtResource( 8 )
-shape = SubResource( 5 )
-
 [node name="Others" type="Control" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -113,10 +95,16 @@ __meta__ = {
 }
 
 [node name="Interact" type="TouchScreenButton" parent="Others"]
-position = Vector2( -152.592, -133.04 )
+position = Vector2( -299.909, -130.959 )
 normal = ExtResource( 5 )
-shape = SubResource( 6 )
+shape = SubResource( 5 )
 action = "interact"
+
+[node name="Fire" type="TouchScreenButton" parent="Others"]
+position = Vector2( -150.511, -189.636 )
+normal = ExtResource( 10 )
+shape = SubResource( 5 )
+action = "clone"
 
 [node name="Toolbar" type="Control" parent="."]
 anchor_left = 0.5
@@ -126,10 +114,13 @@ anchor_bottom = 1.0
 margin_left = -20.0
 margin_top = -40.0
 margin_right = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Pause" type="TouchScreenButton" parent="Toolbar"]
 position = Vector2( 0, -64 )
 scale = Vector2( 1.5, 1.5 )
 normal = ExtResource( 6 )
-shape = SubResource( 7 )
+shape = SubResource( 6 )
 action = "ui_pause"

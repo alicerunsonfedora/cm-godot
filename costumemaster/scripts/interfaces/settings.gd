@@ -15,6 +15,7 @@ onready var chk_debug_mode := $TabContainer/PERF_TAB_EXTRA/View/Contents/chk_dbg
 onready var chk_dbg_end := $TabContainer/PERF_TAB_DEBUG/View/Contents/chk_dbg_end as CheckButton
 onready var chk_dbg_flb := $TabContainer/PERF_TAB_DEBUG/View/Contents/chk_dbg_flb as CheckButton
 onready var chk_dbg_lvl := $TabContainer/PERF_TAB_DEBUG/View/Contents/chk_dbg_lvl as CheckButton
+onready var chk_dbg_joy := $TabContainer/PERF_TAB_DEBUG/View/Contents/chk_dbg_joy as CheckButton
 onready var sel_locale := $TabContainer/PERF_TAB_GENERAL/View/Contents/locale/sel_locale as OptionButton
 onready var sld_vol_music := $TabContainer/PERF_TAB_AUDIO/View/Contents/grp_vol_music/sld_vol_music as Slider
 onready var sld_vol_sfx := $TabContainer/PERF_TAB_AUDIO/View/Contents/grp_vol_sfx/sld_vol_sfx as Slider
@@ -26,6 +27,7 @@ func _ready() -> void:
 	chk_dbg_end.pressed = UserDefaults.animate_end_levels
 	chk_dbg_flb.pressed = UserDefaults.fullbright
 	chk_dbg_lvl.pressed = UserDefaults.level_name_in_toolbar
+	chk_dbg_joy.pressed = UserDefaults.use_joypad
 	sld_vol_music.value = UserDefaults.volume_db_music
 	sld_vol_sfx.value = UserDefaults.volume_db_sfx
 	
@@ -50,6 +52,10 @@ func _chk_dbg_end_toggled(value) -> void:
 func _chk_dbg_flb_toggled(value) -> void:
 	chk_dbg_flb.pressed = value
 	UserDefaults.fullbright = value
+	
+func _chk_dbg_joy_toggled(value) -> void:
+	chk_dbg_joy.pressed = value
+	UserDefaults.use_joypad = value
 
 func _chk_dbg_lvl_toggled(value) -> void:
 	chk_dbg_lvl.pressed = value
@@ -70,6 +76,7 @@ func _connect_ui() -> void:
 	_err = chk_dbg_end.connect("toggled", self, "_chk_dbg_end_toggled")
 	_err = chk_dbg_flb.connect("toggled", self, "_chk_dbg_flb_toggled")
 	_err = chk_dbg_lvl.connect("toggled", self, "_chk_dbg_lvl_toggled")
+	_err = chk_dbg_joy.connect("toggled", self, "_chk_dbg_joy_toggled")
 	_err = sel_locale.connect("item_selected", self, "_sel_locale_selected")
 	_err = sld_vol_music.connect("value_changed", self, "_sld_vol_music_changed")
 	_err = sld_vol_sfx.connect("value_changed", self, "_sld_vol_sfx_changed")
