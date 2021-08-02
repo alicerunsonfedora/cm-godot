@@ -50,3 +50,13 @@ The visual and audio assets are licensed as follows:
 - Rain ambiance and footsteps: CC Universal 1.0
 - Tileset: Proprietary (contact LimeZu for permissions)
 - Character sprites, soundtrack, sound effects: Creative Commons Attribution-ShareAlike 4.0 International
+
+## Special Thanks
+
+Thanks to the following amazing people for helping make _The Costumemaster: Reloaded_ possible:
+
+- @andy-k, for supporting me on Ko-fi
+- @iAlex11, for providing Spanish translations
+- @wimpysworld and @popey, for verifying the Linux Snap package works well
+- The UBPorts App Development Telegram group, for assisting and verifying the Ubuntu Touch click packages
+- The Godot Engine Team, for developing the Godot engine
