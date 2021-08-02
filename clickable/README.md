@@ -30,4 +30,4 @@ $ CLICKABLE_ARCH=arm64 clickable build
 
 ### Important notes regarding visual rendering
 
-Currently, the game uses GLES2 as its rendering backend. This increases compatibility for more devices running Ubuntu Touch, but some visual glitches may occur on lower-end hardware.
+Currently, the game uses GLES3 as its rendering backend, with a fallback to GLES2 if necessary. Some Ubuntu Touch devices may witness visual glitches depending on graphics hardware limitations. 

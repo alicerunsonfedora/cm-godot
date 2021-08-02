@@ -39,6 +39,10 @@ func _ready() -> void:
 		$PanelInteract/VBoxContainer/HBoxContainer2/Key_Clone.visible = false
 	else:
 		_disable_controller_hints()
+	
+	if UserDefaults.show_mobile_controls:
+		disable_tut_walk()
+	
 	var _err = tut_timer.connect("timeout", self, "_on_timer_timeout")
 	if _err != OK:
 		push_error(_err)
