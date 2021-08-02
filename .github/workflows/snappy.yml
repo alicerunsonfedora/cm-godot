@@ -1,5 +1,10 @@
 name: Snapcraft
-on: [push]
+on:
+  push:
+    paths:
+      - 'snap/**'
+      - 'costumemaster/**'
+      - '.github/workflows/**.yml'
 
 jobs:
   build:

@@ -1,5 +1,10 @@
 name: Clickable
-on: [push]
+on:
+  push:
+    paths:
+      - 'clickable/**'
+      - 'costumemaster/**'
+      - '.github/workflows/**.yml'
 
 jobs:
   build:
