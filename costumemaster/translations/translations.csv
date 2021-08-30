@@ -1,57 +1,57 @@
-keys,en,es
-MENU_START,"Start Game","Nueva Partida"
-MENU_RESUME,"Resume from Save","Continuar desde el último punto de guardado."
-MENU_OPTS,"Options","Opciones"
-MENU_QUIT,"Quit","Salir"
-MENU_COPYRIGHT,"© 2020-2021 Marquis Kurt. All rights reserved.\nPre-release copy. Licensed under MPL v2.0.","© 2020-2021 Marquis Kurt. Todos los derechos reservados.\nCopia de pre-lanzamiento. Licenciado bajo MPL v2.0."
-PM_MAIN,"Back to Main Menu","Volver al menú principal."
-PM_OPTS,"Options","Opciones"
-PM_RESUME,"Resume Game","Continuar partida"
-PM_SAVE,"Save Game","Guardar partida"
-PM_SAVE_TEXT,"Game has been saved.","La partida ha sido guardada."
-PM_TITLE,"Paused","Pausa"
-PERF_TITLE,"Settings","Ajustes"
-PERF_TAB_AUDIO,"Audio","Audio"
-PERF_TAB_DEBUG,"Debugging","Depuración"
-PERF_TAB_EXTRA,"Advanced","Avanzado"
-PERF_TAB_GENERAL,"General","General"
-PERF_PERSIST_FOV,"Keep field of view across levels","Mantener el campo de visión en todos los niveles"
-PERF_PERSIST_FOV_HINT,"Ensure the field of view is kept the same across levels.","Mantiene el campo de visión en todos los niveles"
-PERF_MUSIC,"(Deprecated) Enable music","(Deprecated) Activar música."
-PERF_MUSIC_HINT,"Play the music soundtrack over sound effects, when present and available.","Reproduce la música por encima de los efectos de sonido, siempre y cuando esté presente y disponible."
-PERF_MOBILE,"Show on-screen controls","Mostrar los controles en pantalla"
-PERF_MOBILE_HINT,"Show the on-screen controls to move and interact with the game.","Muestra los controles en pantalla para moverse e interactuar con el juego."
-PERF_DEBUG,"Enable debugging features","Habilitar funciones de depuración"
-PERF_DEBUG_HINT,"Enables features used to assist with debugging levels.","Activa las funciones utilizadas para ayudar a los niveles de depuración."
-PERF_DEBUG_INFO,"The following settings are provided to make debugging levels easier. To enable debugging, turn on 'Enable debugging features' in the Advanced tab. Some settings may not take effect immediately.","Los siguientes ajustes se proporcionan para facilitar los niveles de depuración. Para habilitar la depuración, active ""Habilitar funciones de depuración"" en la pestaña Avanzado. Es posible que algunos ajustes no surtan efecto inmediatamente."
-PERF_DEBUG_ANE,"Play level end animations","Mostrar animaciones de fin de nivel"
-PERF_DEBUG_ANE_HINT,"Display the animation that plays at the end of each level.","Muestra las animaciones que se reproducen al final de cada nivel."
-PERF_DEBUG_FLB,"Toggle fullbright mode","Alternar el modo fullbright"
-PERF_DEBUG_FLB_HINT,"Enabling fullbright mode will ligthen the map. This may be useful for testing on devices that cannot handle lighting.","Activando el modo fullbright se iluminará el mapa. Esto puede ser útil para probar en dispositivos que no pueden manejar la iluminación."
-PERF_DEBUG_LVL,"Display level name on screen","Mostrar el nombre del nivel en la pantalla"
-PERF_DEBUG_LVL_HINT,"Display the level's filename in the lower left hand corner of the screen.","Muestra el nombre del nivel en la esquina inferior izquierda de la pantalla."
-PERF_DEBUG_JOY,"Use joypad","Utilice la joypad"
-PERF_LOCALE,"Preferred language","Idioma preferido"
-PERF_LOCALE_HINT,"Use the following locale for all interface elements.","Utilice la siguiente configuración regional para todos los elementos de la interfaz."
-PERF_VOL_SFX,"SFX Volume","Volumen de los efectos de sonido"
-PERF_VOL_MUSIC,"Music Volume","Volumen de la música"
-GD_CONFINE_WARNING_ONCE,"*boop* I don't know why Chelsea's so hard on herself; she's a pretty good game designer. And she's cute as a puppy!","*boop* No sé por qué Chelsea es tan dura consigo misma; es una diseñadora de juegos bastante buena. ¡Y es linda como un cachorro!"
-GD_CONFINE_WARNING_ALL,"*boop*","*boop*"
-HUD_COST_FLASH,"USB Drive (1)","Unidad USB (1)"
-HUD_COST_BIRD,"Swift Bird (2)","Pájaro Swift (2)"
-HUD_COST_MAGIC,"Magic Unicorn (3)","Unicornio mágico (3)"
-HUD_COST_MEGA,"Megacostume (4)","Megadisfraz (4)"
-HUD_COST_NONE,"No Costume (5)","Sin disfraz (5)"
-HUD_RESTART,"Restart (R)","Reiniciar (R)"
-HUD_FOV_SLIDER,"Adjust your field of view. (+/-)","Ajusta tu campo de visión. (+/-)"
-TUT_MOVE_UP,"Move Up","Moverse hacia arriba"
-TUT_MOVE_DOWN,"Move Down",";Moverse hacia abajo"
-TUT_MOVE_LEFT,"Move Left","Moverse a la izquierda"
-TUT_MOVE_RIGHT,"Move Right","Moverse a la derecha"
-TUT_INTERACT,"Pick Up/Press","Recoger/Pulsar"
-TUT_CLONE,"Clone USB","Clonar USB"
-TUT_COSTUME,"Click or press the number keys to switch between costumes. Some costumes may unlock different abilities.","Haz clic o pulsa las teclas numéricas para cambiar de traje. Algunos trajes pueden desbloquear diferentes habilidades."
-TUT_RESTART,"Click or press R to restart the level.","Haz clic o pulsa R para reiniciar el nivel."
-TUT_FOV_SLIDER,"Use the slider or press the plus/minus keys to adjust your field of view.","Utiliza el control deslizante o pulsa las teclas más/menos para ajustar tu campo de visión."
-CUTSCN_SKIP,"Skip","Saltar"
-CUTSCN_NEXT,"Next","Siguiente"
+keys,en,es,fr
+MENU_START,Start Game,Nueva Partida,Nouvelle partie
+MENU_RESUME,Resume from Save,Continuar desde el último punto de guardado.,Continuer depuis une partie sauvegardée
+MENU_OPTS,Options,Opciones,Options
+MENU_QUIT,Quit,Salir,Quitter
+MENU_COPYRIGHT,© 2020-2021 Marquis Kurt. All rights reserved.\nPre-release copy. Licensed under MPL v2.0.,© 2020-2021 Marquis Kurt. Todos los derechos reservados.\nCopia de pre-lanzamiento. Licenciado bajo MPL v2.0.,© 2020-2021 Marquis Kurt. Tous droits réservés.\nCopie pré-publiée. Licencié sous MPL v 2.0.
+PM_MAIN,Back to Main Menu,Volver al menú principal.,Retour au Menu Principal
+PM_OPTS,Options,Opciones,Options
+PM_RESUME,Resume Game,Continuar partida,Continuer la Partie
+PM_SAVE,Save Game,Guardar partida,Sauvegarder la Partie
+PM_SAVE_TEXT,Game has been saved.,La partida ha sido guardada.,La partie a été sauvegardée
+PM_TITLE,Paused,Pausa,Pause
+PERF_TITLE,Settings,Ajustes,Paramètres
+PERF_TAB_AUDIO,Audio,Audio,Son
+PERF_TAB_DEBUG,Debugging,Depuración,Débogage
+PERF_TAB_EXTRA,Advanced,Avanzado,Avancé
+PERF_TAB_GENERAL,General,General,Général
+PERF_PERSIST_FOV,Keep field of view across levels,Mantener el campo de visión en todos los niveles,Maintenir le champ de vision à travers les niveaux
+PERF_PERSIST_FOV_HINT,Ensure the field of view is kept the same across levels.,Mantiene el campo de visión en todos los niveles,Maintenir le champ de vision reste le même à tous les niveaux
+PERF_MUSIC,(Deprecated) Enable music,(Deprecated) Activar música.,(Deprecated) Activer la musique
+PERF_MUSIC_HINT,"Play the music soundtrack over sound effects, when present and available.","Reproduce la música por encima de los efectos de sonido, siempre y cuando esté presente y disponible.","Jouer la bande-son de la musique par dessus les effets sonores, lorsqu’ils sont présents et disponibles"
+PERF_MOBILE,Show on-screen controls,Mostrar los controles en pantalla,Montrer les commandes à l’écran
+PERF_MOBILE_HINT,Show the on-screen controls to move and interact with the game.,Muestra los controles en pantalla para moverse e interactuar con el juego.,Montrer les commandes à l’écran pour bouger et interagir avec le jeu
+PERF_DEBUG,Enable debugging features,Habilitar funciones de depuración,Activer les fonctions de déboggage
+PERF_DEBUG_HINT,Enables features used to assist with debugging levels.,Activa las funciones utilizadas para ayudar a los niveles de depuración.,Active les fonctionnalités utilisées pour aider aux niveaux de déboggage
+PERF_DEBUG_INFO,"The following settings are provided to make debugging levels easier. To enable debugging, turn on 'Enable debugging features' in the Advanced tab. Some settings may not take effect immediately.","Los siguientes ajustes se proporcionan para facilitar los niveles de depuración. Para habilitar la depuración, active ""Habilitar funciones de depuración"" en la pestaña Avanzado. Es posible que algunos ajustes no surtan efecto inmediatamente.","Les paramètres suivants sont fournis pour faciliter les niveaux de déboggage.  Pour activer le déboggage, activez « Activer les fonctionnalités de déboggage » dans l’onglet Avancé.  Certains paramètres peuvent ne pas prendre effet immédiatement."
+PERF_DEBUG_ANE,Play level end animations,Mostrar animaciones de fin de nivel,Jouer les animations de fin de niveau
+PERF_DEBUG_ANE_HINT,Display the animation that plays at the end of each level.,Muestra las animaciones que se reproducen al final de cada nivel.,Afficher l’animation qui se déroule à la fin de chaque niveau
+PERF_DEBUG_FLB,Toggle fullbright mode,Alternar el modo fullbright,Basculer en mode fullbright
+PERF_DEBUG_FLB_HINT,Enabling fullbright mode will ligthen the map. This may be useful for testing on devices that cannot handle lighting.,Activando el modo fullbright se iluminará el mapa. Esto puede ser útil para probar en dispositivos que no pueden manejar la iluminación.,L’activation du mode fullbright éclaircira la carte.  Cela peut être utile pour tester des appareils qui ne peuvent pas gérer l’éclaircissage.
+PERF_DEBUG_LVL,Display level name on screen,Mostrar el nombre del nivel en la pantalla,Afficher le nom du niveau à l’écran
+PERF_DEBUG_LVL_HINT,Display the level's filename in the lower left hand corner of the screen.,Muestra el nombre del nivel en la esquina inferior izquierda de la pantalla.,Afficher le nom du fichier du niveau dans le coin inférieur gauche de l’écran
+PERF_DEBUG_JOY,Use joypad,Utilice la joypad,Utiliser le joypad
+PERF_LOCALE,Preferred language,Idioma preferido,Langue préférée
+PERF_LOCALE_HINT,Use the following locale for all interface elements.,Utilice la siguiente configuración regional para todos los elementos de la interfaz.,Utiliser les paramètres locaux suivants pour tous les éléments d’interface
+PERF_VOL_SFX,SFX Volume,Volumen de los efectos de sonido,Volume SFX
+PERF_VOL_MUSIC,Music Volume,Volumen de la música,Volume Musique
+GD_CONFINE_WARNING_ONCE,*boop* I don't know why Chelsea's so hard on herself; she's a pretty good game designer. And she's cute as a puppy!,*boop* No sé por qué Chelsea es tan dura consigo misma; es una diseñadora de juegos bastante buena. ¡Y es linda como un cachorro!,*boop* Je ne sais pas pourquoi Chelsea est si dure avec elle-même; c’est une assez bonne game designer.  Et elle est mignonne comme un chiot.
+GD_CONFINE_WARNING_ALL,*boop*,*boop*,*boop*
+HUD_COST_FLASH,USB Drive (1),Unidad USB (1),Drive USB (1)
+HUD_COST_BIRD,Swift Bird (2),Pájaro Swift (2),Oiseau Rapide (2)
+HUD_COST_MAGIC,Magic Unicorn (3),Unicornio mágico (3),Licorne magique (3)
+HUD_COST_MEGA,Megacostume (4),Megadisfraz (4),Mégacostume (4)
+HUD_COST_NONE,No Costume (5),Sin disfraz (5),Pas de costume (5)
+HUD_RESTART,Restart (R),Reiniciar (R),Réinitialiser (R)
+HUD_FOV_SLIDER,Adjust your field of view. (+/-),Ajusta tu campo de visión. (+/-),Ajuster votre champ de vision. (+/-)
+TUT_MOVE_UP,Move Up,Moverse hacia arriba,Déplacer vers le haut
+TUT_MOVE_DOWN,Move Down,;Moverse hacia abajo,Déplacer vers le bas
+TUT_MOVE_LEFT,Move Left,Moverse a la izquierda,Déplacer vers la gauche
+TUT_MOVE_RIGHT,Move Right,Moverse a la derecha,Déplacer vers la droite
+TUT_INTERACT,Pick Up/Press,Recoger/Pulsar,Ramasser/appuyer
+TUT_CLONE,Clone USB,Clonar USB,Clone USB
+TUT_COSTUME,Click or press the number keys to switch between costumes. Some costumes may unlock different abilities.,Haz clic o pulsa las teclas numéricas para cambiar de traje. Algunos trajes pueden desbloquear diferentes habilidades.,Cliquer ou appuyer sur le nombre de touches pour basculer entre costumes.  Certains costumes peuvent déverrouiller certaines capacités.
+TUT_RESTART,Click or press R to restart the level.,Haz clic o pulsa R para reiniciar el nivel.,Cliquer ou appuyer sur R pour recommencer le niveau
+TUT_FOV_SLIDER,Use the slider or press the plus/minus keys to adjust your field of view.,Utiliza el control deslizante o pulsa las teclas más/menos para ajustar tu campo de visión.,Utiliser le curseur ou appuyer les touches plus/moins pour ajuster votre camp de vision
+CUTSCN_SKIP,Skip,Saltar,Sauter
+CUTSCN_NEXT,Next,Siguiente,Suivant,
