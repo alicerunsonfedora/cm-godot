@@ -289,8 +289,8 @@ pointing/emulate_touch_from_mouse.X11=false
 
 [locale]
 
-translations=PoolStringArray( "res://translations/translations.en.translation", "res://translations/dialogue.translations.en.translation", "res://translations/dialogue.translations.es.translation", "res://translations/translations.es.translation" )
-locale_filter=[ 0, [ "en" ] ]
+translations=PoolStringArray( "res://translations/translations.en.translation", "res://translations/dialogue.translations.en.translation", "res://translations/dialogue.translations.es.translation", "res://translations/translations.es.translation", "res://translations/translations.fr.translation", "res://translations/dialogue.translations.fr.translation" )
+locale_filter=[ 0, [ "en", "es", "fr" ] ]
 
 [physics]
 
