@@ -66,6 +66,7 @@ The following list demonstrates the following locales the game currently support
 | ------ | :-------------------------- |
 | ✅     | English (default, fallback) |
 | ✅     | Spanish                     |
+| ✅     | French                      |
 
 If you'd like to provide translations for your language, please make a pull request with the appropriate changes to the translations files. More information on the format can be found in the [Godot Engine documentation](https://docs.godotengine.org/en/stable/getting_started/workflow/assets/importing_translations.html#translation-format).
 
