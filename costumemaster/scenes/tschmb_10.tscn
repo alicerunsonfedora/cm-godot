@@ -26,6 +26,7 @@ extents = Vector2( 30.0579, 37.9578 )
 [node name="World" type="Node2D"]
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
+MUSIC = 3
 ALLOWED_COSTUMES = [ 1, 3 ]
 
 [node name="Player" parent="Universe" instance=ExtResource( 1 )]

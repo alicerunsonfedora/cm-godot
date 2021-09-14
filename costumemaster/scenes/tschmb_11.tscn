@@ -40,7 +40,7 @@ extents = Vector2( 30.0579, 37.9578 )
 [node name="World" type="Node2D"]
 
 [node name="Universe" parent="." instance=ExtResource( 4 )]
-MUSIC = 3
+MUSIC = 4
 MULTIPLE_COSTUMES = false
 DEBUG_MODE = true
 
