@@ -3,7 +3,7 @@ MENU_START,Start Game,Nueva Partida,Nouvelle partie
 MENU_RESUME,Resume from Save,Continuar desde el último punto de guardado.,Continuer depuis une partie sauvegardée
 MENU_OPTS,Options,Opciones,Options
 MENU_QUIT,Quit,Salir,Quitter
-MENU_COPYRIGHT,© 2020-2021 Marquis Kurt. All rights reserved.\nPre-release copy. Licensed under MPL v2.0.,© 2020-2021 Marquis Kurt. Todos los derechos reservados.\nCopia de pre-lanzamiento. Licenciado bajo MPL v2.0.,© 2020-2021 Marquis Kurt. Tous droits réservés.\nCopie pré-publiée. Licencié sous MPL v 2.0.
+MENU_COPYRIGHT,© 2020-2021 Marquis Kurt. All rights reserved.\nLicensed under MPL v2.0.,© 2020-2021 Marquis Kurt. Todos los derechos reservados.\nLicenciado bajo MPL v2.0.,© 2020-2021 Marquis Kurt. Tous droits réservés.\nLicencié sous MPL v 2.0.
 PM_MAIN,Back to Main Menu,Volver al menú principal.,Retour au Menu Principal
 PM_OPTS,Options,Opciones,Options
 PM_RESUME,Resume Game,Continuar partida,Continuer la Partie

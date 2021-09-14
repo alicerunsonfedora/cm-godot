@@ -1,5 +1,5 @@
 name: costumemaster-reloaded
-version: '1.0.0-rc'
+version: '1.0.0'
 base: core20
 summary: Switch costumes. Solve puzzles. Wake up.
 description : |
