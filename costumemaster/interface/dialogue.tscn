@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/gui/theme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/interfaces/dialogue.gd" type="Script" id=2]
@@ -24,6 +24,9 @@ shortcut = SubResource( 2 )
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 5 )
 region = Rect2( 153, 9, 30, 33 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 624, 100 )
 
 [node name="Control" type="Popup"]
 anchor_right = 1.0
@@ -96,3 +99,8 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 4 )
 hframes = 24
 vframes = 2
+
+[node name="NextFull" type="TouchScreenButton" parent="."]
+position = Vector2( 16, 507.76 )
+shape = SubResource( 5 )
+visibility_mode = 1

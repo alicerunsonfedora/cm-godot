@@ -17,6 +17,7 @@ export var DIALOGUE_SET: String = "tschmb_00"
 var _dialogue: Array = []
 
 onready var next_button = $VBoxContainer/HBoxContainer/NextButton as Button
+onready var mobile_next = $NextFull as TouchScreenButton
 onready var lbl_dialogue = $VBoxContainer/DialogueChannel as Label
 
 func _ready():
@@ -24,6 +25,13 @@ func _ready():
 	if not _dialogue.empty():
 		_pop_dialogue()
 	next_button.connect("pressed", self, "_on_button_press")
+	mobile_next.connect("pressed", self, "_on_button_press")
+	
+	# Disable the desktop "Next" button if we're on a touchscreen device or
+	# have this option enabled.
+	if UserDefaults.show_mobile_controls:
+		next_button.disabled = true
+		next_button.visible = false
 	
 	if len(Input.get_connected_joypads()) < 1:
 		next_button.icon = null
