@@ -42,6 +42,7 @@ func _ready() -> void:
 	
 	if UserDefaults.show_mobile_controls:
 		disable_tut_walk()
+		slider_fov.visible = false
 	
 	var _err = tut_timer.connect("timeout", self, "_on_timer_timeout")
 	if _err != OK:
