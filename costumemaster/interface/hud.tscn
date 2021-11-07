@@ -274,9 +274,9 @@ modulate = Color( 1, 1, 1, 0.666667 )
 anchor_top = 0.5
 anchor_bottom = 0.5
 margin_left = 16.0
-margin_top = -102.0
+margin_top = -112.0
 margin_right = 227.0
-margin_bottom = 112.0
+margin_bottom = 122.0
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -294,14 +294,14 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
-margin_top = 28.0
-margin_right = 240.0
-margin_bottom = 69.0
+margin_top = 7.0
+margin_right = 295.0
+margin_bottom = 56.0
 alignment = 2
 
 [node name="Key_MoveUp" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer"]
 margin_right = 41.0
-margin_bottom = 41.0
+margin_bottom = 49.0
 grow_horizontal = 2
 rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
@@ -312,20 +312,20 @@ scroll_active = false
 
 [node name="MoveUp" type="Label" parent="PanelMove/VBoxContainer/HBoxContainer"]
 margin_left = 49.0
-margin_right = 240.0
-margin_bottom = 41.0
+margin_right = 295.0
+margin_bottom = 49.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 text = "TUT_MOVE_UP"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
-margin_top = 77.0
-margin_right = 240.0
-margin_bottom = 118.0
+margin_top = 64.0
+margin_right = 295.0
+margin_bottom = 113.0
 
 [node name="Key_MoveLeft" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer2"]
 margin_right = 41.0
-margin_bottom = 41.0
+margin_bottom = 49.0
 grow_horizontal = 2
 rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
@@ -336,8 +336,8 @@ scroll_active = false
 
 [node name="MoveLeft" type="Label" parent="PanelMove/VBoxContainer/HBoxContainer2"]
 margin_left = 49.0
-margin_right = 240.0
-margin_bottom = 41.0
+margin_right = 295.0
+margin_bottom = 49.0
 size_flags_horizontal = 3
 text = "TUT_MOVE_LEFT"
 __meta__ = {
@@ -345,13 +345,13 @@ __meta__ = {
 }
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
-margin_top = 126.0
-margin_right = 240.0
-margin_bottom = 167.0
+margin_top = 121.0
+margin_right = 295.0
+margin_bottom = 170.0
 
 [node name="Key_MoveDown" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer3"]
 margin_right = 41.0
-margin_bottom = 41.0
+margin_bottom = 49.0
 grow_horizontal = 2
 rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
@@ -362,19 +362,19 @@ scroll_active = false
 
 [node name="MoveDown" type="Label" parent="PanelMove/VBoxContainer/HBoxContainer3"]
 margin_left = 49.0
-margin_right = 240.0
-margin_bottom = 41.0
+margin_right = 295.0
+margin_bottom = 49.0
 size_flags_horizontal = 3
 text = "TUT_MOVE_DOWN"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="PanelMove/VBoxContainer"]
-margin_top = 175.0
-margin_right = 240.0
-margin_bottom = 216.0
+margin_top = 178.0
+margin_right = 295.0
+margin_bottom = 227.0
 
 [node name="Key_MoveRight" type="RichTextLabel" parent="PanelMove/VBoxContainer/HBoxContainer4"]
 margin_right = 41.0
-margin_bottom = 41.0
+margin_bottom = 49.0
 grow_horizontal = 2
 rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
@@ -385,8 +385,8 @@ scroll_active = false
 
 [node name="MoveRight" type="Label" parent="PanelMove/VBoxContainer/HBoxContainer4"]
 margin_left = 49.0
-margin_right = 240.0
-margin_bottom = 41.0
+margin_right = 295.0
+margin_bottom = 49.0
 size_flags_horizontal = 3
 text = "TUT_MOVE_RIGHT"
 
@@ -417,14 +417,14 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelInteract/VBoxContainer"]
-margin_top = 3.0
-margin_right = 391.0
+margin_top = 2.0
+margin_right = 377.0
 margin_bottom = 51.0
 alignment = 2
 
 [node name="Key_Interact" type="RichTextLabel" parent="PanelInteract/VBoxContainer/HBoxContainer"]
 margin_right = 41.0
-margin_bottom = 48.0
+margin_bottom = 49.0
 grow_horizontal = 0
 rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
@@ -435,7 +435,7 @@ scroll_active = false
 [node name="CtrlrInteract" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer"]
 margin_left = 49.0
 margin_right = 97.0
-margin_bottom = 48.0
+margin_bottom = 49.0
 rect_min_size = Vector2( 48, 48 )
 texture = SubResource( 20 )
 expand = true
@@ -443,16 +443,15 @@ stretch_mode = 6
 
 [node name="Interact" type="Label" parent="PanelInteract/VBoxContainer/HBoxContainer"]
 margin_left = 105.0
-margin_top = 3.0
-margin_right = 312.0
-margin_bottom = 44.0
+margin_right = 298.0
+margin_bottom = 49.0
 size_flags_horizontal = 3
 text = "TUT_INTERACT"
 
 [node name="TextureRect" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer"]
-margin_left = 320.0
-margin_right = 352.0
-margin_bottom = 48.0
+margin_left = 306.0
+margin_right = 338.0
+margin_bottom = 49.0
 rect_min_size = Vector2( 32, 41 )
 texture = SubResource( 17 )
 expand = true
@@ -462,9 +461,9 @@ __meta__ = {
 }
 
 [node name="TextureRect2" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer"]
-margin_left = 360.0
-margin_right = 391.0
-margin_bottom = 48.0
+margin_left = 346.0
+margin_right = 377.0
+margin_bottom = 49.0
 rect_min_size = Vector2( 31, 41 )
 texture = SubResource( 18 )
 expand = true
@@ -475,13 +474,13 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="PanelInteract/VBoxContainer"]
 margin_top = 59.0
-margin_right = 391.0
-margin_bottom = 107.0
+margin_right = 377.0
+margin_bottom = 108.0
 alignment = 2
 
 [node name="Key_Clone" type="RichTextLabel" parent="PanelInteract/VBoxContainer/HBoxContainer2"]
 margin_right = 41.0
-margin_bottom = 48.0
+margin_bottom = 49.0
 grow_horizontal = 0
 rect_min_size = Vector2( 41, 41 )
 bbcode_enabled = true
@@ -492,7 +491,7 @@ scroll_active = false
 [node name="CtrlrClone" type="TextureRect" parent="PanelInteract/VBoxContainer/HBoxContainer2"]
 margin_left = 49.0
 margin_right = 97.0
-margin_bottom = 48.0
+margin_bottom = 49.0
 rect_min_size = Vector2( 48, 48 )
 texture = SubResource( 21 )
 expand = true
@@ -500,9 +499,8 @@ stretch_mode = 6
 
 [node name="Clone" type="Label" parent="PanelInteract/VBoxContainer/HBoxContainer2"]
 margin_left = 105.0
-margin_top = 3.0
-margin_right = 391.0
-margin_bottom = 44.0
+margin_right = 377.0
+margin_bottom = 49.0
 grow_horizontal = 0
 size_flags_horizontal = 3
 text = "TUT_CLONE"
