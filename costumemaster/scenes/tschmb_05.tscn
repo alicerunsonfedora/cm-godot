@@ -163,7 +163,6 @@ shape = SubResource( 5 )
 position = Vector2( -12.3984, -13.7031 )
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 8 )
-frame = 1
 playing = true
 
 [node name="Alert" type="AudioStreamPlayer2D" parent="GDConfineScript"]

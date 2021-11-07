@@ -194,8 +194,9 @@ __meta__ = {
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 16.0
-margin_top = -204.0
+margin_top = -240.0
 margin_right = 244.0
+margin_bottom = -16.0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -203,7 +204,7 @@ __meta__ = {
 
 [node name="btn_start" type="Button" parent="CanvasLayer/Control/MenuButtons"]
 margin_right = 228.0
-margin_bottom = 45.0
+margin_bottom = 50.0
 focus_neighbour_top = NodePath("../btn_quit")
 focus_neighbour_bottom = NodePath("../btn_resume")
 focus_next = NodePath("../btn_resume")
@@ -216,9 +217,9 @@ __meta__ = {
 }
 
 [node name="btn_resume" type="Button" parent="CanvasLayer/Control/MenuButtons"]
-margin_top = 53.0
+margin_top = 58.0
 margin_right = 228.0
-margin_bottom = 98.0
+margin_bottom = 108.0
 focus_neighbour_top = NodePath("../btn_start")
 focus_neighbour_bottom = NodePath("../btn_options")
 focus_next = NodePath("../btn_options")
@@ -231,9 +232,9 @@ __meta__ = {
 }
 
 [node name="btn_options" type="Button" parent="CanvasLayer/Control/MenuButtons"]
-margin_top = 106.0
+margin_top = 116.0
 margin_right = 228.0
-margin_bottom = 151.0
+margin_bottom = 166.0
 focus_neighbour_top = NodePath("../btn_resume")
 focus_neighbour_bottom = NodePath("../btn_quit")
 focus_next = NodePath("../btn_quit")
@@ -243,9 +244,9 @@ flat = true
 align = 0
 
 [node name="btn_quit" type="Button" parent="CanvasLayer/Control/MenuButtons"]
-margin_top = 159.0
+margin_top = 174.0
 margin_right = 228.0
-margin_bottom = 204.0
+margin_bottom = 224.0
 focus_neighbour_top = NodePath("../btn_options")
 focus_neighbour_bottom = NodePath("../btn_start")
 focus_next = NodePath("../btn_start")
